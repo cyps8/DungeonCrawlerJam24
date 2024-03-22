@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=3 uid="uid://kqpqdl61bvfo"]
+
+[ext_resource type="PackedScene" uid="uid://beytbbuavadt5" path="res://Nodes/player.tscn" id="1_lxd68"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8cat3"]
+sky_top_color = Color(0.188235, 0.360784, 0.203922, 1)
+sky_horizon_color = Color(0.587255, 0.631373, 0.614706, 1)
+ground_bottom_color = Color(0.160784, 0.164706, 0.254902, 1)
+ground_horizon_color = Color(0.587255, 0.631373, 0.614706, 1)
+
+[sub_resource type="Sky" id="Sky_1ndth"]
+sky_material = SubResource("ProceduralSkyMaterial_8cat3")
+
+[sub_resource type="Environment" id="Environment_ty0gj"]
+background_mode = 2
+sky = SubResource("Sky_1ndth")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ymhr4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p14rj"]
+
+[sub_resource type="Gradient" id="Gradient_pgyg2"]
+colors = PackedColorArray(0.197937, 0.197937, 0.197937, 1, 0.408329, 0.408329, 0.408329, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iw60r"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ci65v"]
+color_ramp = SubResource("Gradient_pgyg2")
+noise = SubResource("FastNoiseLite_iw60r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ntkv"]
+albedo_texture = SubResource("NoiseTexture2D_ci65v")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ofbsb"]
+material = SubResource("StandardMaterial3D_1ntkv")
+size = Vector2(3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pf8in"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mdire"]
+size = Vector3(1.4, 0.5, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_mjo05"]
+left_to_right = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6260p"]
+
+[node name="Game" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ty0gj")
+
+[node name="Player" parent="." instance=ExtResource("1_lxd68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Block" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="World/Block"]
+shape = SubResource("BoxShape3D_ymhr4")
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Block"]
+mesh = SubResource("BoxMesh_p14rj")
+
+[node name="Block2" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="World/Block2"]
+shape = SubResource("BoxShape3D_ymhr4")
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Block2"]
+mesh = SubResource("BoxMesh_p14rj")
+
+[node name="Block3" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 1)
+
+[node name="Shape" type="CollisionShape3D" parent="World/Block3"]
+shape = SubResource("BoxShape3D_ymhr4")
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Block3"]
+mesh = SubResource("BoxMesh_p14rj")
+
+[node name="Floor" type="StaticBody3D" parent="World"]
+
+[node name="Floor" type="MeshInstance3D" parent="World/Floor"]
+mesh = SubResource("PlaneMesh_ofbsb")
+skeleton = NodePath("../..")
+
+[node name="Shape" type="CollisionShape3D" parent="World/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_pf8in")
+
+[node name="Stairs" type="StaticBody3D" parent="World"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0.5, 1)
+
+[node name="Shape" type="CollisionShape3D" parent="World/Stairs"]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -0.167, -0.167, 0)
+shape = SubResource("BoxShape3D_mdire")
+
+[node name="Mesh" type="MeshInstance3D" parent="World/Stairs"]
+mesh = SubResource("PrismMesh_mjo05")
+
+[node name="InvisibleWall" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 0.5)
+
+[node name="Shape" type="CollisionShape3D" parent="World/InvisibleWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.01, 0, 0, 0)
+shape = SubResource("BoxShape3D_6260p")
