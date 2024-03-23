@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://omfwr31oxage"
+path="res://.godot/imported/mesh_hanger_entrance_top_right_mid.obj-983bbf6f4093949d9ec6e28f558363c5.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_hanger_entrance_top_right_mid.obj-983bbf6f4093949d9ec6e28f558363c5.mesh"]
+
+source_file="res://Assets/Art/Meshes/Hanger/mesh_hanger_entrance_top_right_mid.obj"
+dest_files=["res://.godot/imported/mesh_hanger_entrance_top_right_mid.obj-983bbf6f4093949d9ec6e28f558363c5.mesh", "res://.godot/imported/mesh_hanger_entrance_top_right_mid.obj-983bbf6f4093949d9ec6e28f558363c5.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

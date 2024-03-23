@@ -1,11 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://5cl6f3qb7j07"]
+[gd_scene load_steps=20 format=3 uid="uid://5cl6f3qb7j07"]
 
-[ext_resource type="ArrayMesh" uid="uid://bilb38c5gty0n" path="res://Assets/Art/Meshes/hallway pieces-0.obj" id="1_4u47y"]
-[ext_resource type="ArrayMesh" uid="uid://bntvwppfbv84t" path="res://Assets/Art/Meshes/hallway pieces-1.obj" id="2_afcuu"]
+[ext_resource type="ArrayMesh" uid="uid://bilb38c5gty0n" path="res://Assets/Art/Meshes/Hallway/hallway pieces-0.obj" id="1_vi11e"]
 [ext_resource type="Shape3D" uid="uid://wdwd0u58bbvn" path="res://Resources/CollisionShapes/Floor.tres" id="2_uw102"]
-[ext_resource type="ArrayMesh" uid="uid://mv7q3fjcrxjd" path="res://Assets/Art/Meshes/hallway pieces-2.obj" id="3_blma3"]
-[ext_resource type="ArrayMesh" uid="uid://or2kyp4mb26q" path="res://Assets/Art/Meshes/hallway pieces-3.obj" id="4_m4c76"]
-[ext_resource type="ArrayMesh" uid="uid://cxgvwnl78dv0j" path="res://Assets/Art/Meshes/hallway pieces-4.obj" id="5_q4jas"]
+[ext_resource type="ArrayMesh" uid="uid://bntvwppfbv84t" path="res://Assets/Art/Meshes/Hallway/hallway pieces-1.obj" id="3_1ekc7"]
+[ext_resource type="ArrayMesh" uid="uid://mv7q3fjcrxjd" path="res://Assets/Art/Meshes/Hallway/hallway pieces-2.obj" id="4_r6q78"]
+[ext_resource type="ArrayMesh" uid="uid://or2kyp4mb26q" path="res://Assets/Art/Meshes/Hallway/hallway pieces-3.obj" id="5_mmug2"]
+[ext_resource type="ArrayMesh" uid="uid://cxgvwnl78dv0j" path="res://Assets/Art/Meshes/Hallway/hallway pieces-4.obj" id="6_f23x1"]
+[ext_resource type="ArrayMesh" uid="uid://b5k5t513h6pq1" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_door.obj" id="7_edice"]
+[ext_resource type="ArrayMesh" uid="uid://dtx3e2hsjjyo2" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_door_frame_left.obj" id="8_aeoqg"]
+[ext_resource type="ArrayMesh" uid="uid://drkc8q4g5vjnh" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_door_frame_right.obj" id="9_0cdaa"]
+[ext_resource type="ArrayMesh" uid="uid://bmchvguowpnv1" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_entrance_left.obj" id="10_xegr4"]
+[ext_resource type="ArrayMesh" uid="uid://dr5dx8ubdrxmu" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_entrance_right.obj" id="11_ca7q1"]
+[ext_resource type="ArrayMesh" uid="uid://cvuniux0it3s3" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_entrance_top_left.obj" id="12_3wy82"]
+[ext_resource type="ArrayMesh" uid="uid://brgilglwbagau" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_entrance_top_left_mid.obj" id="13_rjj23"]
+[ext_resource type="ArrayMesh" uid="uid://2ybuwkdr7jat" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_entrance_top_right.obj" id="14_rdihn"]
+[ext_resource type="ArrayMesh" uid="uid://omfwr31oxage" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_entrance_top_right_mid.obj" id="15_k5le3"]
+[ext_resource type="ArrayMesh" uid="uid://dh7h4am7vrkb7" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_floor_corner.obj" id="16_qdql4"]
+[ext_resource type="ArrayMesh" uid="uid://ds5bbn1schls" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_floor_full.obj" id="17_2c5vi"]
+[ext_resource type="ArrayMesh" uid="uid://cg5hrtdinwep" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_floor_straight.obj" id="18_qp5da"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h37nf"]
 size = Vector3(0.01, 4, 4)
@@ -13,7 +25,7 @@ size = Vector3(0.01, 4, 4)
 [node name="Node3D" type="Node3D"]
 
 [node name="HallwayPieces-0" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_4u47y")
+mesh = ExtResource("1_vi11e")
 
 [node name="Collision" type="StaticBody3D" parent="HallwayPieces-0"]
 
@@ -26,7 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 shape = SubResource("BoxShape3D_h37nf")
 
 [node name="HallwayPieces-1" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_afcuu")
+mesh = ExtResource("3_1ekc7")
 
 [node name="Collision" type="StaticBody3D" parent="HallwayPieces-1"]
 
@@ -35,7 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = ExtResource("2_uw102")
 
 [node name="HallwayPieces-2" type="MeshInstance3D" parent="."]
-mesh = ExtResource("3_blma3")
+mesh = ExtResource("4_r6q78")
 
 [node name="Collision" type="StaticBody3D" parent="HallwayPieces-2"]
 
@@ -44,7 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = ExtResource("2_uw102")
 
 [node name="HallwayPieces-3" type="MeshInstance3D" parent="."]
-mesh = ExtResource("4_m4c76")
+mesh = ExtResource("5_mmug2")
 
 [node name="Collision" type="StaticBody3D" parent="HallwayPieces-3"]
 
@@ -53,10 +65,104 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = ExtResource("2_uw102")
 
 [node name="HallwayPieces-4" type="MeshInstance3D" parent="."]
-mesh = ExtResource("5_q4jas")
+mesh = ExtResource("6_f23x1")
 
 [node name="Collision" type="StaticBody3D" parent="HallwayPieces-4"]
 
 [node name="Floor" type="CollisionShape3D" parent="HallwayPieces-4/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerDoor" type="MeshInstance3D" parent="."]
+mesh = ExtResource("7_edice")
+
+[node name="MeshHangerDoorFrameLeft" type="MeshInstance3D" parent="."]
+mesh = ExtResource("8_aeoqg")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerDoorFrameLeft"]
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerDoorFrameLeft/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerDoorFrameRight" type="MeshInstance3D" parent="."]
+mesh = ExtResource("9_0cdaa")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerDoorFrameRight"]
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerDoorFrameRight/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerEntranceLeft" type="MeshInstance3D" parent="."]
+mesh = ExtResource("10_xegr4")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerEntranceLeft"]
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerEntranceLeft/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="Wall" type="CollisionShape3D" parent="MeshHangerEntranceLeft/Collision"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.140934, 0, -2.00646)
+shape = SubResource("BoxShape3D_h37nf")
+
+[node name="Wall2" type="CollisionShape3D" parent="MeshHangerEntranceLeft/Collision"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.98113, 0, 0.0682161)
+shape = SubResource("BoxShape3D_h37nf")
+
+[node name="MeshHangerEntranceRight" type="MeshInstance3D" parent="."]
+mesh = ExtResource("11_ca7q1")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerEntranceRight"]
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerEntranceRight/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="Wall" type="CollisionShape3D" parent="MeshHangerEntranceRight/Collision"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2.02697, 0, 0.0919071)
+shape = SubResource("BoxShape3D_h37nf")
+
+[node name="Wall2" type="CollisionShape3D" parent="MeshHangerEntranceRight/Collision"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.0477086, 0, -2.03015)
+shape = SubResource("BoxShape3D_h37nf")
+
+[node name="MeshHangerEntranceTopLeft" type="MeshInstance3D" parent="."]
+mesh = ExtResource("12_3wy82")
+
+[node name="MeshHangerEntranceTopLeftMid" type="MeshInstance3D" parent="."]
+mesh = ExtResource("13_rjj23")
+
+[node name="MeshHangerEntranceTopRight" type="MeshInstance3D" parent="."]
+mesh = ExtResource("14_rdihn")
+
+[node name="MeshHangerEntranceTopRightMid" type="MeshInstance3D" parent="."]
+mesh = ExtResource("15_k5le3")
+
+[node name="MeshHangerFloorCorner" type="MeshInstance3D" parent="."]
+mesh = ExtResource("16_qdql4")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerFloorCorner"]
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerFloorCorner/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerFloorFull" type="MeshInstance3D" parent="."]
+mesh = ExtResource("17_2c5vi")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerFloorFull"]
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerFloorFull/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerFloorStraight" type="MeshInstance3D" parent="."]
+mesh = ExtResource("18_qp5da")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerFloorStraight"]
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerFloorStraight/Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = ExtResource("2_uw102")

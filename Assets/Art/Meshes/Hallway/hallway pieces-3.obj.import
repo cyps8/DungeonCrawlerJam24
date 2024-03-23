@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://or2kyp4mb26q"
+path="res://.godot/imported/hallway pieces-3.obj-71737fb40804f52adc0141e4c3ee501d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hallway pieces-3.obj-71737fb40804f52adc0141e4c3ee501d.mesh"]
+
+source_file="res://Assets/Art/Meshes/Hallway/hallway pieces-3.obj"
+dest_files=["res://.godot/imported/hallway pieces-3.obj-71737fb40804f52adc0141e4c3ee501d.mesh", "res://.godot/imported/hallway pieces-3.obj-71737fb40804f52adc0141e4c3ee501d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

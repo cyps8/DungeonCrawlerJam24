@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://drkc8q4g5vjnh"
+path="res://.godot/imported/mesh_hanger_door_frame_right.obj-5e54ab710faaf0e9f499f770d37eb08c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_hanger_door_frame_right.obj-5e54ab710faaf0e9f499f770d37eb08c.mesh"]
+
+source_file="res://Assets/Art/Meshes/Hanger/mesh_hanger_door_frame_right.obj"
+dest_files=["res://.godot/imported/mesh_hanger_door_frame_right.obj-5e54ab710faaf0e9f499f770d37eb08c.mesh", "res://.godot/imported/mesh_hanger_door_frame_right.obj-5e54ab710faaf0e9f499f770d37eb08c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

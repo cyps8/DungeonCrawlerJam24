@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8l2501c6rtse"
-path.s3tc="res://.godot/imported/hallway pieces-4.png-4e076cd92de1cc2b00b3bcfa394b0dfe.s3tc.ctex"
+uid="uid://gitqyfnltb3r"
+path.s3tc="res://.godot/imported/hallway pieces-0.png-38cc6599a8bb47c2d21bfb987f9e4e51.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Art/Meshes/hallway pieces-4.png"
-dest_files=["res://.godot/imported/hallway pieces-4.png-4e076cd92de1cc2b00b3bcfa394b0dfe.s3tc.ctex"]
+source_file="res://Assets/Art/Meshes/Hallway/hallway pieces-0.png"
+dest_files=["res://.godot/imported/hallway pieces-0.png-38cc6599a8bb47c2d21bfb987f9e4e51.s3tc.ctex"]
 
 [params]
 
