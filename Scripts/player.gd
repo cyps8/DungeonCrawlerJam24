@@ -13,7 +13,7 @@ var blockSize: float = 2
 var flOn: bool = false
 
 var flBatteryLevel: float
-var flBatteryMax: float = 10
+var flBatteryMax: float = 60
 
 var batteryBar: TextureProgressBar
 
@@ -32,26 +32,27 @@ func _ready():
 	$Cam/Flashlight.visible = false
 	flOn = $Cam/Flashlight.visible
 
+	forward = forward.rotated(Vector3.UP, rotation.y)
+
 func ChangeHealth(value):
 	health += value
 	health = clamp(health, 0, healthMax)
 
 func _process(_delta):
-	if !moving:
-		if Input.is_action_just_pressed("Forward"):
-			TryMove(forward * blockSize)
-		if Input.is_action_just_pressed("Back"):
-			TryMove(-forward * blockSize)
-		if Input.is_action_just_pressed("Left"):
-			TryMove(forward.rotated(Vector3.UP, PI/2) * blockSize)
-		if Input.is_action_just_pressed("Right"):
-			TryMove(forward.rotated(Vector3.UP, -PI/2) * blockSize)
-		if Input.is_action_just_pressed("TurnL"):
-			TryRotate(1)
-		if Input.is_action_just_pressed("TurnR"):
-			TryRotate(-1)
-		if Input.is_action_just_pressed("Interact"):
-			Interact()
+	if Input.is_action_just_pressed("Forward"):
+		TryMove(forward * blockSize)
+	if Input.is_action_just_pressed("Back"):
+		TryMove(-forward * blockSize)
+	if Input.is_action_just_pressed("Left"):
+		TryMove(forward.rotated(Vector3.UP, PI/2) * blockSize)
+	if Input.is_action_just_pressed("Right"):
+		TryMove(forward.rotated(Vector3.UP, -PI/2) * blockSize)
+	if Input.is_action_just_pressed("TurnL"):
+		TryRotate(1)
+	if Input.is_action_just_pressed("TurnR"):
+		TryRotate(-1)
+	if Input.is_action_just_pressed("Interact"):
+		Interact()
 
 	if Input.is_action_just_pressed("Reload"):
 		ReloadBattery()
@@ -75,6 +76,8 @@ func ReloadBattery():
 		batteryBar.value = flBatteryLevel / flBatteryMax
 
 func TryMove(direction: Vector3):
+	if moving:
+		return
 	if !RayDirectionCheck(direction) && RayDirectionFloorHeight(direction):
 		var tween = create_tween()
 		moving = true
@@ -82,6 +85,8 @@ func TryMove(direction: Vector3):
 		tween.tween_callback(EndMove)
 
 func TryRotate(direction: float):
+	if moving:
+		return
 	forward = forward.rotated(Vector3.UP, direction * 90 * PI / 180)
 	var tween = create_tween()
 	moving = true
