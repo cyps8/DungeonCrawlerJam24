@@ -19,12 +19,22 @@ var batteryBar: TextureProgressBar
 
 var batteries: int = 3
 
+var sanity: float = 100.0
+var sanityMax: float = 100.0
+
+var health: float = 100.0
+var healthMax: float = 100.0
+
 func _ready():
 	batteryBar = get_tree().get_first_node_in_group("Battery")
 
 	flBatteryLevel = flBatteryMax
 	$Cam/Flashlight.visible = false
 	flOn = $Cam/Flashlight.visible
+
+func ChangeHealth(value):
+	health += value
+	health = clamp(health, 0, healthMax)
 
 func _process(_delta):
 	if !moving:
