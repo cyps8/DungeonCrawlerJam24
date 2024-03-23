@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://j2dpdck3o1se"
+path="res://.godot/imported/mesh_hanger_ceiling_straight.obj-75c6df95f4f1bc48cca842ed7a3d961f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_hanger_ceiling_straight.obj-75c6df95f4f1bc48cca842ed7a3d961f.mesh"]
+
+source_file="res://Assets/Art/Meshes/Hanger/mesh_hanger_ceiling_straight.obj"
+dest_files=["res://.godot/imported/mesh_hanger_ceiling_straight.obj-75c6df95f4f1bc48cca842ed7a3d961f.mesh", "res://.godot/imported/mesh_hanger_ceiling_straight.obj-75c6df95f4f1bc48cca842ed7a3d961f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
