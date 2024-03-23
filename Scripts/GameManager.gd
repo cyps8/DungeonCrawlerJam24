@@ -6,12 +6,9 @@ static var instance: GameManager
 var pauseRef: PauseMenu
 var paused: bool = false
 
-
-var loading: bool = false
-
-
 func _ready():
 	pauseRef = $Pause
+	pauseRef.visible = true
 	remove_child(pauseRef)
 
 	instance = self

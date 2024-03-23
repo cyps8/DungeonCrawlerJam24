@@ -1,8 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://kqpqdl61bvfo"]
+[gd_scene load_steps=8 format=3 uid="uid://kqpqdl61bvfo"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_4p14j"]
 [ext_resource type="PackedScene" uid="uid://dp04cl7vef01a" path="res://Nodes/Scenes/map_one.tscn" id="2_53thy"]
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="3_o34ah"]
+
+[sub_resource type="Gradient" id="Gradient_1spaj"]
+offsets = PackedFloat32Array(0, 0.707792, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.0670182, 0, 0, 0, 0.686275)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jlwiq"]
+gradient = SubResource("Gradient_1spaj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_pva1e"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.905882, 1, 0.435294, 0.792157)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nh78r"]
+gradient = SubResource("Gradient_pva1e")
+width = 128
+height = 32
 
 [node name="Game" type="Node"]
 script = ExtResource("1_4p14j")
@@ -11,6 +30,7 @@ script = ExtResource("1_4p14j")
 
 [node name="Pause" type="CanvasLayer" parent="."]
 layer = 10
+visible = false
 script = ExtResource("3_o34ah")
 
 [node name="c" type="Control" parent="Pause"]
@@ -20,6 +40,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Pause/c"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.231373)
 
 [node name="Panel" type="Panel" parent="Pause/c"]
 layout_mode = 1
@@ -58,6 +87,32 @@ offset_top = 288.0
 offset_right = 277.0
 offset_bottom = 383.0
 text = "MAIN MENU"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Border" type="TextureRect" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_jlwiq")
+
+[node name="BatteryCharge" type="TextureProgressBar" parent="HUD/Border" groups=["Battery"]]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -83.0
+offset_right = 168.0
+offset_bottom = -51.0
+grow_vertical = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
+texture_progress = SubResource("GradientTexture2D_nh78r")
 
 [connection signal="pressed" from="Pause/c/Panel/Resume" to="Pause" method="ResumeButton"]
 [connection signal="pressed" from="Pause/c/Panel/Options" to="Pause" method="OptionsButton"]

@@ -10,6 +10,22 @@ var moving: bool = false
 
 var blockSize: float = 2
 
+var flOn: bool = false
+
+var flBatteryLevel: float
+var flBatteryMax: float = 10
+
+var batteryBar: TextureProgressBar
+
+var batteries: int = 3
+
+func _ready():
+	batteryBar = get_tree().get_first_node_in_group("Battery")
+
+	flBatteryLevel = flBatteryMax
+	$Cam/Flashlight.visible = false
+	flOn = $Cam/Flashlight.visible
+
 func _process(_delta):
 	if !moving:
 		if Input.is_action_just_pressed("Forward"):
@@ -27,8 +43,26 @@ func _process(_delta):
 		if Input.is_action_just_pressed("Interact"):
 			Interact()
 
-	if Input.is_action_just_pressed("ToggleFlashlight"):
+	if Input.is_action_just_pressed("Reload"):
+		ReloadBattery()
+
+	if Input.is_action_just_pressed("ToggleFlashlight") && flBatteryLevel > 0:
 		$Cam/Flashlight.visible = !$Cam/Flashlight.visible
+		flOn = $Cam/Flashlight.visible
+
+	if flOn:
+		flBatteryLevel -= _delta
+		batteryBar.value = flBatteryLevel / flBatteryMax
+		if flBatteryLevel <= 0:
+			flBatteryLevel = 0
+			$Cam/Flashlight.visible = false
+			flOn = false
+
+func ReloadBattery():
+	if batteries > 0:
+		batteries -= 1
+		flBatteryLevel = flBatteryMax
+		batteryBar.value = flBatteryLevel / flBatteryMax
 
 func TryMove(direction: Vector3):
 	if !RayDirectionCheck(direction) && RayDirectionFloorHeight(direction):
@@ -46,6 +80,19 @@ func TryRotate(direction: float):
 
 func EndMove():
 	moving = false
+
+	if Input.is_action_pressed("Forward"):
+			TryMove(forward * blockSize)
+	if Input.is_action_pressed("Back"):
+		TryMove(-forward * blockSize)
+	if Input.is_action_pressed("Left"):
+		TryMove(forward.rotated(Vector3.UP, PI/2) * blockSize)
+	if Input.is_action_pressed("Right"):
+		TryMove(forward.rotated(Vector3.UP, -PI/2) * blockSize)
+	if Input.is_action_pressed("TurnL"):
+		TryRotate(1)
+	if Input.is_action_pressed("TurnR"):
+		TryRotate(-1)
 
 func SetPlayerPosition(pos: Vector3):
 	position.x = pos.x

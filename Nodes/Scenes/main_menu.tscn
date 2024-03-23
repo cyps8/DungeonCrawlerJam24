@@ -19,13 +19,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -505.0
-offset_top = 111.0
-offset_right = 508.0
-offset_bottom = 180.0
+offset_left = -192.0
+offset_top = 132.0
+offset_right = 204.0
+offset_bottom = 201.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
-text = "Placeholder Title (Do not use this as the name of the game please ToT)"
+text = "LOL no. but funny thought!"
 
 [node name="Start" type="Button" parent="c"]
 layout_mode = 1
