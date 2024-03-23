@@ -1,100 +1,119 @@
-[gd_scene load_steps=16 format=3 uid="uid://kqpqdl61bvfo"]
+[gd_scene load_steps=8 format=3 uid="uid://kqpqdl61bvfo"]
 
-[ext_resource type="PackedScene" uid="uid://beytbbuavadt5" path="res://Nodes/player.tscn" id="1_lxd68"]
-[ext_resource type="PackedScene" uid="uid://bxh5ea7rgp7l2" path="res://Nodes/interactable.tscn" id="2_asvfg"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_4p14j"]
+[ext_resource type="PackedScene" uid="uid://dp04cl7vef01a" path="res://Nodes/Scenes/map_one.tscn" id="2_53thy"]
+[ext_resource type="Script" path="res://Scripts/Pause.gd" id="3_o34ah"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8cat3"]
-sky_top_color = Color(0.188235, 0.360784, 0.203922, 1)
-sky_horizon_color = Color(0.587255, 0.631373, 0.614706, 1)
-ground_bottom_color = Color(0.160784, 0.164706, 0.254902, 1)
-ground_horizon_color = Color(0.587255, 0.631373, 0.614706, 1)
+[sub_resource type="Gradient" id="Gradient_1spaj"]
+offsets = PackedFloat32Array(0, 0.707792, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.0670182, 0, 0, 0, 0.686275)
 
-[sub_resource type="Sky" id="Sky_nrm4q"]
-sky_material = SubResource("ProceduralSkyMaterial_8cat3")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jlwiq"]
+gradient = SubResource("Gradient_1spaj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Environment" id="Environment_ty0gj"]
-background_mode = 1
-sky = SubResource("Sky_nrm4q")
-ambient_light_color = Color(0.0980392, 0.109804, 0.0823529, 1)
-tonemap_mode = 2
+[sub_resource type="Gradient" id="Gradient_pva1e"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.905882, 1, 0.435294, 0.792157)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mdire"]
-size = Vector3(2.8, 0.5, 2)
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nh78r"]
+gradient = SubResource("Gradient_pva1e")
+width = 128
+height = 32
 
-[sub_resource type="PrismMesh" id="PrismMesh_mjo05"]
-left_to_right = 0.0
-size = Vector3(2, 2, 2)
+[node name="Game" type="Node"]
+script = ExtResource("1_4p14j")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_6260p"]
-size = Vector3(2, 2, 0.01)
+[node name="Node3D" parent="." instance=ExtResource("2_53thy")]
 
-[sub_resource type="Gradient" id="Gradient_20vqa"]
-colors = PackedColorArray(0.103744, 0.103744, 0.103744, 1, 0.381703, 0.381703, 0.381703, 1)
+[node name="Pause" type="CanvasLayer" parent="."]
+layer = 10
+visible = false
+script = ExtResource("3_o34ah")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_w1o4o"]
-noise_type = 3
+[node name="c" type="Control" parent="Pause"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_guiv1"]
-color_ramp = SubResource("Gradient_20vqa")
-noise = SubResource("FastNoiseLite_w1o4o")
+[node name="ColorRect" type="ColorRect" parent="Pause/c"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.231373)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kpaf"]
-albedo_texture = SubResource("NoiseTexture2D_guiv1")
+[node name="Panel" type="Panel" parent="Pause/c"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -206.0
+offset_right = 147.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[sub_resource type="BoxMesh" id="BoxMesh_kdf1j"]
-material = SubResource("StandardMaterial3D_3kpaf")
-size = Vector3(2, 2, 2)
+[node name="Resume" type="Button" parent="Pause/c/Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 18.0
+offset_right = 280.0
+offset_bottom = 113.0
+text = "RESUME"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_q72j5"]
-size = Vector3(2, 2, 2)
+[node name="Options" type="Button" parent="Pause/c/Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 154.0
+offset_right = 277.0
+offset_bottom = 249.0
+text = "OPTIONS"
 
-[sub_resource type="MeshLibrary" id="MeshLibrary_3xybm"]
-item/0/name = "Cube"
-item/0/mesh = SubResource("BoxMesh_kdf1j")
-item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/0/shapes = [SubResource("BoxShape3D_q72j5"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
-item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/0/navigation_layers = 1
+[node name="MainMenu" type="Button" parent="Pause/c/Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 288.0
+offset_right = 277.0
+offset_bottom = 383.0
+text = "MAIN MENU"
 
-[node name="Game" type="Node3D"]
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 5
 
-[node name="Env" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ty0gj")
+[node name="Border" type="TextureRect" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_jlwiq")
 
-[node name="Player" parent="." instance=ExtResource("1_lxd68")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="BatteryCharge" type="TextureProgressBar" parent="HUD/Border" groups=["Battery"]]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -83.0
+offset_right = 168.0
+offset_bottom = -51.0
+grow_vertical = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
+texture_progress = SubResource("GradientTexture2D_nh78r")
 
-[node name="World" type="Node3D" parent="."]
-
-[node name="Stairs" type="StaticBody3D" parent="World"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 1, 2)
-
-[node name="Shape" type="CollisionShape3D" parent="World/Stairs"]
-transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -0.167, -0.167, 0)
-shape = SubResource("BoxShape3D_mdire")
-
-[node name="Mesh" type="MeshInstance3D" parent="World/Stairs"]
-mesh = SubResource("PrismMesh_mjo05")
-
-[node name="InvisibleWall" type="StaticBody3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 1)
-
-[node name="Shape" type="CollisionShape3D" parent="World/InvisibleWall"]
-shape = SubResource("BoxShape3D_6260p")
-
-[node name="InvisibleWall2" type="StaticBody3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 3)
-
-[node name="Shape" type="CollisionShape3D" parent="World/InvisibleWall2"]
-shape = SubResource("BoxShape3D_6260p")
-
-[node name="GridMap" type="GridMap" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
-mesh_library = SubResource("MeshLibrary_3xybm")
-data = {
-"cells": PackedInt32Array(1, 65534, 0, 1, 65533, 0, 0, 65533, 0, 65535, 65533, 0, 65534, 65533, 0, 65533, 65533, 0, 65533, 65534, 0, 65533, 65535, 0, 65533, 1, 0, 65533, 0, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 131068, 2, 0, 131069, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65539, 1, 0, 65539, 0, 0, 65539, 65535, 0, 65539, 65534, 0, 65538, 65534, 0, 65538, 65533, 0, 65538, 65532, 0, 65537, 65532, 0, 65536, 65532, 0, 131071, 65532, 0, 131070, 65532, 0, 131069, 65532, 0, 131068, 65532, 0, 131068, 65533, 0, 131068, 65534, 0, 131068, 65535, 0, 131068, 0, 0, 131068, 1, 0, 1, 65535, 0, 2, 65535, 0, 2, 0, 0, 2, 1, 0, -65536, 65534, 0, -1, 65534, 0, -2, 65534, 0, -2, 65535, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65535, 65535, 0, -65536, 65535, 0, -1, 65535, 0, 131073, 1, 0, 131074, 0, 0, 131074, 1, 0, 131074, 65535, 0, 131074, 65534, 0, 131073, 65535, 0, 131073, 65534, 0, 131073, 65533, 0, 131072, 65533, 0, 196607, 65533, 0, 196606, 65533, 0, 196605, 65533, 0, 196605, 65534, 0, 196606, 65534, 0, 196607, 65534, 0, 131072, 65534, 0, 131072, 65535, 0, 131072, 0, 0, 131073, 0, 0, 196607, 0, 0, 196607, 65535, 0, 196606, 65535, 0, 196605, 65535, 0, 196605, 0, 0, 196605, 1, 0, 196606, 1, 0, 196606, 0, 0, 196607, 1, 0, 131072, 1, 0)
-}
-metadata/_editor_floor_ = Vector3(0, 2, 0)
-
-[node name="Interactable" parent="." instance=ExtResource("2_asvfg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89097, 0.809281, 0.00172836)
+[connection signal="pressed" from="Pause/c/Panel/Resume" to="Pause" method="ResumeButton"]
+[connection signal="pressed" from="Pause/c/Panel/Options" to="Pause" method="OptionsButton"]
+[connection signal="pressed" from="Pause/c/Panel/MainMenu" to="Pause" method="MainMenuButton"]

@@ -18,13 +18,14 @@ sky = SubResource("Sky_tt2ud")
 ambient_light_color = Color(0.0980392, 0.109804, 0.0823529, 1)
 tonemap_mode = 2
 
-[node name="Node3D" type="Node3D"]
+[node name="Level" type="Node3D"]
+process_mode = 1
 
 [node name="Env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tsu4i")
 
 [node name="Player" parent="." instance=ExtResource("1_fn7de")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 1)
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1, 1, 1)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_1vin4")
