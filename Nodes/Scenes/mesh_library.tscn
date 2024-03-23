@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://crjruq0hj7hli"]
+
+[ext_resource type="ArrayMesh" uid="uid://bilb38c5gty0n" path="res://Assets/Art/Meshes/hallway pieces-0.obj" id="1_4u47y"]
+[ext_resource type="ArrayMesh" uid="uid://bntvwppfbv84t" path="res://Assets/Art/Meshes/hallway pieces-1.obj" id="2_afcuu"]
+[ext_resource type="ArrayMesh" uid="uid://mv7q3fjcrxjd" path="res://Assets/Art/Meshes/hallway pieces-2.obj" id="3_blma3"]
+[ext_resource type="ArrayMesh" uid="uid://or2kyp4mb26q" path="res://Assets/Art/Meshes/hallway pieces-3.obj" id="4_m4c76"]
+[ext_resource type="ArrayMesh" uid="uid://cxgvwnl78dv0j" path="res://Assets/Art/Meshes/hallway pieces-4.obj" id="5_q4jas"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="HallwayPieces-0" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4u47y")
+
+[node name="HallwayPieces-1" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_afcuu")
+
+[node name="HallwayPieces-2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_blma3")
+
+[node name="HallwayPieces-3" type="MeshInstance3D" parent="."]
+mesh = ExtResource("4_m4c76")
+
+[node name="HallwayPieces-4" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_q4jas")
