@@ -8,8 +8,6 @@ var moveSpeed: float = 5
 
 var moving: bool = false
 
-var blockSize: float = 2
-
 var flOn: bool = false
 
 var flBatteryLevel: float
@@ -25,7 +23,14 @@ var sanityMax: float = 100.0
 var health: float = 100.0
 var healthMax: float = 100.0
 
+var canMove: bool = false
+
+var currentTile: MapTile
+var currentDirection: Level.Side
+
 func _ready():
+	Level.instance.MapGenerated.connect(JoinMap)
+
 	batteryBar = get_tree().get_first_node_in_group("Battery")
 
 	flBatteryLevel = flBatteryMax
@@ -33,24 +38,37 @@ func _ready():
 	flOn = $Cam/Flashlight.visible
 
 	forward = forward.rotated(Vector3.UP, rotation.y)
+	if rotation_degrees.y == 0:
+		currentDirection = Level.Side.North
+	elif rotation_degrees.y == -90:
+		currentDirection = Level.Side.East
+	elif rotation_degrees.y == 180 || rotation_degrees.y == -180:
+		currentDirection = Level.Side.South
+	else:
+		currentDirection = Level.Side.West
 
 func ChangeHealth(value):
 	health += value
 	health = clamp(health, 0, healthMax)
 
+func JoinMap():
+	canMove = true
+	currentTile = Level.instance.Map[0]
+	position = currentTile.position + Vector3(0, Level.instance.blockSize / 2, 0)
+
 func _process(_delta):
-	if Input.is_action_just_pressed("Forward"):
-		TryMove(forward * blockSize)
-	if Input.is_action_just_pressed("Back"):
-		TryMove(-forward * blockSize)
-	if Input.is_action_just_pressed("Left"):
-		TryMove(forward.rotated(Vector3.UP, PI/2) * blockSize)
-	if Input.is_action_just_pressed("Right"):
-		TryMove(forward.rotated(Vector3.UP, -PI/2) * blockSize)
 	if Input.is_action_just_pressed("TurnL"):
 		TryRotate(1)
 	if Input.is_action_just_pressed("TurnR"):
 		TryRotate(-1)
+	if Input.is_action_just_pressed("Forward"):
+		TryMove(currentDirection)
+	if Input.is_action_just_pressed("Back"):
+		TryMove(GetSideTurned(currentDirection, 2))
+	if Input.is_action_just_pressed("Left"):
+		TryMove(GetSideTurned(currentDirection, -1))
+	if Input.is_action_just_pressed("Right"):
+		TryMove(GetSideTurned(currentDirection, 1))
 	if Input.is_action_just_pressed("Interact"):
 		Interact()
 
@@ -76,18 +94,20 @@ func ReloadBattery():
 		flBatteryLevel = flBatteryMax
 		batteryBar.value = flBatteryLevel / flBatteryMax
 
-func TryMove(direction: Vector3):
-	if moving:
+func TryMove(direction: Level.Side):
+	if moving || !canMove:
 		return
-	if !RayDirectionCheck(direction) && RayDirectionFloorHeight(direction):
+	if currentTile.sides[direction] != null:
+		currentTile = currentTile.sides[direction]
 		var tween = create_tween()
 		moving = true
-		tween.tween_method(SetPlayerPosition, position, position + direction, 1 / moveSpeed)
+		tween.tween_method(SetPlayerPosition, position, currentTile.position, 1 / moveSpeed)
 		tween.tween_callback(EndMove)
 
 func TryRotate(direction: float):
-	if moving:
+	if moving || !canMove:
 		return
+	currentDirection = GetSideTurned(currentDirection, -int(direction))
 	forward = forward.rotated(Vector3.UP, direction * 90 * PI / 180)
 	var tween = create_tween()
 	moving = true
@@ -97,62 +117,31 @@ func TryRotate(direction: float):
 func EndMove():
 	moving = false
 
-	if Input.is_action_pressed("Forward"):
-			TryMove(forward * blockSize)
-	if Input.is_action_pressed("Back"):
-		TryMove(-forward * blockSize)
-	if Input.is_action_pressed("Left"):
-		TryMove(forward.rotated(Vector3.UP, PI/2) * blockSize)
-	if Input.is_action_pressed("Right"):
-		TryMove(forward.rotated(Vector3.UP, -PI/2) * blockSize)
 	if Input.is_action_pressed("TurnL"):
 		TryRotate(1)
 	if Input.is_action_pressed("TurnR"):
 		TryRotate(-1)
+	if Input.is_action_pressed("Forward"):
+		TryMove(currentDirection)
+	if Input.is_action_pressed("Back"):
+		TryMove(GetSideTurned(currentDirection, 2))
+	if Input.is_action_pressed("Left"):
+		TryMove(GetSideTurned(currentDirection, -1))
+	if Input.is_action_pressed("Right"):
+		TryMove(GetSideTurned(currentDirection, 1))
 
 func SetPlayerPosition(pos: Vector3):
 	position.x = pos.x
 	position.z = pos.z
-	position.y = RayGetCurrentFloorHeight() + 1
+	position.y = Level.instance.RayGetFloorHeight(position) + 1
 
-func RayDirectionCheck(direction: Vector3) -> bool:
-	var space_state = get_world_3d().direct_space_state
-
-	var origin = position
-	var end = position + direction + Vector3(0, 0.1, 0)
-	var query = PhysicsRayQueryParameters3D.create(origin, end)
-
-	var result = space_state.intersect_ray(query)
-	if result:
-		return true
-	else:
-		return false
-
-func RayGetCurrentFloorHeight() -> float:
-	var space_state = get_world_3d().direct_space_state
-
-	var origin = position
-	var end = position + Vector3.DOWN * blockSize
-	var query = PhysicsRayQueryParameters3D.create(origin, end)
-
-	var result = space_state.intersect_ray(query)
-	if result:
-		return result["position"].y
-	else:
-		return -999
-
-func RayDirectionFloorHeight(direction: Vector3) -> float:
-	var space_state = get_world_3d().direct_space_state
-
-	var origin = position + direction + Vector3(0, 0.1, 0)
-	var end = position + direction + (Vector3.DOWN * blockSize) + Vector3(0, -0.1, 0)
-	var query = PhysicsRayQueryParameters3D.create(origin, end)
-
-	var result = space_state.intersect_ray(query)
-	if result:
-		return true
-	else:
-		return false
+func GetSideTurned(current: int, amount: int) -> Level.Side:
+	current += amount
+	if current > 3:
+		current -= 4
+	if current < 0:
+		current += 4
+	return current as Level.Side
 
 func Interact():
 	var space_state = get_world_3d().direct_space_state

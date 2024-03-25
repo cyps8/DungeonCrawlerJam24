@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dubsc3gnfj7jn"]
+
+[ext_resource type="Texture2D" uid="uid://cdnhuv3mcjbs6" path="res://Assets/Art/Sprites/Other/icon.svg" id="1_5m16v"]
+[ext_resource type="Script" path="res://Scripts/Game/InventoryItem.gd" id="1_iq7rq"]
+
+[node name="Item" type="Panel"]
+custom_minimum_size = Vector2(180, 180)
+script = ExtResource("1_iq7rq")
+
+[node name="Img" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 14.0
+offset_right = 155.0
+offset_bottom = 142.0
+texture = ExtResource("1_5m16v")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 145.0
+offset_right = 167.0
+offset_bottom = 168.0
+text = "ITEM NAME"
+horizontal_alignment = 1

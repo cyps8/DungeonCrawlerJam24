@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl0knf0jejc5n"]
+[gd_scene load_steps=5 format=3 uid="uid://bl0knf0jejc5n"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_lw8ip"]
+[ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="2_l2gf7"]
+
+[sub_resource type="Gradient" id="Gradient_1spaj"]
+offsets = PackedFloat32Array(0, 0.707792, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.0670182, 0, 0, 0, 0.686275)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wjibe"]
+gradient = SubResource("Gradient_1spaj")
+width = 192
+height = 108
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="MainMenu" type="CanvasLayer"]
 layer = 10
@@ -13,6 +25,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_l2gf7")
+
+[node name="Border" type="TextureRect" parent="c"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_l2gf7")
+texture = SubResource("GradientTexture2D_wjibe")
 
 [node name="Title" type="Label" parent="c"]
 layout_mode = 1
@@ -20,11 +43,11 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -192.0
-offset_top = 132.0
+offset_top = 294.0
 offset_right = 204.0
-offset_bottom = 201.0
+offset_bottom = 363.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 50
 text = "LOL no. but funny thought!"
 
 [node name="Start" type="Button" parent="c"]
@@ -34,12 +57,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -111.0
-offset_top = -96.0
-offset_right = 118.0
-offset_bottom = -29.0
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(150, 40)
 text = "START"
 
 [node name="Options" type="Button" parent="c"]
@@ -49,12 +73,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -107.0
+offset_left = -150.0
 offset_top = -5.0
-offset_right = 122.0
-offset_bottom = 62.0
+offset_right = 150.0
+offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(150, 40)
 text = "OPTIONS"
 
 [node name="Quit" type="Button" parent="c"]
@@ -64,12 +89,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -103.0
-offset_top = 93.0
-offset_right = 126.0
-offset_bottom = 160.0
+offset_left = -150.0
+offset_top = 90.0
+offset_right = 150.0
+offset_bottom = 170.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(150, 40)
 text = "QUIT"
 
 [connection signal="pressed" from="c/Start" to="." method="StartButton"]

@@ -1,32 +1,76 @@
-[gd_scene load_steps=8 format=3 uid="uid://kqpqdl61bvfo"]
+[gd_scene load_steps=23 format=3 uid="uid://kqpqdl61bvfo"]
 
-[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_4p14j"]
+[ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_4p14j"]
 [ext_resource type="PackedScene" uid="uid://dp04cl7vef01a" path="res://Nodes/Scenes/map_one.tscn" id="2_53thy"]
-[ext_resource type="Script" path="res://Scripts/Pause.gd" id="3_o34ah"]
+[ext_resource type="PackedScene" uid="uid://cchtk7sr6uooo" path="res://Nodes/Scenes/fight.tscn" id="3_lnxph"]
+[ext_resource type="Script" path="res://Scripts/Game/Pause.gd" id="3_o34ah"]
+[ext_resource type="Script" path="res://Scripts/Game/Inventory.gd" id="4_sa2lr"]
+[ext_resource type="Script" path="res://Scripts/Game/HUD.gd" id="5_7rrtf"]
+[ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="5_xyck4"]
+[ext_resource type="PackedScene" uid="uid://dubsc3gnfj7jn" path="res://Nodes/item.tscn" id="7_du2p1"]
+[ext_resource type="Texture2D" uid="uid://dd1vtsmtv8vym" path="res://Assets/Art/Sprites/UI/TempPlayerIcon.png" id="7_rcucf"]
+[ext_resource type="Texture2D" uid="uid://bl56v0yt0v8mr" path="res://Assets/Art/Sprites/UI/brain.png" id="8_80ggo"]
+[ext_resource type="Texture2D" uid="uid://b7odef5c7rnsn" path="res://Assets/Art/Sprites/UI/heart.png" id="8_ghx62"]
+[ext_resource type="Resource" uid="uid://0qvdhwaqqh4q" path="res://Resources/Items/Battery.tres" id="8_t45w4"]
+[ext_resource type="Resource" uid="uid://nxxaoufe5qhp" path="res://Resources/Items/Pills.tres" id="9_q530a"]
 
-[sub_resource type="Gradient" id="Gradient_1spaj"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2kcoe"]
+sky_top_color = Color(0.188235, 0.360784, 0.203922, 1)
+sky_horizon_color = Color(0.587255, 0.631373, 0.614706, 1)
+ground_bottom_color = Color(0.160784, 0.164706, 0.254902, 1)
+ground_horizon_color = Color(0.587255, 0.631373, 0.614706, 1)
+
+[sub_resource type="Sky" id="Sky_tt2ud"]
+sky_material = SubResource("ProceduralSkyMaterial_2kcoe")
+
+[sub_resource type="Environment" id="Environment_q8xbe"]
+background_mode = 1
+sky = SubResource("Sky_tt2ud")
+ambient_light_color = Color(0.0980392, 0.109804, 0.0823529, 1)
+tonemap_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_glkh7"]
 offsets = PackedFloat32Array(0, 0.707792, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.0670182, 0, 0, 0, 0.686275)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jlwiq"]
-gradient = SubResource("Gradient_1spaj")
+gradient = SubResource("Gradient_glkh7")
+width = 192
+height = 108
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Gradient" id="Gradient_pva1e"]
+[sub_resource type="Gradient" id="Gradient_2p540"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0.905882, 1, 0.435294, 0.792157)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_nh78r"]
-gradient = SubResource("Gradient_pva1e")
+gradient = SubResource("Gradient_2p540")
 width = 128
 height = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7oc6y"]
+bg_color = Color(1, 1, 1, 1)
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.92549, 0.415686, 0.431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8o5v7"]
+bg_color = Color(1, 1, 1, 1)
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0.972549, 0.670588, 0.0823529, 1)
 
 [node name="Game" type="Node"]
 script = ExtResource("1_4p14j")
 
-[node name="Node3D" parent="." instance=ExtResource("2_53thy")]
+[node name="Env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q8xbe")
+
+[node name="Level" parent="." instance=ExtResource("2_53thy")]
+
+[node name="Fight" parent="." instance=ExtResource("3_lnxph")]
 
 [node name="Pause" type="CanvasLayer" parent="."]
 layer = 10
@@ -40,6 +84,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_xyck4")
 
 [node name="ColorRect" type="ColorRect" parent="Pause/c"]
 layout_mode = 1
@@ -90,6 +135,8 @@ text = "MAIN MENU"
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 5
+visible = false
+script = ExtResource("5_7rrtf")
 
 [node name="Border" type="TextureRect" parent="HUD"]
 anchors_preset = 15
@@ -97,6 +144,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_xyck4")
 texture = SubResource("GradientTexture2D_jlwiq")
 
 [node name="BatteryCharge" type="TextureProgressBar" parent="HUD/Border" groups=["Battery"]]
@@ -113,6 +161,147 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 texture_progress = SubResource("GradientTexture2D_nh78r")
+
+[node name="Inventory" type="CanvasLayer" parent="."]
+layer = 7
+script = ExtResource("4_sa2lr")
+itemIns = ExtResource("7_du2p1")
+defaultInv = Array[Resource("res://Scripts/Game/Item.gd")]([ExtResource("8_t45w4"), ExtResource("8_t45w4"), ExtResource("8_t45w4"), ExtResource("9_q530a")])
+
+[node name="c" type="Control" parent="Inventory"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_xyck4")
+
+[node name="Panel" type="Panel" parent="Inventory/c"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -669.0
+offset_top = -399.0
+offset_right = 669.0
+offset_bottom = 399.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerPanel" type="Panel" parent="Inventory/c/Panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 36.0
+offset_right = 304.0
+offset_bottom = 283.0
+
+[node name="TextureRect" type="TextureRect" parent="Inventory/c/Panel/PlayerPanel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 9.0
+offset_right = 247.0
+offset_bottom = 240.0
+texture = ExtResource("7_rcucf")
+expand_mode = 1
+
+[node name="Health" type="Control" parent="Inventory/c/Panel"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 359.0
+offset_top = 173.0
+offset_right = 890.0
+offset_bottom = 270.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Inventory/c/Panel/Health"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 50.0
+offset_right = 443.0
+offset_bottom = 77.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_7oc6y")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="Inventory/c/Panel/Health"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_ghx62")
+
+[node name="Label" type="Label" parent="Inventory/c/Panel/Health"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 17.0
+offset_right = 162.0
+offset_bottom = 40.0
+text = "HEALTH"
+
+[node name="Sanity" type="Control" parent="Inventory/c/Panel"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 362.0
+offset_top = 45.0
+offset_right = 893.0
+offset_bottom = 142.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Inventory/c/Panel/Sanity"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 50.0
+offset_right = 443.0
+offset_bottom = 77.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8o5v7")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="Inventory/c/Panel/Sanity"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_80ggo")
+
+[node name="Label" type="Label" parent="Inventory/c/Panel/Sanity"]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 15.0
+offset_right = 166.0
+offset_bottom = 38.0
+text = "SANITY"
+
+[node name="Inventroy" type="Panel" parent="Inventory/c/Panel"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 522.0
+offset_right = 1296.0
+offset_bottom = 722.0
+
+[node name="Inv" type="Label" parent="Inventory/c/Panel/Inventroy"]
+layout_mode = 0
+offset_top = -43.0
+offset_right = 94.0
+offset_bottom = -15.0
+theme_override_font_sizes/font_size = 20
+text = "INVENTORY"
+
+[node name="Scroll" type="ScrollContainer" parent="Inventory/c/Panel/Inventroy"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 1231.0
+offset_bottom = 187.0
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="Items" type="HBoxContainer" parent="Inventory/c/Panel/Inventroy/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [connection signal="pressed" from="Pause/c/Panel/Resume" to="Pause" method="ResumeButton"]
 [connection signal="pressed" from="Pause/c/Panel/Options" to="Pause" method="OptionsButton"]
