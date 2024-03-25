@@ -1,0 +1,105 @@
+extends Node3D
+
+class_name Level
+static var instance: Level
+
+enum Side {
+	North = 0,
+	East = 1,
+	South = 2,
+	West = 3
+}
+
+var Map: Array[MapTile] = []
+
+var TilesToCheck: Array[MapTile] = []
+
+var blockSize: float = 2
+
+signal MapGenerated
+
+@export var startPoint: Vector3 = Vector3(-1, 1, 1)
+
+func _init():
+	instance = self
+
+func _ready():
+	var timer: Timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 0.01
+	timer.one_shot = true
+	timer.start()
+	timer.timeout.connect(GenerateMap.bind(startPoint))
+
+func GenerateMap(startPos: Vector3):
+	var tile = MapTile.new()
+	tile.position = startPos
+	tile.position.y = RayGetFloorHeight(tile.position)
+	Map.append(tile)
+	TilesToCheck.append(tile)
+
+	while TilesToCheck.size() > 0:
+		CheckTiles()
+	print ("Map generated with " + str(Map.size()) + " tiles")
+	emit_signal("MapGenerated")
+
+func CheckTiles():
+	var tile = TilesToCheck[0]
+	tile.sides[Side.North] = TestDirection(tile.position, Vector3.FORWARD * blockSize)
+	tile.sides[Side.East] = TestDirection(tile.position, Vector3.RIGHT * blockSize)
+	tile.sides[Side.South] = TestDirection(tile.position, Vector3.BACK * blockSize)
+	tile.sides[Side.West] = TestDirection(tile.position, Vector3.LEFT * blockSize)
+	TilesToCheck.remove_at(0)
+
+func TestDirection(pos: Vector3, direction: Vector3) -> MapTile:
+	if !RayDirectionCheck(pos, direction) && RayDirectionCheckFloor(pos, direction):
+		var newPosition: Vector3 = pos + direction
+		newPosition.y = RayGetFloorHeight(newPosition)
+		for tile in Map:
+			if tile.position == newPosition:
+				return tile
+		var newTile = MapTile.new()
+		newTile.position = newPosition
+		Map.append(newTile)
+		TilesToCheck.append(newTile)
+		return newTile
+	return null
+
+func RayDirectionCheck(pos: Vector3, direction: Vector3) -> bool:
+	var space_state = get_world_3d().direct_space_state
+
+	var origin = pos
+	var end = pos + direction + Vector3(0, 0.1, 0)
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+
+	var result = space_state.intersect_ray(query)
+	if result:
+		return true
+	else:
+		return false
+
+func RayGetFloorHeight(pos: Vector3) -> float:
+	var space_state = get_world_3d().direct_space_state
+
+	var origin = pos + (Vector3.UP * 1.1)
+	var end = pos + Vector3.DOWN * blockSize
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+
+	var result = space_state.intersect_ray(query)
+	if result:
+		return result["position"].y
+	else:
+		return -999
+
+func RayDirectionCheckFloor(pos: Vector3, direction: Vector3) -> float:
+	var space_state = get_world_3d().direct_space_state
+
+	var origin = pos + direction + Vector3(0, 0.1, 0)
+	var end = pos + direction + (Vector3.DOWN * blockSize) + Vector3(0, -0.1, 0)
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+
+	var result = space_state.intersect_ray(query)
+	if result:
+		return true
+	else:
+		return false

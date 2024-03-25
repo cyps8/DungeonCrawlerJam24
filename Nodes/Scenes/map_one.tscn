@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp04cl7vef01a"]
+[gd_scene load_steps=7 format=3 uid="uid://dp04cl7vef01a"]
 
 [ext_resource type="MeshLibrary" uid="uid://y8o427kttpoc" path="res://Assets/Art/mesh_library/mesh_library_hallway.tres" id="1_1vin4"]
+[ext_resource type="Script" path="res://Scripts/Game/Level.gd" id="1_c88ld"]
 [ext_resource type="PackedScene" uid="uid://beytbbuavadt5" path="res://Nodes/player.tscn" id="1_fn7de"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c26hj"]
@@ -20,12 +21,13 @@ tonemap_mode = 2
 
 [node name="Level" type="Node3D"]
 process_mode = 1
+script = ExtResource("1_c88ld")
 
 [node name="Env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tsu4i")
 
 [node name="Player" parent="." instance=ExtResource("1_fn7de")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 1)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_1vin4")
