@@ -63,7 +63,8 @@ func _process(_delta):
 
 	if flOn:
 		flBatteryLevel -= _delta
-		batteryBar.value = flBatteryLevel / flBatteryMax
+		if batteryBar != null:
+			batteryBar.value = flBatteryLevel / flBatteryMax
 		if flBatteryLevel <= 0:
 			flBatteryLevel = 0
 			$Cam/Flashlight.visible = false
