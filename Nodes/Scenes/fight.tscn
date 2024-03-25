@@ -1,0 +1,107 @@
+[gd_scene load_steps=14 format=3 uid="uid://cchtk7sr6uooo"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Fight.gd" id="1_cintp"]
+[ext_resource type="Texture2D" uid="uid://b7odef5c7rnsn" path="res://Assets/Art/Sprites/UI/heart.png" id="2_l8hvv"]
+[ext_resource type="Script" path="res://Scripts/Game/FightCam.gd" id="2_s7c6h"]
+[ext_resource type="Script" path="res://Scripts/Game/FightPlayer.gd" id="4_d0jw0"]
+[ext_resource type="Texture2D" uid="uid://dw88lnbsuo8rj" path="res://Assets/Art/Sprites/UI/knife.png" id="4_yc4mu"]
+[ext_resource type="Texture2D" uid="uid://byfhke5oc542a" path="res://Assets/Art/Sprites/Fight/TestAttack.png" id="6_f4ipp"]
+[ext_resource type="Script" path="res://Scripts/Game/FightAttack.gd" id="6_styv1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xsiy"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mkaeu"]
+material = SubResource("StandardMaterial3D_4xsiy")
+size = Vector2(100, 100)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ijco0"]
+height = 1.11963
+radius = 0.249644
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_iocuw"]
+top_radius = 0.01
+bottom_radius = 0.23
+height = 0.1
+radial_segments = 24
+rings = 1
+cap_bottom = false
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_leab5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3nqrr"]
+size = Vector3(0.355042, 0.450195, 4.47949)
+
+[node name="Fight" type="Node3D"]
+script = ExtResource("1_cintp")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_mkaeu")
+
+[node name="Arm" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 0, 0)
+collision_mask = 0
+spring_length = 4.0
+
+[node name="FightCam" type="Camera3D" parent="Arm"]
+unique_name_in_owner = true
+script = ExtResource("2_s7c6h")
+
+[node name="Zone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Sprite" type="Sprite3D" parent="Zone"]
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_l8hvv")
+
+[node name="Shape" type="CollisionShape3D" parent="Zone"]
+shape = SubResource("CylinderShape3D_ijco0")
+
+[node name="Shadow" type="MeshInstance3D" parent="Zone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.152691, 0)
+cast_shadow = 3
+mesh = SubResource("CylinderMesh_iocuw")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.67885, 0)
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.174
+shadow_blur = 0.0
+spot_range = 6.0
+spot_attenuation = 0.0947324
+spot_angle_attenuation = 1.56917
+
+[node name="FightPlayer" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.966, 0.25, 0)
+motion_mode = 1
+script = ExtResource("4_d0jw0")
+
+[node name="Shape" type="CollisionShape3D" parent="FightPlayer"]
+shape = SubResource("SphereShape3D_leab5")
+
+[node name="Sprite" type="Sprite3D" parent="FightPlayer"]
+axis = 1
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("4_yc4mu")
+
+[node name="FightAttack" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 7.03929)
+script = ExtResource("6_styv1")
+
+[node name="Shape" type="CollisionShape3D" parent="FightAttack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0308533, 0.0358447, -0.211426)
+shape = SubResource("BoxShape3D_3nqrr")
+
+[node name="Sprite3D" type="Sprite3D" parent="FightAttack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.833)
+cast_shadow = 3
+pixel_size = 0.03
+axis = 1
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("6_f4ipp")
+
+[connection signal="body_entered" from="FightAttack" to="FightAttack" method="Defeated"]

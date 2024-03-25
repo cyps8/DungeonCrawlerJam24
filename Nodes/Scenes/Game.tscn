@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://kqpqdl61bvfo"]
+[gd_scene load_steps=23 format=3 uid="uid://kqpqdl61bvfo"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_4p14j"]
 [ext_resource type="PackedScene" uid="uid://dp04cl7vef01a" path="res://Nodes/Scenes/map_one.tscn" id="2_53thy"]
+[ext_resource type="PackedScene" uid="uid://cchtk7sr6uooo" path="res://Nodes/Scenes/fight.tscn" id="3_lnxph"]
 [ext_resource type="Script" path="res://Scripts/Game/Pause.gd" id="3_o34ah"]
 [ext_resource type="Script" path="res://Scripts/Game/Inventory.gd" id="4_sa2lr"]
 [ext_resource type="Script" path="res://Scripts/Game/HUD.gd" id="5_7rrtf"]
@@ -13,12 +14,29 @@
 [ext_resource type="Resource" uid="uid://0qvdhwaqqh4q" path="res://Resources/Items/Battery.tres" id="8_t45w4"]
 [ext_resource type="Resource" uid="uid://nxxaoufe5qhp" path="res://Resources/Items/Pills.tres" id="9_q530a"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2kcoe"]
+sky_top_color = Color(0.188235, 0.360784, 0.203922, 1)
+sky_horizon_color = Color(0.587255, 0.631373, 0.614706, 1)
+ground_bottom_color = Color(0.160784, 0.164706, 0.254902, 1)
+ground_horizon_color = Color(0.587255, 0.631373, 0.614706, 1)
+
+[sub_resource type="Sky" id="Sky_tt2ud"]
+sky_material = SubResource("ProceduralSkyMaterial_2kcoe")
+
+[sub_resource type="Environment" id="Environment_q8xbe"]
+background_mode = 1
+sky = SubResource("Sky_tt2ud")
+ambient_light_color = Color(0.0980392, 0.109804, 0.0823529, 1)
+tonemap_mode = 2
+
 [sub_resource type="Gradient" id="Gradient_glkh7"]
 offsets = PackedFloat32Array(0, 0.707792, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.0670182, 0, 0, 0, 0.686275)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jlwiq"]
 gradient = SubResource("Gradient_glkh7")
+width = 192
+height = 108
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -47,7 +65,12 @@ border_color = Color(0.972549, 0.670588, 0.0823529, 1)
 [node name="Game" type="Node"]
 script = ExtResource("1_4p14j")
 
-[node name="Node3D" parent="." instance=ExtResource("2_53thy")]
+[node name="Env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q8xbe")
+
+[node name="Level" parent="." instance=ExtResource("2_53thy")]
+
+[node name="Fight" parent="." instance=ExtResource("3_lnxph")]
 
 [node name="Pause" type="CanvasLayer" parent="."]
 layer = 10

@@ -8,8 +8,6 @@ var moveSpeed: float = 5
 
 var moving: bool = false
 
-#var blockSize: float = 2
-
 var flOn: bool = false
 
 var flBatteryLevel: float
@@ -40,7 +38,14 @@ func _ready():
 	flOn = $Cam/Flashlight.visible
 
 	forward = forward.rotated(Vector3.UP, rotation.y)
-	currentDirection = Level.Side.North
+	if rotation_degrees.y == 0:
+		currentDirection = Level.Side.North
+	elif rotation_degrees.y == -90:
+		currentDirection = Level.Side.East
+	elif rotation_degrees.y == 180 || rotation_degrees.y == -180:
+		currentDirection = Level.Side.South
+	else:
+		currentDirection = Level.Side.West
 
 func ChangeHealth(value):
 	health += value

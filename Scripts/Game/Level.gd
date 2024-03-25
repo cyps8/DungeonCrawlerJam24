@@ -20,16 +20,20 @@ signal MapGenerated
 
 @export var startPoint: Vector3 = Vector3(-1, 1, 1)
 
+@export var enemyList: Array[PackedScene]
+
 func _init():
 	instance = self
 
 func _ready():
+	# Timer is a workaround as otherwise the map collision is not generated before the map is generated
 	var timer: Timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = 0.01
 	timer.one_shot = true
 	timer.start()
 	timer.timeout.connect(GenerateMap.bind(startPoint))
+	timer.timeout.connect(timer.queue_free)
 
 func GenerateMap(startPos: Vector3):
 	var tile = MapTile.new()
@@ -103,3 +107,12 @@ func RayDirectionCheckFloor(pos: Vector3, direction: Vector3) -> float:
 		return true
 	else:
 		return false
+
+func SelectRandomTile() -> MapTile:
+	return Map[randi() % Map.size()]
+
+func SpawnNewEnemy():
+	var newEnemy: Enemy = enemyList[randi() % enemyList.size()].instantiate()
+	add_child(newEnemy)
+	newEnemy.currentTile = SelectRandomTile()
+	newEnemy.position = newEnemy.currentTile.position

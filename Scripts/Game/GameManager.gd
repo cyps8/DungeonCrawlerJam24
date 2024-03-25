@@ -3,6 +3,9 @@ extends Node
 class_name GameManager
 static var instance: GameManager
 
+var levelRef: Level
+var fightRef: Fight
+
 var pauseRef: PauseMenu
 var paused: bool = false
 
@@ -22,7 +25,35 @@ func _ready():
 	invRef.visible = true
 	remove_child(invRef)
 
+	levelRef = $Level
+	levelRef.visible = true
+	fightRef = $Fight
+	fightRef.visible = true
+	remove_child(fightRef)
+
+	SwitchToFight()
+
 	instance = self
+
+	Level.instance.MapGenerated.connect(OnMapGenerated)
+
+func SwitchToLevel():
+	remove_child(fightRef)
+	add_child(levelRef)
+	add_child(hudRef)
+
+func SwitchToFight():
+	remove_child(levelRef)
+	remove_child(hudRef)
+	if invOpen:
+		invOpen = false
+		remove_child(invRef)
+	add_child(fightRef)
+
+func OnMapGenerated():
+	Level.instance.SpawnNewEnemy()
+	Level.instance.SpawnNewEnemy()
+	Level.instance.SpawnNewEnemy()
 
 func ToggleInventory():
 	invOpen = !invOpen

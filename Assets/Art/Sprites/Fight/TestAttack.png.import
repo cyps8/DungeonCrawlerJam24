@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw88lnbsuo8rj"
-path="res://.godot/imported/knife.png-3e730408a4124aeb7a196dcfe2f06242.ctex"
+uid="uid://byfhke5oc542a"
+path.s3tc="res://.godot/imported/TestAttack.png-ded6d72607cd9662261b4e9ed591fb81.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://Assets/Art/Sprites/UI/knife.png"
-dest_files=["res://.godot/imported/knife.png-3e730408a4124aeb7a196dcfe2f06242.ctex"]
+source_file="res://Assets/Art/Sprites/Fight/TestAttack.png"
+dest_files=["res://.godot/imported/TestAttack.png-ded6d72607cd9662261b4e9ed591fb81.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
