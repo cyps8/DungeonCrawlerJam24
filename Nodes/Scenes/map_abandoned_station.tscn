@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://clcb74svnwenw"]
+[gd_scene load_steps=5 format=3 uid="uid://clcb74svnwenw"]
 
 [ext_resource type="PackedScene" uid="uid://beytbbuavadt5" path="res://Nodes/player.tscn" id="1_uwx3m"]
 [ext_resource type="MeshLibrary" uid="uid://y8o427kttpoc" path="res://Assets/Art/mesh_library/mesh_library_hallway.tres" id="2_oidue"]
 [ext_resource type="ArrayMesh" uid="uid://b5k5t513h6pq1" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_door.obj" id="3_ijwbq"]
+[ext_resource type="ArrayMesh" uid="uid://dwu23xg65odxd" path="res://Assets/Art/Creatures/Hat_Guy.obj" id="4_85cu8"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -22,3 +23,7 @@ transform = Transform3D(0.455, 0, 0, 0, 0.455, 0, 0, 0, 0.455, 0, 1, 1)
 mesh = ExtResource("3_ijwbq")
 
 [node name="Node3D" type="Node3D" parent="."]
+
+[node name="HatGuy" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 31.0453, 0.988301, 14.8638)
+mesh = ExtResource("4_85cu8")

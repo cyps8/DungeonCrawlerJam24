@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dwu23xg65odxd"
+path="res://.godot/imported/Hat_Guy.obj-495d591fd6f168ef0d2d8d75dbda7744.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Hat_Guy.obj-495d591fd6f168ef0d2d8d75dbda7744.mesh"]
+
+source_file="res://Assets/Art/Creatures/Hat_Guy.obj"
+dest_files=["res://.godot/imported/Hat_Guy.obj-495d591fd6f168ef0d2d8d75dbda7744.mesh", "res://.godot/imported/Hat_Guy.obj-495d591fd6f168ef0d2d8d75dbda7744.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

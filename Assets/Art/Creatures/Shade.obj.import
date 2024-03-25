@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://8iq6y680ch0r"
+path="res://.godot/imported/Shade.obj-b6e3f9903d90c7a3209eb783747ec50e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Shade.obj-b6e3f9903d90c7a3209eb783747ec50e.mesh"]
+
+source_file="res://Assets/Art/Creatures/Shade.obj"
+dest_files=["res://.godot/imported/Shade.obj-b6e3f9903d90c7a3209eb783747ec50e.mesh", "res://.godot/imported/Shade.obj-b6e3f9903d90c7a3209eb783747ec50e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
