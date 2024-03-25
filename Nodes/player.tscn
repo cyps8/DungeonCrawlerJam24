@@ -1,6 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://beytbbuavadt5"]
+[gd_scene load_steps=6 format=3 uid="uid://beytbbuavadt5"]
 
 [ext_resource type="Script" path="res://Scripts/Game/player.gd" id="1_g8cxl"]
+
+[sub_resource type="Gradient" id="Gradient_1qhmi"]
+colors = PackedColorArray(0.907942, 0.907942, 0.907942, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ffrkb"]
+noise_type = 5
+frequency = 0.1752
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ryri2"]
+color_ramp = SubResource("Gradient_1qhmi")
+noise = SubResource("FastNoiseLite_ffrkb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vnxda"]
 
@@ -14,7 +25,8 @@ fov = 90.0
 [node name="Flashlight" type="SpotLight3D" parent="Cam"]
 transform = Transform3D(0.999391, 0, -0.0348995, 0, 1, 0, 0.0348995, 0, 0.999391, -0.15, 0, -0.2)
 light_color = Color(0.67451, 0.886275, 1, 1)
-light_energy = 2.0
+light_energy = 3.0
+light_projector = SubResource("NoiseTexture2D_ryri2")
 shadow_enabled = true
 spot_range = 20.0
 spot_attenuation = 2.0

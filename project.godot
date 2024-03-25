@@ -19,6 +19,7 @@ config/icon="res://Assets/Art/Sprites/Other/icon.svg"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/stretch/mode="viewport"
 
 [input]
 
@@ -83,7 +84,6 @@ Inventory={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/decals/filter=0
 environment/defaults/default_clear_color=Color(0.133333, 0.2, 0.290196, 1)

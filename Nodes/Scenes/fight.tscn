@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://cchtk7sr6uooo"]
+[gd_scene load_steps=12 format=3 uid="uid://cchtk7sr6uooo"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Fight.gd" id="1_cintp"]
+[ext_resource type="PackedScene" uid="uid://17pdg2ie4dcl" path="res://Nodes/FightAttacks/fight_attack.tscn" id="2_d1b4e"]
 [ext_resource type="Texture2D" uid="uid://b7odef5c7rnsn" path="res://Assets/Art/Sprites/UI/heart.png" id="2_l8hvv"]
 [ext_resource type="Script" path="res://Scripts/Game/FightCam.gd" id="2_s7c6h"]
 [ext_resource type="Script" path="res://Scripts/Game/FightPlayer.gd" id="4_d0jw0"]
 [ext_resource type="Texture2D" uid="uid://dw88lnbsuo8rj" path="res://Assets/Art/Sprites/UI/knife.png" id="4_yc4mu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xsiy"]
+transparency = 1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mkaeu"]
 material = SubResource("StandardMaterial3D_4xsiy")
@@ -28,6 +30,7 @@ cap_bottom = false
 
 [node name="Fight" type="Node3D"]
 script = ExtResource("1_cintp")
+attackList = Array[PackedScene]([ExtResource("2_d1b4e")])
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_mkaeu")

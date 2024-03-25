@@ -4,17 +4,12 @@ class_name Fight
 
 static var instance: Fight
 
-var attackList: Array[PackedScene]
+@export var attackList: Array[PackedScene]
 
 var activeAttacks: Array[FightAttack] = []
 
 func _init():
 	instance = self
-
-func _ready():
-	var enemyFiles = DirAccess.get_files_at("res://Nodes/FightAttacks/")
-	for file in enemyFiles:
-		attackList.append(load("res://Nodes/FightAttacks/" + file))
 
 func _process(_delta):
 	if activeAttacks.size() == 0:
