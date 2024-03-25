@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://clcb74svnwenw"]
+[gd_scene load_steps=6 format=3 uid="uid://clcb74svnwenw"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Level.gd" id="1_4qaat"]
 [ext_resource type="PackedScene" uid="uid://beytbbuavadt5" path="res://Nodes/player.tscn" id="1_uwx3m"]
+[ext_resource type="PackedScene" uid="uid://c1k2shypb8a52" path="res://Nodes/Enemies/test_enemy.tscn" id="2_nicbc"]
 [ext_resource type="MeshLibrary" uid="uid://y8o427kttpoc" path="res://Assets/Art/mesh_library/mesh_library_hallway.tres" id="2_oidue"]
 [ext_resource type="ArrayMesh" uid="uid://b5k5t513h6pq1" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_door.obj" id="3_ijwbq"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_4qaat")
+enemyList = Array[PackedScene]([ExtResource("2_nicbc")])
 
 [node name="Player" parent="." instance=ExtResource("1_uwx3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 1)
