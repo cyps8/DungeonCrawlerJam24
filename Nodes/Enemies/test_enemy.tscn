@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1k2shypb8a52"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Enemy.gd" id="1_88gnq"]
+
+[sub_resource type="Gradient" id="Gradient_e6hx2"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3p8vw"]
+gradient = SubResource("Gradient_e6hx2")
+height = 128
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pjpci"]
+
+[node name="Enemy" type="Node3D"]
+script = ExtResource("1_88gnq")
+
+[node name="Sprite" type="Sprite3D" parent="."]
+centered = false
+offset = Vector2(-32, 0)
+billboard = 2
+texture_filter = 0
+texture = SubResource("GradientTexture2D_3p8vw")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.659545, 0)
+shape = SubResource("BoxShape3D_pjpci")
+
+[connection signal="area_entered" from="Area3D" to="." method="PlayerCollision"]

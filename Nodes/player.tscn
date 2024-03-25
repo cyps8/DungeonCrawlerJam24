@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://beytbbuavadt5"]
+[gd_scene load_steps=3 format=3 uid="uid://beytbbuavadt5"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_g8cxl"]
+[ext_resource type="Script" path="res://Scripts/Game/player.gd" id="1_g8cxl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vnxda"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_g8cxl")
@@ -10,17 +12,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
 fov = 90.0
 
 [node name="Flashlight" type="SpotLight3D" parent="Cam"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
+transform = Transform3D(0.999391, 0, -0.0348995, 0, 1, 0, 0.0348995, 0, 0.999391, -0.15, 0, -0.2)
 light_color = Color(0.67451, 0.886275, 1, 1)
 light_energy = 2.0
+shadow_enabled = true
 spot_range = 20.0
 spot_attenuation = 2.0
 spot_angle = 35.9431
-spot_angle_attenuation = 0.297302
+spot_angle_attenuation = 0.420448
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(0.67451, 0.886275, 1, 1)
 light_energy = 0.2
 light_indirect_energy = 0.2
+shadow_enabled = true
 omni_range = 8.0
 omni_attenuation = 2.46229
+
+[node name="Area" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="Area"]
+shape = SubResource("BoxShape3D_vnxda")

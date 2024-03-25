@@ -25,6 +25,8 @@ var sanityMax: float = 100.0
 var health: float = 100.0
 var healthMax: float = 100.0
 
+var canMove: bool = true
+
 func _ready():
 	batteryBar = get_tree().get_first_node_in_group("Battery")
 
@@ -39,6 +41,10 @@ func ChangeHealth(value):
 	health = clamp(health, 0, healthMax)
 
 func _process(_delta):
+	if Input.is_action_just_pressed("TurnL"):
+		TryRotate(1)
+	if Input.is_action_just_pressed("TurnR"):
+		TryRotate(-1)
 	if Input.is_action_just_pressed("Forward"):
 		TryMove(forward * blockSize)
 	if Input.is_action_just_pressed("Back"):
@@ -47,10 +53,6 @@ func _process(_delta):
 		TryMove(forward.rotated(Vector3.UP, PI/2) * blockSize)
 	if Input.is_action_just_pressed("Right"):
 		TryMove(forward.rotated(Vector3.UP, -PI/2) * blockSize)
-	if Input.is_action_just_pressed("TurnL"):
-		TryRotate(1)
-	if Input.is_action_just_pressed("TurnR"):
-		TryRotate(-1)
 	if Input.is_action_just_pressed("Interact"):
 		Interact()
 
@@ -76,7 +78,7 @@ func ReloadBattery():
 		batteryBar.value = flBatteryLevel / flBatteryMax
 
 func TryMove(direction: Vector3):
-	if moving:
+	if moving || !canMove:
 		return
 	if !RayDirectionCheck(direction) && RayDirectionFloorHeight(direction):
 		var tween = create_tween()
@@ -85,7 +87,7 @@ func TryMove(direction: Vector3):
 		tween.tween_callback(EndMove)
 
 func TryRotate(direction: float):
-	if moving:
+	if moving || !canMove:
 		return
 	forward = forward.rotated(Vector3.UP, direction * 90 * PI / 180)
 	var tween = create_tween()
@@ -96,6 +98,10 @@ func TryRotate(direction: float):
 func EndMove():
 	moving = false
 
+	if Input.is_action_pressed("TurnL"):
+		TryRotate(1)
+	if Input.is_action_pressed("TurnR"):
+		TryRotate(-1)
 	if Input.is_action_pressed("Forward"):
 			TryMove(forward * blockSize)
 	if Input.is_action_pressed("Back"):
@@ -104,10 +110,6 @@ func EndMove():
 		TryMove(forward.rotated(Vector3.UP, PI/2) * blockSize)
 	if Input.is_action_pressed("Right"):
 		TryMove(forward.rotated(Vector3.UP, -PI/2) * blockSize)
-	if Input.is_action_pressed("TurnL"):
-		TryRotate(1)
-	if Input.is_action_pressed("TurnR"):
-		TryRotate(-1)
 
 func SetPlayerPosition(pos: Vector3):
 	position.x = pos.x

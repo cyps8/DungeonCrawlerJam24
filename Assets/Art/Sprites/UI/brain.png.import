@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf5y17dgxufa7"
-path="res://.godot/imported/img_astronaut_profile_v1.jpeg-60bc605a3ecca46679c81f9f00b7a6e7.ctex"
+uid="uid://bl56v0yt0v8mr"
+path="res://.godot/imported/brain.png-6e113dbe091f8e65b5d8b8e7f44984a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Sprites/img_astronaut_profile_v1.jpeg"
-dest_files=["res://.godot/imported/img_astronaut_profile_v1.jpeg-60bc605a3ecca46679c81f9f00b7a6e7.ctex"]
+source_file="res://Assets/Art/Sprites/UI/brain.png"
+dest_files=["res://.godot/imported/brain.png-6e113dbe091f8e65b5d8b8e7f44984a3.ctex"]
 
 [params]
 

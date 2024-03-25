@@ -1,0 +1,71 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://u8pdlm3dg4w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvmuk"]
+bg_color = Color(0.054902, 0.101961, 0.156863, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.0431373, 0.12549, 0.160784, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lm7mq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.8, 0.2, 0.756863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2ipd"]
+bg_color = Color(0.203922, 0.309804, 0.435294, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.407843, 0.694118, 0.807843, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_giilg"]
+bg_color = Color(0.054902, 0.101961, 0.156863, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.407843, 0.694118, 0.807843, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsnvn"]
+bg_color = Color(0.576471, 0.184314, 0.266667, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.827451, 0.556863, 0.654902, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_an3dg"]
+bg_color = Color(0.0392157, 0.0784314, 0.12549, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.443137, 0.752941, 0.870588, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jl3hh"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kmwv"]
+bg_color = Color(1, 1, 1, 1)
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/styles/disabled = SubResource("StyleBoxFlat_jvmuk")
+Button/styles/focus = SubResource("StyleBoxFlat_lm7mq")
+Button/styles/hover = SubResource("StyleBoxFlat_a2ipd")
+Button/styles/normal = SubResource("StyleBoxFlat_giilg")
+Button/styles/pressed = SubResource("StyleBoxFlat_nsnvn")
+Panel/styles/panel = SubResource("StyleBoxFlat_an3dg")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_jl3hh")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_6kmwv")
