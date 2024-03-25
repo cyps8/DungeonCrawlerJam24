@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://5cl6f3qb7j07"]
+[gd_scene load_steps=30 format=3 uid="uid://5cl6f3qb7j07"]
 
 [ext_resource type="ArrayMesh" uid="uid://bilb38c5gty0n" path="res://Assets/Art/Meshes/Hallway/hallway pieces-0.obj" id="1_vi11e"]
 [ext_resource type="Shape3D" uid="uid://wdwd0u58bbvn" path="res://Resources/CollisionShapes/Floor.tres" id="2_uw102"]
@@ -22,6 +22,12 @@
 [ext_resource type="ArrayMesh" uid="uid://bb4u6ks6auaci" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_floor_corner_door.obj" id="20_7v55s"]
 [ext_resource type="ArrayMesh" uid="uid://dv1qe4e2wvss1" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ceiling_corner.obj" id="21_wmqxh"]
 [ext_resource type="ArrayMesh" uid="uid://j2dpdck3o1se" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ceiling_straight.obj" id="22_mioiw"]
+[ext_resource type="ArrayMesh" uid="uid://fuh0pmw57dnv" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_railing_inner_corner.obj" id="23_wfxmu"]
+[ext_resource type="ArrayMesh" uid="uid://b378wetj4bjqw" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_railing_outer_corner.obj" id="24_ed5ps"]
+[ext_resource type="ArrayMesh" uid="uid://c0vuost8ror6p" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_railing_straight.obj" id="25_n433b"]
+[ext_resource type="ArrayMesh" uid="uid://ckyii6ahl05bt" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_corner.obj" id="26_uxu7b"]
+[ext_resource type="ArrayMesh" uid="uid://chqx1yb5cmp8" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_straight.obj" id="27_vlg5k"]
+[ext_resource type="ArrayMesh" uid="uid://bj2geiihdncr5" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_door_frame.obj" id="28_1qk1i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h37nf"]
 size = Vector3(0.01, 4, 4)
@@ -196,3 +202,69 @@ mesh = ExtResource("21_wmqxh")
 
 [node name="MeshHangerCeilingStraight" type="MeshInstance3D" parent="."]
 mesh = ExtResource("22_mioiw")
+
+[node name="MeshHangerRailingInnerCorner" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.53674e-07, 0)
+mesh = ExtResource("23_wfxmu")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerRailingInnerCorner"]
+transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerRailingInnerCorner/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerRailingOuterCorner" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.53674e-07, 0)
+mesh = ExtResource("24_ed5ps")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerRailingOuterCorner"]
+transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerRailingOuterCorner/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerRailingStraight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.53674e-07, 0)
+mesh = ExtResource("25_n433b")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerRailingStraight"]
+transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerRailingStraight/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerWallGridCorner" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0155268, 0, -0.0306053)
+mesh = ExtResource("26_uxu7b")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerWallGridCorner"]
+transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerWallGridCorner/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerWallGridStraight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0155268, 0, -0.0306053)
+mesh = ExtResource("27_vlg5k")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerWallGridStraight"]
+transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerWallGridStraight/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerWallGridDoorFrame" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0228882, 0.0227861, -0.01161)
+mesh = ExtResource("28_1qk1i")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerWallGridDoorFrame"]
+transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerWallGridDoorFrame/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")

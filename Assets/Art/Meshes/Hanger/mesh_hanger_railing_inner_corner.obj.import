@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://fuh0pmw57dnv"
+path="res://.godot/imported/mesh_hanger_railing_inner_corner.obj-b401c95fdd3eede2d9820496f15348aa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_hanger_railing_inner_corner.obj-b401c95fdd3eede2d9820496f15348aa.mesh"]
+
+source_file="res://Assets/Art/Meshes/Hanger/mesh_hanger_railing_inner_corner.obj"
+dest_files=["res://.godot/imported/mesh_hanger_railing_inner_corner.obj-b401c95fdd3eede2d9820496f15348aa.mesh", "res://.godot/imported/mesh_hanger_railing_inner_corner.obj-b401c95fdd3eede2d9820496f15348aa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

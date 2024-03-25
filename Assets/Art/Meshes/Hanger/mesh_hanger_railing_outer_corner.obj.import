@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b378wetj4bjqw"
+path="res://.godot/imported/mesh_hanger_railing_outer_corner.obj-f67a73b2033df88d007d314e9f7fc169.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_hanger_railing_outer_corner.obj-f67a73b2033df88d007d314e9f7fc169.mesh"]
+
+source_file="res://Assets/Art/Meshes/Hanger/mesh_hanger_railing_outer_corner.obj"
+dest_files=["res://.godot/imported/mesh_hanger_railing_outer_corner.obj-f67a73b2033df88d007d314e9f7fc169.mesh", "res://.godot/imported/mesh_hanger_railing_outer_corner.obj-f67a73b2033df88d007d314e9f7fc169.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
