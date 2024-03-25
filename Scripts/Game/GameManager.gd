@@ -31,8 +31,6 @@ func _ready():
 	fightRef.visible = true
 	remove_child(fightRef)
 
-	SwitchToFight()
-
 	instance = self
 
 	Level.instance.MapGenerated.connect(OnMapGenerated)
@@ -49,6 +47,7 @@ func SwitchToFight():
 		invOpen = false
 		remove_child(invRef)
 	add_child(fightRef)
+	fightRef.StartFight()
 
 func OnMapGenerated():
 	Level.instance.SpawnNewEnemy()

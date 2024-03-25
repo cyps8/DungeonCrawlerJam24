@@ -5,4 +5,5 @@ class_name Enemy
 var currentTile: MapTile
 
 func PlayerCollision(_area):
-	print("Start encounter")
+	GameManager.instance.SwitchToFight.call_deferred()
+	queue_free()

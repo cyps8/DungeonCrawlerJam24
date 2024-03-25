@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://17pdg2ie4dcl"]
+
+[ext_resource type="Script" path="res://Scripts/Game/FightAttack.gd" id="1_ye6o5"]
+[ext_resource type="Texture2D" uid="uid://byfhke5oc542a" path="res://Assets/Art/Sprites/Fight/TestAttack.png" id="2_ptvyk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3nqrr"]
+size = Vector3(0.355042, 0.450195, 4.47949)
+
+[node name="FightAttack" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 7.03929)
+script = ExtResource("1_ye6o5")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0308533, 0.0358447, -0.211426)
+shape = SubResource("BoxShape3D_3nqrr")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.833)
+cast_shadow = 3
+pixel_size = 0.03
+axis = 1
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("2_ptvyk")
+
+[connection signal="body_entered" from="." to="." method="Defeated"]

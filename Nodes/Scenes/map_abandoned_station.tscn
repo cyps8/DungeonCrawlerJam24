@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://clcb74svnwenw"]
+[gd_scene load_steps=5 format=3 uid="uid://clcb74svnwenw"]
 
+[ext_resource type="Script" path="res://Scripts/Game/Level.gd" id="1_4qaat"]
 [ext_resource type="PackedScene" uid="uid://beytbbuavadt5" path="res://Nodes/player.tscn" id="1_uwx3m"]
 [ext_resource type="MeshLibrary" uid="uid://y8o427kttpoc" path="res://Assets/Art/mesh_library/mesh_library_hallway.tres" id="2_oidue"]
 [ext_resource type="ArrayMesh" uid="uid://b5k5t513h6pq1" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_door.obj" id="3_ijwbq"]
-[ext_resource type="Texture2D" uid="uid://ck052mdnxqrpu" path="res://Assets/Art/Creatures/sprite_shade.png" id="5_awvlt"]
-[ext_resource type="Texture2D" uid="uid://dntiixuv2fluu" path="res://Assets/Art/Creatures/sprite_hat_guy.png" id="7_bgbsu"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Level" type="Node3D"]
+script = ExtResource("1_4qaat")
 
 [node name="Player" parent="." instance=ExtResource("1_uwx3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 1)
@@ -22,15 +22,3 @@ metadata/_editor_floor_ = Vector3(0, -20, 0)
 [node name="MeshHangerDoor" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.455, 0, 0, 0, 0.455, 0, 0, 0, 0.455, 0, 1, 1)
 mesh = ExtResource("3_ijwbq")
-
-[node name="Node3D" type="Node3D" parent="."]
-
-[node name="Sprite_Hat_Guy" type="Sprite3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 11, 1, 13)
-billboard = 2
-texture = ExtResource("7_bgbsu")
-
-[node name="Sprite_Shade" type="Sprite3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 33, 1, 13)
-billboard = 2
-texture = ExtResource("5_awvlt")

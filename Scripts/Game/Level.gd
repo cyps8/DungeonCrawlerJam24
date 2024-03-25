@@ -20,12 +20,15 @@ signal MapGenerated
 
 @export var startPoint: Vector3 = Vector3(-1, 1, 1)
 
-@export var enemyList: Array[PackedScene]
+var enemyList: Array[PackedScene]
 
 func _init():
 	instance = self
 
 func _ready():
+	var enemyFiles = DirAccess.get_files_at("res://Nodes/Enemies/")
+	for file in enemyFiles:
+		enemyList.append(load("res://Nodes/Enemies/" + file))
 	# Timer is a workaround as otherwise the map collision is not generated before the map is generated
 	var timer: Timer = Timer.new()
 	add_child(timer)

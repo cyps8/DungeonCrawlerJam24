@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://kqpqdl61bvfo"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_4p14j"]
-[ext_resource type="PackedScene" uid="uid://dp04cl7vef01a" path="res://Nodes/Scenes/map_one.tscn" id="2_53thy"]
+[ext_resource type="PackedScene" uid="uid://clcb74svnwenw" path="res://Nodes/Scenes/map_abandoned_station.tscn" id="2_3vhis"]
 [ext_resource type="PackedScene" uid="uid://cchtk7sr6uooo" path="res://Nodes/Scenes/fight.tscn" id="3_lnxph"]
 [ext_resource type="Script" path="res://Scripts/Game/Pause.gd" id="3_o34ah"]
 [ext_resource type="Script" path="res://Scripts/Game/Inventory.gd" id="4_sa2lr"]
@@ -68,7 +68,7 @@ script = ExtResource("1_4p14j")
 [node name="Env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_q8xbe")
 
-[node name="Level" parent="." instance=ExtResource("2_53thy")]
+[node name="Level" parent="." instance=ExtResource("2_3vhis")]
 
 [node name="Fight" parent="." instance=ExtResource("3_lnxph")]
 

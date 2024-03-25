@@ -1,12 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cchtk7sr6uooo"]
+[gd_scene load_steps=11 format=3 uid="uid://cchtk7sr6uooo"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Fight.gd" id="1_cintp"]
 [ext_resource type="Texture2D" uid="uid://b7odef5c7rnsn" path="res://Assets/Art/Sprites/UI/heart.png" id="2_l8hvv"]
 [ext_resource type="Script" path="res://Scripts/Game/FightCam.gd" id="2_s7c6h"]
 [ext_resource type="Script" path="res://Scripts/Game/FightPlayer.gd" id="4_d0jw0"]
 [ext_resource type="Texture2D" uid="uid://dw88lnbsuo8rj" path="res://Assets/Art/Sprites/UI/knife.png" id="4_yc4mu"]
-[ext_resource type="Texture2D" uid="uid://byfhke5oc542a" path="res://Assets/Art/Sprites/Fight/TestAttack.png" id="6_f4ipp"]
-[ext_resource type="Script" path="res://Scripts/Game/FightAttack.gd" id="6_styv1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xsiy"]
 
@@ -27,9 +25,6 @@ rings = 1
 cap_bottom = false
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_leab5"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3nqrr"]
-size = Vector3(0.355042, 0.450195, 4.47949)
 
 [node name="Fight" type="Node3D"]
 script = ExtResource("1_cintp")
@@ -86,22 +81,3 @@ axis = 1
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("4_yc4mu")
-
-[node name="FightAttack" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 7.03929)
-script = ExtResource("6_styv1")
-
-[node name="Shape" type="CollisionShape3D" parent="FightAttack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0308533, 0.0358447, -0.211426)
-shape = SubResource("BoxShape3D_3nqrr")
-
-[node name="Sprite3D" type="Sprite3D" parent="FightAttack"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.833)
-cast_shadow = 3
-pixel_size = 0.03
-axis = 1
-alpha_cut = 1
-texture_filter = 0
-texture = ExtResource("6_f4ipp")
-
-[connection signal="body_entered" from="FightAttack" to="FightAttack" method="Defeated"]
