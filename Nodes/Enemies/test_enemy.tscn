@@ -1,9 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1k2shypb8a52"]
+[gd_scene load_steps=9 format=3 uid="uid://c1k2shypb8a52"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Enemy.gd" id="1_88gnq"]
 [ext_resource type="Texture2D" uid="uid://dntiixuv2fluu" path="res://Assets/Art/Creatures/sprite_hat_guy.png" id="2_2q761"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pjpci"]
+
+[sub_resource type="Curve" id="Curve_5esy3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.9227, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g11ix"]
+curve = SubResource("Curve_5esy3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vl6sm"]
+emission_shape = 1
+emission_sphere_radius = 0.4
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 0.01
+radial_velocity_min = 0.1
+radial_velocity_max = 0.1
+radial_velocity_curve = SubResource("CurveTexture_g11ix")
+gravity = Vector3(0, 0, 0)
+scale_max = 108.45
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyerf"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+disable_receive_shadows = true
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_l4y1q"]
+lightmap_size_hint = Vector2i(2, 2)
+material = SubResource("StandardMaterial3D_uyerf")
+size = Vector2(0.05, 0.05)
 
 [node name="Enemy" type="Node3D"]
 script = ExtResource("1_88gnq")
@@ -23,5 +54,15 @@ collision_mask = 2
 [node name="Shape" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.659545, 0)
 shape = SubResource("BoxShape3D_pjpci")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+sorting_offset = -1.0
+amount = 100
+lifetime = 8.0
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_vl6sm")
+draw_pass_1 = SubResource("QuadMesh_l4y1q")
 
 [connection signal="area_entered" from="Area3D" to="." method="PlayerCollision"]
