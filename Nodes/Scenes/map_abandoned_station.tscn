@@ -7,6 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b5k5t513h6pq1" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_door.obj" id="3_ijwbq"]
 
 [node name="Level" type="Node3D"]
+process_mode = 1
 script = ExtResource("1_4qaat")
 enemyList = Array[PackedScene]([ExtResource("2_nicbc")])
 

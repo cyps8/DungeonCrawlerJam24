@@ -17,9 +17,13 @@ func _process(_delta):
 
 func StartFight():
 	SpawnAttack()
+	SpawnAttack()
+	SpawnAttack()
+	SpawnAttack()
 
 func SpawnAttack():
 	var newAttack = attackList[randi() % attackList.size()].instantiate()
 	add_child(newAttack)
-	newAttack.position = Vector3(0, 0.25, 7)
+	newAttack.rotation.y = randf() * 2 * PI
+	newAttack.position = Vector3(0, 0.25, 7).rotated(Vector3.UP, newAttack.rotation.y)
 	activeAttacks.append(newAttack)
