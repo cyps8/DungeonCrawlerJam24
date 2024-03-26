@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://5cl6f3qb7j07"]
+[gd_scene load_steps=38 format=3 uid="uid://5cl6f3qb7j07"]
 
 [ext_resource type="ArrayMesh" uid="uid://bilb38c5gty0n" path="res://Assets/Art/Meshes/Hallway/hallway pieces-0.obj" id="1_vi11e"]
 [ext_resource type="Shape3D" uid="uid://wdwd0u58bbvn" path="res://Resources/CollisionShapes/Floor.tres" id="2_uw102"]
@@ -28,6 +28,14 @@
 [ext_resource type="ArrayMesh" uid="uid://ckyii6ahl05bt" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_corner.obj" id="26_uxu7b"]
 [ext_resource type="ArrayMesh" uid="uid://chqx1yb5cmp8" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_straight.obj" id="27_vlg5k"]
 [ext_resource type="ArrayMesh" uid="uid://bj2geiihdncr5" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_door_frame.obj" id="28_1qk1i"]
+[ext_resource type="ArrayMesh" uid="uid://djj3xj8b2qq2p" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_door_frame_mid.obj" id="29_2e1wm"]
+[ext_resource type="ArrayMesh" uid="uid://coed1xtn2i23m" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_door_frame_top.obj" id="30_f7wvl"]
+[ext_resource type="ArrayMesh" uid="uid://cfov3m68l7qxi" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_corner_mid.obj" id="31_ct22v"]
+[ext_resource type="ArrayMesh" uid="uid://di5ahkpnrnw74" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_corner_top.obj" id="32_jlrer"]
+[ext_resource type="ArrayMesh" uid="uid://dlblufiwclte5" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_straight_mid.obj" id="33_bb6of"]
+[ext_resource type="ArrayMesh" uid="uid://b2k8juka0j42j" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_straight_top.obj" id="34_v0ec3"]
+[ext_resource type="ArrayMesh" uid="uid://m701dndoe3om" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_pillar_mid.obj" id="35_fvx3h"]
+[ext_resource type="ArrayMesh" uid="uid://s25d7utibb2s" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_pillar_top.obj" id="36_hrng0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h37nf"]
 size = Vector3(0.01, 4, 4)
@@ -268,3 +276,27 @@ transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
 [node name="Floor" type="CollisionShape3D" parent="MeshHangerWallGridDoorFrame/Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = ExtResource("2_uw102")
+
+[node name="MeshHangerDoorFrameMid" type="MeshInstance3D" parent="."]
+mesh = ExtResource("29_2e1wm")
+
+[node name="MeshHangerDoorFrameTop" type="MeshInstance3D" parent="."]
+mesh = ExtResource("30_f7wvl")
+
+[node name="MeshHangerWallGridCornerMid" type="MeshInstance3D" parent="."]
+mesh = ExtResource("31_ct22v")
+
+[node name="MeshHangerWallGridCornerTop" type="MeshInstance3D" parent="."]
+mesh = ExtResource("32_jlrer")
+
+[node name="MeshHangerWallGridStraightMid" type="MeshInstance3D" parent="."]
+mesh = ExtResource("33_bb6of")
+
+[node name="MeshHangerWallGridStraightTop" type="MeshInstance3D" parent="."]
+mesh = ExtResource("34_v0ec3")
+
+[node name="MeshHangerWallPillarMid" type="MeshInstance3D" parent="."]
+mesh = ExtResource("35_fvx3h")
+
+[node name="MeshHangerWallPillarTop" type="MeshInstance3D" parent="."]
+mesh = ExtResource("36_hrng0")
