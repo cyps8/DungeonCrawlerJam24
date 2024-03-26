@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://clcb74svnwenw"]
+[gd_scene load_steps=10 format=3 uid="uid://clcb74svnwenw"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Level.gd" id="1_4qaat"]
 [ext_resource type="PackedScene" uid="uid://beytbbuavadt5" path="res://Nodes/player.tscn" id="1_uwx3m"]
 [ext_resource type="PackedScene" uid="uid://c1k2shypb8a52" path="res://Nodes/Enemies/test_enemy.tscn" id="2_nicbc"]
 [ext_resource type="MeshLibrary" uid="uid://y8o427kttpoc" path="res://Assets/Art/mesh_library/mesh_library_hallway.tres" id="2_oidue"]
 [ext_resource type="ArrayMesh" uid="uid://b5k5t513h6pq1" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_door.obj" id="3_ijwbq"]
+[ext_resource type="ArrayMesh" uid="uid://cmqvpuyqhjct3" path="res://Assets/Art/Meshes/Props/mesh_prop_locker.obj" id="6_w8syp"]
+[ext_resource type="ArrayMesh" uid="uid://p3b4lcobcscq" path="res://Assets/Art/Meshes/Props/mesh_prop_locker_door.obj" id="7_hexnv"]
+[ext_resource type="ArrayMesh" uid="uid://c3hoxo3gy5ekw" path="res://Assets/Art/Meshes/Props/mesh_prop_crate.obj" id="8_t111p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pugsn"]
+size = Vector3(4, 4, 4)
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_4qaat")
@@ -24,3 +30,37 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="MeshHangerDoor" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.455, 0, 0, 0, 0.455, 0, 0, 0, 0.455, 0, 1, 1)
 mesh = ExtResource("3_ijwbq")
+
+[node name="MeshPropLocker" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 24.5722, 0.815297, 14.517)
+mesh = ExtResource("6_w8syp")
+
+[node name="MeshPropLockerDoor" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 24.5652, 0.815058, 14.7905)
+mesh = ExtResource("7_hexnv")
+
+[node name="MeshPropLocker2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 26.6369, 0.812163, 14.3495)
+mesh = ExtResource("6_w8syp")
+skeleton = NodePath("../MeshPropLocker")
+
+[node name="MeshPropLockerDoor2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.479578, 0, -0.141439, 0, 0.5, 0, 0.141439, 0, 0.479578, 26.6335, 0.812043, 14.7054)
+mesh = ExtResource("7_hexnv")
+skeleton = NodePath("../MeshPropLocker")
+
+[node name="MeshPropCrate" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.370836, 0, -0.335382, 0, 0.5, 0, 0.335382, 0, 0.370836, -0.59891, 1.1843, 7.43052)
+mesh = ExtResource("8_t111p")
+
+[node name="Wall" type="CollisionShape3D" parent="MeshPropCrate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226772, 0, 0.0544844)
+shape = SubResource("BoxShape3D_pugsn")
+
+[node name="MeshPropCrate2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.249868, 0, -0.00812745, 0, 0.25, 0, 0.00812745, 0, 0.249868, 0.445683, 0.655176, 5.6373)
+mesh = ExtResource("8_t111p")
+
+[node name="Wall" type="CollisionShape3D" parent="MeshPropCrate2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226772, 0, 0.0544844)
+shape = SubResource("BoxShape3D_pugsn")
