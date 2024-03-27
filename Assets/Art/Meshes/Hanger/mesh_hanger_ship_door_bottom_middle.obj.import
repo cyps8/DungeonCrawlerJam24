@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://br3kfrqxjrr4r"
+path="res://.godot/imported/mesh_hanger_ship_door_bottom_middle.obj-9c6f89c50d6445ca453b43674e8e672f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_hanger_ship_door_bottom_middle.obj-9c6f89c50d6445ca453b43674e8e672f.mesh"]
+
+source_file="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_bottom_middle.obj"
+dest_files=["res://.godot/imported/mesh_hanger_ship_door_bottom_middle.obj-9c6f89c50d6445ca453b43674e8e672f.mesh", "res://.godot/imported/mesh_hanger_ship_door_bottom_middle.obj-9c6f89c50d6445ca453b43674e8e672f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
