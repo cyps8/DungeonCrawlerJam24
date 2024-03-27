@@ -10,9 +10,6 @@ var moving: bool = false
 
 var flOn: bool = false
 
-var flBatteryLevel: float
-var flBatteryMax: float = 60
-
 var batteryBar: TextureProgressBar
 
 var batteries: int = 3
@@ -26,8 +23,6 @@ func _ready():
 	Level.instance.MapGenerated.connect(JoinMap)
 
 	batteryBar = get_tree().get_first_node_in_group("Battery")
-
-	flBatteryLevel = flBatteryMax
 	$Cam/Flashlight.visible = false
 	flOn = $Cam/Flashlight.visible
 
@@ -62,27 +57,18 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Interact"):
 		Interact()
 
-	if Input.is_action_just_pressed("Reload"):
-		ReloadBattery()
-
-	if Input.is_action_just_pressed("ToggleFlashlight") && flBatteryLevel > 0:
+	if Input.is_action_just_pressed("ToggleFlashlight") && GameManager.instance.flBatteryLevel > 0:
 		$Cam/Flashlight.visible = !$Cam/Flashlight.visible
 		flOn = $Cam/Flashlight.visible
 
 	if flOn:
-		flBatteryLevel -= _delta
+		GameManager.instance.flBatteryLevel -= _delta
 		if batteryBar != null:
-			batteryBar.value = flBatteryLevel / flBatteryMax
-		if flBatteryLevel <= 0:
-			flBatteryLevel = 0
+			batteryBar.value = GameManager.instance.flBatteryLevel / GameManager.instance.flBatteryMax
+		if GameManager.instance.flBatteryLevel <= 0:
+			GameManager.instance.flBatteryLevel = 0
 			$Cam/Flashlight.visible = false
 			flOn = false
-
-func ReloadBattery():
-	if batteries > 0:
-		batteries -= 1
-		flBatteryLevel = flBatteryMax
-		batteryBar.value = flBatteryLevel / flBatteryMax
 
 func TryMove(direction: Level.Side):
 	if moving || !canMove:

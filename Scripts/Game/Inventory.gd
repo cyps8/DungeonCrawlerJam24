@@ -20,14 +20,22 @@ func AddItem(addItem: Item) -> void:
 
 	var newItem: InventoryItem = itemIns.instantiate()
 	newItem.item = addItem
+	newItem.tooltip_text = addItem.description
+	if addItem.consumable:
+		newItem.disabled = false
 	items.append(newItem)
 	%Items.add_child(newItem)
 	newItem.changeCount(1)
 
-func RemoveItem(removeItem: InventoryItem) -> void:
+func TryQuickReload():
 	for item in items:
-		if item == removeItem:
+		if item.item.name == "Battery":
+			item.Used(0)
+			
+func RemoveItem(removeItem: Item) -> void:
+	for item in items:
+		if item.item == removeItem:
 			item.changeCount(-1)
 			if item.count == 0:
 				items.erase(item)
-				removeItem.queue_free()
+				item.queue_free()
