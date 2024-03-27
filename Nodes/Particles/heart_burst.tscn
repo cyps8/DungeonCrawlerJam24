@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b75tleqgb7y25"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yru5o"]
+direction = Vector3(1, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebqsd"]
+shading_mode = 0
+albedo_color = Color(0.92549, 0.415686, 0.431373, 1)
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_vujag"]
+material = SubResource("StandardMaterial3D_ebqsd")
+size = Vector2(0.05, 0.05)
+
+[node name="HeartBurst" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.97
+process_material = SubResource("ParticleProcessMaterial_yru5o")
+draw_pass_1 = SubResource("QuadMesh_vujag")

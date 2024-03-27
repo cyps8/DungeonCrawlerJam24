@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cchtk7sr6uooo"]
+[gd_scene load_steps=17 format=3 uid="uid://cchtk7sr6uooo"]
 
-[ext_resource type="Script" path="res://Scripts/Game/Fight.gd" id="1_cintp"]
+[ext_resource type="Script" path="res://Scripts/Game/Fight/Fight.gd" id="1_cintp"]
 [ext_resource type="PackedScene" uid="uid://17pdg2ie4dcl" path="res://Nodes/FightAttacks/fight_attack.tscn" id="2_d1b4e"]
 [ext_resource type="Texture2D" uid="uid://b7odef5c7rnsn" path="res://Assets/Art/Sprites/UI/heart.png" id="2_l8hvv"]
-[ext_resource type="Script" path="res://Scripts/Game/FightCam.gd" id="2_s7c6h"]
-[ext_resource type="Script" path="res://Scripts/Game/FightPlayer.gd" id="4_d0jw0"]
+[ext_resource type="Script" path="res://Scripts/Game/Fight/FightCam.gd" id="2_s7c6h"]
+[ext_resource type="Script" path="res://Scripts/Game/Fight/FightPlayer.gd" id="4_d0jw0"]
+[ext_resource type="Script" path="res://Scripts/Game/Fight/FightHeart.gd" id="4_hi5wl"]
 [ext_resource type="Texture2D" uid="uid://dw88lnbsuo8rj" path="res://Assets/Art/Sprites/UI/knife.png" id="4_yc4mu"]
+[ext_resource type="PackedScene" uid="uid://b75tleqgb7y25" path="res://Nodes/Particles/heart_burst.tscn" id="5_2boef"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xsiy"]
 transparency = 1
@@ -14,26 +16,47 @@ transparency = 1
 material = SubResource("StandardMaterial3D_4xsiy")
 size = Vector2(100, 100)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ijco0"]
-height = 1.11963
-radius = 0.249644
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bkc8b"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_iocuw"]
 top_radius = 0.01
-bottom_radius = 0.23
+bottom_radius = 0.225
 height = 0.1
 radial_segments = 24
 rings = 1
 cap_bottom = false
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ijco0"]
+height = 0.68808
+radius = 0.249644
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_leab5"]
+radius = 0.240626
+
+[sub_resource type="QuadMesh" id="QuadMesh_ljjff"]
+size = Vector2(0.05, 0.05)
+orientation = 1
+
+[sub_resource type="Curve" id="Curve_3l6l4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Fight" type="Node3D"]
 script = ExtResource("1_cintp")
 attackList = Array[PackedScene]([ExtResource("2_d1b4e")])
 
-[node name="Floor" type="MeshInstance3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("PlaneMesh_mkaeu")
+skeleton = NodePath("../..")
+
+[node name="Shape" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_bkc8b")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0951538, -0.505277, 0)
+size = Vector3(5, 1, 5)
 
 [node name="Arm" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 0, 0)
@@ -44,21 +67,24 @@ spring_length = 4.0
 unique_name_in_owner = true
 script = ExtResource("2_s7c6h")
 
-[node name="Zone" type="Area3D" parent="."]
+[node name="Heart" type="Area3D" parent="." groups=["Heart"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("4_hi5wl")
+heartBurst = ExtResource("5_2boef")
 
-[node name="Sprite" type="Sprite3D" parent="Zone"]
+[node name="Sprite" type="Sprite3D" parent="Heart"]
 billboard = 1
 texture_filter = 0
 texture = ExtResource("2_l8hvv")
 
-[node name="Shape" type="CollisionShape3D" parent="Zone"]
-shape = SubResource("CylinderShape3D_ijco0")
-
-[node name="Shadow" type="MeshInstance3D" parent="Zone"]
+[node name="Shadow" type="MeshInstance3D" parent="Heart/Sprite"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.152691, 0)
 cast_shadow = 3
 mesh = SubResource("CylinderMesh_iocuw")
+skeleton = NodePath("../..")
+
+[node name="Shape" type="CollisionShape3D" parent="Heart"]
+shape = SubResource("CylinderShape3D_ijco0")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.67885, 0)
@@ -72,7 +98,7 @@ spot_angle_attenuation = 1.56917
 
 [node name="FightPlayer" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.966, 0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 1)
 motion_mode = 1
 script = ExtResource("4_d0jw0")
 
@@ -84,3 +110,22 @@ axis = 1
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("4_yc4mu")
+
+[node name="Burst" type="CPUParticles3D" parent="FightPlayer/Sprite"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.213076, 0, 0)
+cast_shadow = 3
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("QuadMesh_ljjff")
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+linear_accel_min = -3.0
+linear_accel_max = -3.0
+scale_amount_curve = SubResource("Curve_3l6l4")
+
+[connection signal="body_entered" from="Heart" to="Heart" method="KnifeHurt"]

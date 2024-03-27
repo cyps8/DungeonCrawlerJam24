@@ -35,11 +35,12 @@ spot_angle_attenuation = 0.420448
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(0.67451, 0.886275, 1, 1)
-light_energy = 0.2
+light_energy = 0.05
 light_indirect_energy = 0.2
+light_specular = 0.0
 shadow_enabled = true
-omni_range = 8.0
-omni_attenuation = 2.46229
+omni_range = 3.0
+omni_attenuation = 1.07177
 
 [node name="Area" type="Area3D" parent="."]
 collision_layer = 2

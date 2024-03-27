@@ -17,12 +17,6 @@ var batteryBar: TextureProgressBar
 
 var batteries: int = 3
 
-var sanity: float = 100.0
-var sanityMax: float = 100.0
-
-var health: float = 100.0
-var healthMax: float = 100.0
-
 var canMove: bool = false
 
 var currentTile: MapTile
@@ -46,10 +40,6 @@ func _ready():
 		currentDirection = Level.Side.South
 	else:
 		currentDirection = Level.Side.West
-
-func ChangeHealth(value):
-	health += value
-	health = clamp(health, 0, healthMax)
 
 func JoinMap():
 	canMove = true

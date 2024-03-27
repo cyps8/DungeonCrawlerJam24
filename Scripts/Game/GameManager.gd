@@ -14,6 +14,12 @@ var invRef: Inventory
 
 var invOpen: bool = false
 
+var sanity: float = 100.0
+var sanityMax: float = 100.0
+
+var health: float = 100.0
+var healthMax: float = 100.0
+
 func _ready():
 	pauseRef = $Pause
 	pauseRef.visible = true
@@ -34,6 +40,10 @@ func _ready():
 	instance = self
 
 	Level.instance.MapGenerated.connect(OnMapGenerated)
+
+func ChangeHealth(value):
+	health += value
+	health = clamp(health, 0, healthMax)
 
 func SwitchToLevel():
 	remove_child(fightRef)

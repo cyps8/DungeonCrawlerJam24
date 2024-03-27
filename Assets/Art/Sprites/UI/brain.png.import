@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bl56v0yt0v8mr"
-path.s3tc="res://.godot/imported/brain.png-6e113dbe091f8e65b5d8b8e7f44984a3.s3tc.ctex"
+path="res://.godot/imported/brain.png-6e113dbe091f8e65b5d8b8e7f44984a3.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Art/Sprites/UI/brain.png"
-dest_files=["res://.godot/imported/brain.png-6e113dbe091f8e65b5d8b8e7f44984a3.s3tc.ctex"]
+dest_files=["res://.godot/imported/brain.png-6e113dbe091f8e65b5d8b8e7f44984a3.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
