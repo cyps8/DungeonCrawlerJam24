@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://5cl6f3qb7j07"]
+[gd_scene load_steps=48 format=3 uid="uid://5cl6f3qb7j07"]
 
 [ext_resource type="ArrayMesh" uid="uid://bilb38c5gty0n" path="res://Assets/Art/Meshes/Hallway/hallway pieces-0.obj" id="1_vi11e"]
 [ext_resource type="Shape3D" uid="uid://wdwd0u58bbvn" path="res://Resources/CollisionShapes/Floor.tres" id="2_uw102"]
@@ -36,6 +36,16 @@
 [ext_resource type="ArrayMesh" uid="uid://b2k8juka0j42j" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_grid_straight_top.obj" id="34_v0ec3"]
 [ext_resource type="ArrayMesh" uid="uid://m701dndoe3om" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_pillar_mid.obj" id="35_fvx3h"]
 [ext_resource type="ArrayMesh" uid="uid://s25d7utibb2s" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_wall_pillar_top.obj" id="36_hrng0"]
+[ext_resource type="ArrayMesh" uid="uid://cr51euwau0y4u" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_bottom_left.obj" id="37_xra3u"]
+[ext_resource type="ArrayMesh" uid="uid://br3kfrqxjrr4r" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_bottom_middle.obj" id="38_rw424"]
+[ext_resource type="ArrayMesh" uid="uid://dalqjtl6bgo24" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_bottom_right.obj" id="39_1wxan"]
+[ext_resource type="ArrayMesh" uid="uid://jqrwmqunfr58" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_middle_left.obj" id="40_duubb"]
+[ext_resource type="ArrayMesh" uid="uid://b6qova401klmb" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_middle_middle.obj" id="41_ip72g"]
+[ext_resource type="ArrayMesh" uid="uid://boxub1xcol28" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_middle_right.obj" id="42_kak4e"]
+[ext_resource type="ArrayMesh" uid="uid://djflnuvsho72x" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_top_left.obj" id="43_oyna2"]
+[ext_resource type="ArrayMesh" uid="uid://icthtselxkj4" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_top_middle.obj" id="44_c4o5l"]
+[ext_resource type="ArrayMesh" uid="uid://dqbcwldus84xs" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_top_right.obj" id="45_xf1ru"]
+[ext_resource type="ArrayMesh" uid="uid://clxm3y4xi6cak" path="res://Assets/Art/Meshes/Hanger/mesh_stairs.obj" id="46_a5600"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h37nf"]
 size = Vector3(0.01, 4, 4)
@@ -300,3 +310,61 @@ mesh = ExtResource("35_fvx3h")
 
 [node name="MeshHangerWallPillarTop" type="MeshInstance3D" parent="."]
 mesh = ExtResource("36_hrng0")
+
+[node name="MeshHangerShipDoorBottomLeft" type="MeshInstance3D" parent="."]
+mesh = ExtResource("37_xra3u")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerShipDoorBottomLeft"]
+transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerShipDoorBottomLeft/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerShipDoorBottomMiddle" type="MeshInstance3D" parent="."]
+mesh = ExtResource("38_rw424")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerShipDoorBottomMiddle"]
+transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerShipDoorBottomMiddle/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerShipDoorBottomRight" type="MeshInstance3D" parent="."]
+mesh = ExtResource("39_1wxan")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerShipDoorBottomRight"]
+transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerShipDoorBottomRight/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="MeshHangerShipDoorMiddleLeft" type="MeshInstance3D" parent="."]
+mesh = ExtResource("40_duubb")
+
+[node name="MeshHangerShipDoorMiddleMiddle" type="MeshInstance3D" parent="."]
+mesh = ExtResource("41_ip72g")
+
+[node name="MeshHangerShipDoorMiddleRight" type="MeshInstance3D" parent="."]
+mesh = ExtResource("42_kak4e")
+
+[node name="MeshHangerShipDoorTopLeft" type="MeshInstance3D" parent="."]
+mesh = ExtResource("43_oyna2")
+
+[node name="MeshHangerShipDoorTopMiddle" type="MeshInstance3D" parent="."]
+mesh = ExtResource("44_c4o5l")
+
+[node name="MeshHangerShipDoorTopRight" type="MeshInstance3D" parent="."]
+mesh = ExtResource("45_xf1ru")
+
+[node name="MeshStairs" type="MeshInstance3D" parent="."]
+mesh = ExtResource("46_a5600")
+
+[node name="Collision" type="StaticBody3D" parent="MeshStairs"]
+transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
+
+[node name="Floor" type="CollisionShape3D" parent="MeshStairs/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
