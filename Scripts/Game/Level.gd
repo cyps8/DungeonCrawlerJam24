@@ -49,13 +49,19 @@ func GenerateMap(startPos: Vector3):
 
 func CheckTiles():
 	var tile = TilesToCheck[0]
-	tile.sides[Side.North] = TestDirection(tile.position, Vector3.FORWARD * blockSize)
-	tile.sides[Side.East] = TestDirection(tile.position, Vector3.RIGHT * blockSize)
-	tile.sides[Side.South] = TestDirection(tile.position, Vector3.BACK * blockSize)
-	tile.sides[Side.West] = TestDirection(tile.position, Vector3.LEFT * blockSize)
+	tile.sides[Side.North] = TestDirection(tile.position, Vector3.FORWARD)
+	tile.sides[Side.East] = TestDirection(tile.position, Vector3.RIGHT)
+	tile.sides[Side.South] = TestDirection(tile.position, Vector3.BACK)
+	tile.sides[Side.West] = TestDirection(tile.position, Vector3.LEFT)
 	TilesToCheck.remove_at(0)
 
 func TestDirection(pos: Vector3, direction: Vector3) -> MapTile:
+	var normal = GetFloorNormal(pos)
+	# Make direction parrarel to normal plane
+	direction = direction - normal * normal.dot(direction)
+	direction *= 1 / Vector3(direction.x, 0, direction.z).length()
+	direction *= blockSize
+
 	if !RayDirectionCheck(pos, direction) && RayDirectionCheckFloor(pos, direction):
 		var newPosition: Vector3 = pos + direction
 		newPosition.y = RayGetFloorHeight(newPosition)
@@ -69,11 +75,25 @@ func TestDirection(pos: Vector3, direction: Vector3) -> MapTile:
 		return newTile
 	return null
 
+func GetFloorNormal(pos: Vector3) -> Vector3:
+	var space_state = get_world_3d().direct_space_state
+
+	var origin = pos + (Vector3.UP * 1.1)
+	var end = pos + Vector3.DOWN * blockSize
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+
+	var result = space_state.intersect_ray(query)
+	if result:
+		return result["normal"]
+	else:
+		return Vector3.UP
+
+
 func RayDirectionCheck(pos: Vector3, direction: Vector3) -> bool:
 	var space_state = get_world_3d().direct_space_state
 
 	var origin = pos
-	var end = pos + direction + Vector3(0, 0.1, 0)
+	var end = pos + direction + Vector3(0, 1.1, 0)
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 
 	var result = space_state.intersect_ray(query)
@@ -98,7 +118,7 @@ func RayGetFloorHeight(pos: Vector3) -> float:
 func RayDirectionCheckFloor(pos: Vector3, direction: Vector3) -> float:
 	var space_state = get_world_3d().direct_space_state
 
-	var origin = pos + direction + Vector3(0, 0.1, 0)
+	var origin = pos + direction + Vector3(0, 1.1, 0)
 	var end = pos + direction + (Vector3.DOWN * blockSize) + Vector3(0, -0.1, 0)
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://5cl6f3qb7j07"]
+[gd_scene load_steps=49 format=3 uid="uid://5cl6f3qb7j07"]
 
 [ext_resource type="ArrayMesh" uid="uid://bilb38c5gty0n" path="res://Assets/Art/Meshes/Hallway/hallway pieces-0.obj" id="1_vi11e"]
 [ext_resource type="Shape3D" uid="uid://wdwd0u58bbvn" path="res://Resources/CollisionShapes/Floor.tres" id="2_uw102"]
@@ -47,23 +47,13 @@
 [ext_resource type="ArrayMesh" uid="uid://dqbcwldus84xs" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_ship_door_top_right.obj" id="45_xf1ru"]
 [ext_resource type="ArrayMesh" uid="uid://clxm3y4xi6cak" path="res://Assets/Art/Meshes/Hanger/mesh_stairs.obj" id="46_a5600"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_h37nf"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_o71yq"]
 size = Vector3(0.01, 4, 4)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_axg3p"]
+size = Vector3(4.5, 0.01, 6.5)
+
 [node name="Node3D" type="Node3D"]
-
-[node name="HallwayPieces-0" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_vi11e")
-
-[node name="Collision" type="StaticBody3D" parent="HallwayPieces-0"]
-
-[node name="Floor" type="CollisionShape3D" parent="HallwayPieces-0/Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-shape = ExtResource("2_uw102")
-
-[node name="Wall" type="CollisionShape3D" parent="HallwayPieces-0/Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-shape = SubResource("BoxShape3D_h37nf")
 
 [node name="HallwayPieces-1" type="MeshInstance3D" parent="."]
 mesh = ExtResource("3_1ekc7")
@@ -133,11 +123,11 @@ shape = ExtResource("2_uw102")
 
 [node name="Wall" type="CollisionShape3D" parent="MeshHangerEntranceLeft/Collision"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.140934, 0, -2.00646)
-shape = SubResource("BoxShape3D_h37nf")
+shape = SubResource("BoxShape3D_o71yq")
 
 [node name="Wall2" type="CollisionShape3D" parent="MeshHangerEntranceLeft/Collision"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.98113, 0, 0.0682161)
-shape = SubResource("BoxShape3D_h37nf")
+shape = SubResource("BoxShape3D_o71yq")
 
 [node name="MeshHangerEntranceRight" type="MeshInstance3D" parent="."]
 mesh = ExtResource("11_ca7q1")
@@ -150,11 +140,11 @@ shape = ExtResource("2_uw102")
 
 [node name="Wall" type="CollisionShape3D" parent="MeshHangerEntranceRight/Collision"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2.02697, 0, 0.0919071)
-shape = SubResource("BoxShape3D_h37nf")
+shape = SubResource("BoxShape3D_o71yq")
 
 [node name="Wall2" type="CollisionShape3D" parent="MeshHangerEntranceRight/Collision"]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.0477086, 0, -2.03015)
-shape = SubResource("BoxShape3D_h37nf")
+shape = SubResource("BoxShape3D_o71yq")
 
 [node name="MeshHangerEntranceTopLeft" type="MeshInstance3D" parent="."]
 mesh = ExtResource("12_3wy82")
@@ -302,6 +292,20 @@ mesh = ExtResource("32_jlrer")
 [node name="MeshHangerWallGridStraightMid" type="MeshInstance3D" parent="."]
 mesh = ExtResource("33_bb6of")
 
+[node name="HallwayPieces-0" type="MeshInstance3D" parent="MeshHangerWallGridStraightMid"]
+mesh = ExtResource("1_vi11e")
+skeleton = NodePath("../..")
+
+[node name="Collision" type="StaticBody3D" parent="MeshHangerWallGridStraightMid/HallwayPieces-0"]
+
+[node name="Floor" type="CollisionShape3D" parent="MeshHangerWallGridStraightMid/HallwayPieces-0/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("2_uw102")
+
+[node name="Wall" type="CollisionShape3D" parent="MeshHangerWallGridStraightMid/HallwayPieces-0/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+shape = SubResource("BoxShape3D_o71yq")
+
 [node name="MeshHangerWallGridStraightTop" type="MeshInstance3D" parent="."]
 mesh = ExtResource("34_v0ec3")
 
@@ -365,6 +369,6 @@ mesh = ExtResource("46_a5600")
 [node name="Collision" type="StaticBody3D" parent="MeshStairs"]
 transform = Transform3D(1.00456, 0, 0, 0, 1.00456, 0, 0, 0, 1.00456, 0, 0, 0)
 
-[node name="Floor" type="CollisionShape3D" parent="MeshStairs/Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-shape = ExtResource("2_uw102")
+[node name="Stair" type="CollisionShape3D" parent="MeshStairs/Collision"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+shape = SubResource("BoxShape3D_axg3p")
