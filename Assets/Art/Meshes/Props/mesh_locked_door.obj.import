@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://71j0nn1no6j7"
+path="res://.godot/imported/mesh_locked_door.obj-fafc9da8ad524e9f93d0c5707f930047.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_locked_door.obj-fafc9da8ad524e9f93d0c5707f930047.mesh"]
+
+source_file="res://Assets/Art/Meshes/Props/mesh_locked_door.obj"
+dest_files=["res://.godot/imported/mesh_locked_door.obj-fafc9da8ad524e9f93d0c5707f930047.mesh", "res://.godot/imported/mesh_locked_door.obj-fafc9da8ad524e9f93d0c5707f930047.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

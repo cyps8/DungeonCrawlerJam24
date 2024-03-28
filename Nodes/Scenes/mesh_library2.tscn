@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://cer5gg64xc14x"]
+
+[ext_resource type="ArrayMesh" uid="uid://71j0nn1no6j7" path="res://Assets/Art/Meshes/Props/mesh_locked_door.obj" id="1_s5cke"]
+[ext_resource type="ArrayMesh" uid="uid://bwvma2q380s8u" path="res://Assets/Art/Meshes/Props/mesh_prop_security_cctv.obj" id="2_g8i3c"]
+[ext_resource type="ArrayMesh" uid="uid://cgdvw58fdpkrp" path="res://Assets/Art/Meshes/Props/mesh_prop_locker_locked.obj" id="3_p8aas"]
+[ext_resource type="ArrayMesh" uid="uid://ds5bbn1schls" path="res://Assets/Art/Meshes/Hanger/mesh_hanger_floor_full.obj" id="4_bx2w6"]
+[ext_resource type="ArrayMesh" uid="uid://lh171fgio1xd" path="res://Assets/Art/Meshes/Props/mesh_prop_bedroom_bed.obj" id="5_q0bbq"]
+[ext_resource type="ArrayMesh" uid="uid://ccbuayn16xe1m" path="res://Assets/Art/Meshes/Props/mesh_prop_bedroom_desk.obj" id="6_bba1h"]
+[ext_resource type="ArrayMesh" uid="uid://do7chm7nrppl5" path="res://Assets/Art/Meshes/Props/mesh_prop_canteen_table.obj" id="7_r6uef"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshLockedDoor" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_s5cke")
+
+[node name="MeshPropSecurityCctv" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_g8i3c")
+
+[node name="MeshPropLockerLocked" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_p8aas")
+
+[node name="MeshHangerFloorFull" type="MeshInstance3D" parent="."]
+mesh = ExtResource("4_bx2w6")
+
+[node name="MeshPropBedroomBed" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_q0bbq")
+
+[node name="MeshPropBedroomDesk" type="MeshInstance3D" parent="."]
+mesh = ExtResource("6_bba1h")
+
+[node name="MeshPropCanteenTable" type="MeshInstance3D" parent="."]
+mesh = ExtResource("7_r6uef")

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ccbuayn16xe1m"
+path="res://.godot/imported/mesh_prop_bedroom_desk.obj-7e16c3a8035d141234e0d93febb6150b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_prop_bedroom_desk.obj-7e16c3a8035d141234e0d93febb6150b.mesh"]
+
+source_file="res://Assets/Art/Meshes/Props/mesh_prop_bedroom_desk.obj"
+dest_files=["res://.godot/imported/mesh_prop_bedroom_desk.obj-7e16c3a8035d141234e0d93febb6150b.mesh", "res://.godot/imported/mesh_prop_bedroom_desk.obj-7e16c3a8035d141234e0d93febb6150b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
