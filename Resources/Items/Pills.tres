@@ -6,7 +6,7 @@
 script = ExtResource("1_lfn1k")
 name = "Pills"
 description = "Take these to become uninsane."
-consumable = false
-type = 0
+consumable = true
+type = 1
 function = 0
-value = 0
+value = 50

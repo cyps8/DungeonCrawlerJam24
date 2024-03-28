@@ -8,6 +8,8 @@ var items: Array[InventoryItem] = []
 
 @export var defaultInv: Array[Item] = []
 
+@onready var itemsRef = %Items
+
 func _ready():
 	for item in defaultInv:
 		AddItem(item)
@@ -24,7 +26,7 @@ func AddItem(addItem: Item) -> void:
 	if addItem.consumable:
 		newItem.disabled = false
 	items.append(newItem)
-	%Items.add_child(newItem)
+	itemsRef.add_child(newItem)
 	newItem.changeCount(1)
 
 func TryQuickReload():
