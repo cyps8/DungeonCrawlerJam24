@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0x221kq5gyhl"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Door.gd" id="1_noygl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ox238"]
+size = Vector3(0.1, 2, 1.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_csavh"]
+size = Vector3(0.1, 2, 1.8)
+
+[node name="Door" type="AnimatableBody3D" groups=["Interactable"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, 1, 14)
+script = ExtResource("1_noygl")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ox238")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_csavh")

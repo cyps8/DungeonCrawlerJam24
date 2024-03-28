@@ -12,8 +12,6 @@ var flOn: bool = false
 
 var batteryBar: TextureProgressBar
 
-var batteries: int = 3
-
 var canMove: bool = false
 
 var currentTile: MapTile
@@ -122,9 +120,9 @@ func GetSideTurned(current: int, amount: int) -> Level.Side:
 func Interact():
 	var space_state = get_world_3d().direct_space_state
 	var origin = position
-	var end = position + forward
+	var end = position + (forward * 2)
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 	var result = space_state.intersect_ray(query)
 	if result:
 		if result["collider"].is_in_group("Interactable"):
-			result["collider"].queue_free()
+			result["collider"].Interact(currentTile)

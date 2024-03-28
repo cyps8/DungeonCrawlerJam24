@@ -47,6 +47,13 @@ func GenerateMap(startPos: Vector3):
 	print ("Map generated with " + str(Map.size()) + " tiles")
 	emit_signal("MapGenerated")
 
+func ExpandMap(startTile: MapTile):
+	TilesToCheck.append(startTile)
+
+	while TilesToCheck.size() > 0:
+		CheckTiles()
+	print ("Map expanded to " + str(Map.size()) + " tiles")
+
 func CheckTiles():
 	var tile = TilesToCheck[0]
 	tile.sides[Side.North] = TestDirection(tile.position, Vector3.FORWARD)
