@@ -1,5 +1,7 @@
 extends Node3D
 
+class_name Player
+
 var forward: Vector3 = Vector3.FORWARD
 
 var turnSpeed: float = 5
@@ -10,19 +12,20 @@ var moving: bool = false
 
 var flOn: bool = false
 
-var batteryBar: TextureProgressBar
-
 var canMove: bool = false
 
 var currentTile: MapTile
 var currentDirection: Level.Side
 
+var camRef: Camera3D
+var flashlightRef: SpotLight3D
+
 func _ready():
 	Level.instance.MapGenerated.connect(JoinMap)
 
-	batteryBar = get_tree().get_first_node_in_group("Battery")
-	$Cam/Flashlight.visible = false
-	flOn = $Cam/Flashlight.visible
+	camRef = $Cam
+	flashlightRef = $Cam/Flashlight
+	camRef.remove_child(flashlightRef)
 
 	forward = forward.rotated(Vector3.UP, rotation.y)
 	if rotation_degrees.y == 0:
@@ -56,16 +59,18 @@ func _process(_delta):
 		Interact()
 
 	if Input.is_action_just_pressed("ToggleFlashlight") && GameManager.instance.flBatteryLevel > 0:
-		$Cam/Flashlight.visible = !$Cam/Flashlight.visible
-		flOn = $Cam/Flashlight.visible
+		flOn = !flOn
+		if flOn:
+			camRef.add_child(flashlightRef)
+		else:
+			camRef.remove_child(flashlightRef)
 
 	if flOn:
 		GameManager.instance.flBatteryLevel -= _delta
-		if batteryBar != null:
-			batteryBar.value = GameManager.instance.flBatteryLevel / GameManager.instance.flBatteryMax
+		GameManager.instance.hudRef.UpdateBatteryCharge(GameManager.instance.flBatteryLevel / GameManager.instance.flBatteryMax)
 		if GameManager.instance.flBatteryLevel <= 0:
 			GameManager.instance.flBatteryLevel = 0
-			$Cam/Flashlight.visible = false
+			camRef.emove_child(flashlightRef)
 			flOn = false
 
 func TryMove(direction: Level.Side):

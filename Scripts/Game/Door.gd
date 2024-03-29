@@ -2,9 +2,19 @@ extends AnimatableBody3D
 
 var opened = false
 
+@export var itemRequired: Item
+
 func Interact(_tile: MapTile):
 	if opened:
 		return
+
+	if itemRequired != null:
+		if GameManager.instance.invRef.HasItem(itemRequired):
+			GameManager.instance.hudRef.ShowHint(itemRequired.name + " was used to open the door")
+		else:
+			GameManager.instance.hudRef.ShowHint("You need a " + itemRequired.name + " to open the door")
+			return
+
 	opened = true
 	
 	$Shape.position.y += 2

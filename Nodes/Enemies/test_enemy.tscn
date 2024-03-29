@@ -66,3 +66,4 @@ process_material = SubResource("ParticleProcessMaterial_vl6sm")
 draw_pass_1 = SubResource("QuadMesh_l4y1q")
 
 [connection signal="area_entered" from="Area3D" to="." method="PlayerCollision"]
+[connection signal="area_entered" from="Area3D" to="." method="TeleportAway"]

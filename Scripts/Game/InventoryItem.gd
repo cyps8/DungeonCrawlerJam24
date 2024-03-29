@@ -15,6 +15,6 @@ func changeCount(deltaCount: int):
 	else:
 		$Label.text = item.name
 
-func Used(_id):
+func Used(_id: int = 0):
 	GameManager.instance.ChangeStat(item.type, item.value, item.function)
 	GameManager.instance.invRef.RemoveItem(item)

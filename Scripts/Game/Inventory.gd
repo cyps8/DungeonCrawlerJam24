@@ -32,7 +32,9 @@ func AddItem(addItem: Item) -> void:
 func TryQuickReload():
 	for item in items:
 		if item.item.name == "Battery":
-			item.Used(0)
+			item.Used()
+			return
+	GameManager.instance.hudRef.ShowHint("Out of batteries")
 			
 func RemoveItem(removeItem: Item) -> void:
 	for item in items:
@@ -41,3 +43,9 @@ func RemoveItem(removeItem: Item) -> void:
 			if item.count == 0:
 				items.erase(item)
 				item.queue_free()
+
+func HasItem(item: Item) -> bool:
+	for i in items:
+		if i.item == item:
+			return true
+	return false

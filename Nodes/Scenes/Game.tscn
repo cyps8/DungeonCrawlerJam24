@@ -134,7 +134,6 @@ text = "MAIN MENU"
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 5
-visible = false
 script = ExtResource("5_7rrtf")
 
 [node name="Border" type="TextureRect" parent="HUD"]
@@ -146,7 +145,7 @@ grow_vertical = 2
 theme = ExtResource("5_xyck4")
 texture = SubResource("GradientTexture2D_jlwiq")
 
-[node name="BatteryCharge" type="TextureProgressBar" parent="HUD/Border" groups=["Battery"]]
+[node name="BatteryCharge" type="TextureProgressBar" parent="HUD/Border"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -161,8 +160,27 @@ step = 0.01
 value = 1.0
 texture_progress = SubResource("GradientTexture2D_nh78r")
 
+[node name="Hint" type="Label" parent="HUD/Border"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -444.0
+offset_top = -240.0
+offset_right = 445.0
+offset_bottom = -143.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "YOU NEED A KEY TO UNLOCK THIS DOOR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Inventory" type="CanvasLayer" parent="."]
 layer = 7
+visible = false
 script = ExtResource("4_sa2lr")
 itemIns = ExtResource("7_du2p1")
 defaultInv = Array[Resource("res://Scripts/Game/Item.gd")]([ExtResource("8_t45w4"), ExtResource("8_t45w4"), ExtResource("8_t45w4"), ExtResource("9_q530a")])

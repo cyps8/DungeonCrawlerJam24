@@ -23,6 +23,8 @@ var healthMax: float = 100.0
 var flBatteryLevel: float
 var flBatteryMax: float = 60
 
+var playerRef: Player
+
 func _ready():
 	flBatteryLevel = flBatteryMax
 
@@ -43,6 +45,8 @@ func _ready():
 	remove_child(fightRef)
 
 	instance = self
+
+	playerRef = get_tree().get_first_node_in_group("Player")
 
 	Level.instance.MapGenerated.connect(OnMapGenerated)
 
@@ -97,8 +101,6 @@ func SwitchToFight():
 	fightRef.StartFight()
 
 func OnMapGenerated():
-	Level.instance.SpawnNewEnemy()
-	Level.instance.SpawnNewEnemy()
 	Level.instance.SpawnNewEnemy()
 
 func ToggleInventory():

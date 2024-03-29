@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://beytbbuavadt5"]
+[gd_scene load_steps=7 format=3 uid="uid://beytbbuavadt5"]
 
 [ext_resource type="Script" path="res://Scripts/Game/player.gd" id="1_g8cxl"]
 
@@ -13,9 +13,13 @@ frequency = 0.1752
 color_ramp = SubResource("Gradient_1qhmi")
 noise = SubResource("FastNoiseLite_ffrkb")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wioj6"]
+height = 2.83881
+radius = 1.0
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_vnxda"]
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node3D" groups=["Player"]]
 script = ExtResource("1_g8cxl")
 
 [node name="Cam" type="Camera3D" parent="."]
@@ -32,6 +36,14 @@ spot_range = 20.0
 spot_attenuation = 2.0
 spot_angle = 35.9431
 spot_angle_attenuation = 0.420448
+
+[node name="FlashZone" type="Area3D" parent="Cam/Flashlight" groups=["Flash"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cam/Flashlight/FlashZone"]
+transform = Transform3D(0.998782, 0.0348995, -0.0348782, -0.0348995, -4.37114e-08, -0.999391, -0.0348782, 0.999391, 0.00121793, -0.0973015, 0, -2.78635)
+shape = SubResource("CylinderShape3D_wioj6")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(0.67451, 0.886275, 1, 1)
