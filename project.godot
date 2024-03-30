@@ -13,7 +13,7 @@ config_version=5
 config/name="DungeonCrawlerJam24"
 run/main_scene="res://Nodes/Scenes/root.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://Assets/Art/Sprites/Other/icon.svg"
+config/icon="res://Assets/Art/Sprites/UI/TempPlayerIcon.png"
 
 [display]
 

@@ -29,6 +29,9 @@ sky_material = SubResource("ProceduralSkyMaterial_2kcoe")
 background_mode = 1
 sky = SubResource("Sky_tt2ud")
 tonemap_mode = 2
+glow_intensity = 1.5
+glow_strength = 2.0
+glow_bloom = 0.2
 
 [sub_resource type="Gradient" id="Gradient_glkh7"]
 offsets = PackedFloat32Array(0, 0.707792, 1)

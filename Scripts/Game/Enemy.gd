@@ -4,7 +4,7 @@ class_name Enemy
 
 var currentTile: MapTile
 
-var moveCD: float = 0.3
+var moveCD: float = 0.75
 var moveTimer: float = 0.0
 
 var moveTween: Tween
@@ -32,5 +32,6 @@ func TeleportAway(_area):
 	if _area.is_in_group("Flash"):
 		if moveTween != null:
 			moveTween.kill()
-		currentTile = Level.instance.SelectRandomTile(GameManager.instance.playerRef.currentTile, 5)
+		currentTile = Level.instance.SelectRandomTile(GameManager.instance.playerRef.currentTile, 10)
 		position = currentTile.position
+		moveTimer = 5

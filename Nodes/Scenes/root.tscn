@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3q24wyamn8qx"]
+[gd_scene load_steps=7 format=3 uid="uid://b3q24wyamn8qx"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_x3mch"]
 [ext_resource type="PackedScene" uid="uid://kqpqdl61bvfo" path="res://Nodes/Scenes/Game.tscn" id="2_e3bq7"]
 [ext_resource type="Script" path="res://Scripts/OptionsMenu.gd" id="2_ixl7y"]
 [ext_resource type="PackedScene" uid="uid://bl0knf0jejc5n" path="res://Nodes/Scenes/main_menu.tscn" id="3_8heap"]
 [ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="5_4bkwt"]
+[ext_resource type="Script" path="res://Scripts/AudioPlayer.gd" id="6_ctsc0"]
 
 [node name="Root" type="Node"]
 process_mode = 3
@@ -78,5 +79,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="AudioPlayer" type="Node" parent="."]
+script = ExtResource("6_ctsc0")
 
 [connection signal="pressed" from="OptionsMenu/c/Panel/Back" to="OptionsMenu" method="BackButton"]
