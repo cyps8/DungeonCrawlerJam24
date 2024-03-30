@@ -57,6 +57,7 @@ func _process(_delta):
 		TryMove(GetSideTurned(currentDirection, 1))
 	if Input.is_action_just_pressed("Interact"):
 		Interact()
+	TryInteract()
 
 	if Input.is_action_just_pressed("ToggleFlashlight") && GameManager.instance.flBatteryLevel > 0:
 		flOn = !flOn
@@ -131,3 +132,17 @@ func Interact():
 	if result:
 		if result["collider"].is_in_group("Interactable"):
 			result["collider"].Interact(currentTile)
+
+func TryInteract():
+	var space_state = get_world_3d().direct_space_state
+	var origin = position
+	var end = position + (forward * 2)
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	var result = space_state.intersect_ray(query)
+	if result:
+		if result["collider"].is_in_group("Interactable"):
+			GameManager.instance.hudRef.UpdateControls("PRESS 'SPACE' TO INTERACT")
+		else:
+			GameManager.instance.hudRef.UpdateControls("")
+	else:
+		GameManager.instance.hudRef.UpdateControls("")

@@ -4,15 +4,34 @@ class_name Inventory
 
 @export var itemIns: PackedScene
 
+@export var objectiveIns: PackedScene
+
 var items: Array[InventoryItem] = []
 
 @export var defaultInv: Array[Item] = []
 
 @onready var itemsRef = %Items
 
+@onready var healthBarRef = %HealthBar
+@onready var sanityBarRef = %SanityBar
+@onready var objectiveListRef = %Objectives
+
 func _ready():
 	for item in defaultInv:
 		AddItem(item)
+
+func UpdateHealth(value: float):
+	healthBarRef.value = value
+
+func UpdateSanity(value: float):
+	sanityBarRef.value = value
+
+func AddObjective(msg: String, completeSignal: Signal):
+	var newObjective = objectiveIns.instantiate()
+	newObjective.text = "• " + msg
+	completeSignal.connect(newObjective.queue_free)
+	objectiveListRef.add_child(newObjective)
+
 
 func AddItem(addItem: Item) -> void:
 	for item in items:

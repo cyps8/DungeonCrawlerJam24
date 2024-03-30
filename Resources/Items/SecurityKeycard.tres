@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_3bnb0")
-name = "SecurityKeycard"
+name = "Security Keycard"
 description = "Used to open security doors."
 consumable = false
 type = 0

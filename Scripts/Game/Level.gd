@@ -174,6 +174,7 @@ func PathFindTo(from: MapTile, to: MapTile) -> MapTile:
 	return from
 
 func PathFirst(currentTile: MapTile, checkedTiles: Array[MapTile]) -> MapTile:
+	var breakCounter = 0
 	while currentTile.path > 1:
 		for side in currentTile.sides:
 			if side != null:
@@ -182,4 +183,7 @@ func PathFirst(currentTile: MapTile, checkedTiles: Array[MapTile]) -> MapTile:
 						currentTile = side
 						if currentTile.path == 1:
 							return currentTile
+		breakCounter += 1
+		if breakCounter > 100:
+			return currentTile
 	return currentTile

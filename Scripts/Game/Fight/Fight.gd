@@ -14,8 +14,17 @@ var fightTimer: float = 0
 
 var ended = false
 
+var hudRef: FightHUD
+
+var gameOverRef: CanvasLayer
+
 func _init():
 	instance = self
+
+func _ready():
+	gameOverRef = $GameOver
+	remove_child(gameOverRef)
+	hudRef = $FightHUD
 
 func _process(_delta):
 	if ended:

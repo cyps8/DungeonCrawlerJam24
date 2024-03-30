@@ -4,6 +4,10 @@ var opened = false
 
 @export var itemRequired: Item
 
+var gotObjective = false
+
+signal objectiveComplete
+
 func Interact(_tile: MapTile):
 	if opened:
 		return
@@ -13,7 +17,13 @@ func Interact(_tile: MapTile):
 			GameManager.instance.hudRef.ShowHint(itemRequired.name + " was used to open the door")
 		else:
 			GameManager.instance.hudRef.ShowHint("You need a " + itemRequired.name + " to open the door")
+			if !gotObjective:
+				gotObjective = true
+				GameManager.instance.invRef.AddObjective("Open the door with a " + itemRequired.name, objectiveComplete)
 			return
+
+	if gotObjective:
+		emit_signal("objectiveComplete")
 
 	opened = true
 	

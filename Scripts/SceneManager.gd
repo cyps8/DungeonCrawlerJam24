@@ -36,9 +36,6 @@ func _ready():
 	ChangeScene(Scene.MAINMENU)
 
 func ChangeScene(newScene: Scene):
-	if currentScene == newScene:
-		return
-
 	if currentSceneNode != null:
 		currentSceneNode.queue_free()
 

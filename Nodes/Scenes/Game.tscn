@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://kqpqdl61bvfo"]
+[gd_scene load_steps=25 format=3 uid="uid://kqpqdl61bvfo"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_4p14j"]
 [ext_resource type="PackedScene" uid="uid://clcb74svnwenw" path="res://Nodes/Scenes/map_abandoned_station.tscn" id="2_3vhis"]
@@ -9,10 +9,12 @@
 [ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="5_xyck4"]
 [ext_resource type="PackedScene" uid="uid://dubsc3gnfj7jn" path="res://Nodes/item.tscn" id="7_du2p1"]
 [ext_resource type="Texture2D" uid="uid://dd1vtsmtv8vym" path="res://Assets/Art/Sprites/UI/TempPlayerIcon.png" id="7_rcucf"]
+[ext_resource type="PackedScene" uid="uid://dpw03hj8x5r2k" path="res://Nodes/action.tscn" id="7_tpntn"]
 [ext_resource type="Texture2D" uid="uid://bl56v0yt0v8mr" path="res://Assets/Art/Sprites/UI/brain.png" id="8_80ggo"]
 [ext_resource type="Texture2D" uid="uid://b7odef5c7rnsn" path="res://Assets/Art/Sprites/UI/heart.png" id="8_ghx62"]
 [ext_resource type="Resource" uid="uid://0qvdhwaqqh4q" path="res://Resources/Items/Battery.tres" id="8_t45w4"]
 [ext_resource type="Resource" uid="uid://nxxaoufe5qhp" path="res://Resources/Items/Pills.tres" id="9_q530a"]
+[ext_resource type="PackedScene" uid="uid://cu5bvgnqmicrq" path="res://Nodes/objective.tscn" id="15_ff411"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2kcoe"]
 sky_top_color = Color(0.188235, 0.360784, 0.203922, 1)
@@ -135,6 +137,7 @@ text = "MAIN MENU"
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 5
 script = ExtResource("5_7rrtf")
+actionIns = ExtResource("7_tpntn")
 
 [node name="Border" type="TextureRect" parent="HUD"]
 anchors_preset = 15
@@ -178,11 +181,40 @@ text = "YOU NEED A KEY TO UNLOCK THIS DOOR"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Controls" type="Label" parent="HUD/Border"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = 86.0
+offset_right = 257.0
+offset_bottom = 143.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PRESS 'SPACE' TO INTERACT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionList" type="VBoxContainer" parent="HUD/Border"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -22.0
+offset_right = 667.0
+offset_bottom = 374.0
+grow_vertical = 2
+
 [node name="Inventory" type="CanvasLayer" parent="."]
 layer = 7
 visible = false
 script = ExtResource("4_sa2lr")
 itemIns = ExtResource("7_du2p1")
+objectiveIns = ExtResource("15_ff411")
 defaultInv = Array[Resource("res://Scripts/Game/Item.gd")]([ExtResource("8_t45w4"), ExtResource("8_t45w4"), ExtResource("8_t45w4"), ExtResource("9_q530a")])
 
 [node name="c" type="Control" parent="Inventory"]
@@ -232,7 +264,8 @@ offset_top = 173.0
 offset_right = 890.0
 offset_bottom = 270.0
 
-[node name="ProgressBar" type="ProgressBar" parent="Inventory/c/Panel/Health"]
+[node name="HealthBar" type="ProgressBar" parent="Inventory/c/Panel/Health"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 106.0
 offset_top = 50.0
@@ -266,7 +299,8 @@ offset_top = 45.0
 offset_right = 893.0
 offset_bottom = 142.0
 
-[node name="ProgressBar" type="ProgressBar" parent="Inventory/c/Panel/Sanity"]
+[node name="SanityBar" type="ProgressBar" parent="Inventory/c/Panel/Sanity"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 106.0
 offset_top = 50.0
@@ -318,6 +352,39 @@ vertical_scroll_mode = 0
 
 [node name="Items" type="HBoxContainer" parent="Inventory/c/Panel/Inventroy/Scroll"]
 unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Objectives" type="Panel" parent="Inventory/c/Panel"]
+layout_mode = 0
+offset_left = 847.0
+offset_top = 91.0
+offset_right = 1288.0
+offset_bottom = 483.0
+
+[node name="Obj" type="Label" parent="Inventory/c/Panel/Objectives"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -43.0
+offset_right = 109.0
+offset_bottom = -15.0
+theme_override_font_sizes/font_size = 20
+text = "OBJECTIVES
+"
+
+[node name="Scroll" type="ScrollContainer" parent="Inventory/c/Panel/Objectives"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 468.0
+offset_bottom = 380.0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Objectives" type="VBoxContainer" parent="Inventory/c/Panel/Objectives/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Objective" parent="Inventory/c/Panel/Objectives/Scroll/Objectives" instance=ExtResource("15_ff411")]
 layout_mode = 2
 
 [connection signal="pressed" from="Pause/c/Panel/Resume" to="Pause" method="ResumeButton"]

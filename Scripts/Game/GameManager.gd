@@ -49,14 +49,18 @@ func _ready():
 	playerRef = get_tree().get_first_node_in_group("Player")
 
 	Level.instance.MapGenerated.connect(OnMapGenerated)
+	fightRef.hudRef.UpdateHealth(health/healthMax)
 
 func ChangeHealth(value):
 	health += value
 	health = clamp(health, 0, healthMax)
+	invRef.UpdateHealth(health/ healthMax)
+	fightRef.hudRef.UpdateHealth(health/healthMax)
 
 func ChangeSanity(value):
 	sanity += value
 	sanity = clamp(sanity, 0, sanityMax)
+	invRef.UpdateSanity(sanity/ sanityMax)
 
 func ChangeBattery(value):
 	flBatteryLevel += value
@@ -101,7 +105,7 @@ func SwitchToFight():
 	fightRef.StartFight()
 
 func OnMapGenerated():
-	Level.instance.SpawnNewEnemy()
+	pass
 
 func ToggleInventory():
 	invOpen = !invOpen
@@ -120,6 +124,8 @@ func TogglePause():
 		remove_child(pauseRef)
 
 func _process(_delta):
+	if Input.is_action_just_pressed("DebugSpawnEnemy"):
+		Level.instance.SpawnNewEnemy()
 	if Input.is_action_just_pressed("Reload"):
 		ReloadBattery()
 	if Input.is_action_just_pressed("Inventory") && !paused:

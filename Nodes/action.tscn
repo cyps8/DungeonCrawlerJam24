@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpw03hj8x5r2k"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Action.gd" id="1_nqdos"]
+[ext_resource type="Texture2D" uid="uid://cdnhuv3mcjbs6" path="res://Assets/Art/Sprites/Other/icon.svg" id="2_6o0pi"]
+
+[node name="Action" type="Control"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nqdos")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 23.0
+offset_right = 466.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 20
+text = "ITEM PICKED UP"
+
+[node name="Sprite" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 75.0
+offset_bottom = 75.0
+texture = ExtResource("2_6o0pi")
+expand_mode = 1
