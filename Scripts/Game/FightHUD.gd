@@ -18,6 +18,8 @@ func _ready():
 	backBar = $Bars/HealthBarBack
 
 func UpdateHealth(value: float):
+	if GameManager.instance.fightRef.ended:
+		return
 	frontBar.value = value
 	if backBar.value < value:
 		backBar.value = value

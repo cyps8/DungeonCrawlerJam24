@@ -30,6 +30,8 @@ func _ready():
 	hudRef = $FightHUD
 
 func GameOver():
+	if ended:
+		return
 	ended = true
 	if endTween != null:
 		endTween.kill()
