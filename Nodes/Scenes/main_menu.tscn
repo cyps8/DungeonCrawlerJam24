@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl0knf0jejc5n"]
+[gd_scene load_steps=6 format=3 uid="uid://bl0knf0jejc5n"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_lw8ip"]
 [ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="2_l2gf7"]
+[ext_resource type="VideoStream" path="res://Assets/Video/intro_animation_v2.ogv" id="3_b8b22"]
 
 [sub_resource type="Gradient" id="Gradient_1spaj"]
 offsets = PackedFloat32Array(0, 0.707792, 1)
@@ -27,6 +28,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_l2gf7")
 
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="c"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("3_b8b22")
+autoplay = true
+loop = true
+
 [node name="Border" type="TextureRect" parent="c"]
 layout_mode = 1
 anchors_preset = 15
@@ -48,7 +60,8 @@ offset_right = 204.0
 offset_bottom = 363.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
-text = "LOL no. but funny thought!"
+text = "SIREN"
+horizontal_alignment = 1
 
 [node name="Start" type="Button" parent="c"]
 layout_mode = 1
