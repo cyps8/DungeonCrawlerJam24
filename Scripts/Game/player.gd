@@ -71,7 +71,7 @@ func _process(_delta):
 		GameManager.instance.hudRef.UpdateBatteryCharge(GameManager.instance.flBatteryLevel / GameManager.instance.flBatteryMax)
 		if GameManager.instance.flBatteryLevel <= 0:
 			GameManager.instance.flBatteryLevel = 0
-			camRef.emove_child(flashlightRef)
+			camRef.remove_child(flashlightRef)
 			flOn = false
 
 func TryMove(direction: Level.Side):

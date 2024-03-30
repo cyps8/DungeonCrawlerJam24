@@ -30,6 +30,8 @@ func Interact(_tile: MapTile):
 	$Shape.position.y += 2
 
 	var openTween = create_tween()
-	openTween.tween_property($Mesh, "position:y", position.y + 2, 1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	openTween.tween_property($MeshR, "position:x", $MeshR.position.x + 0.8, 1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+	openTween.set_parallel(true)
+	openTween.tween_property($MeshL, "position:x", $MeshL.position.x - 0.8, 1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 
 	Level.instance.ExpandMap(_tile)
