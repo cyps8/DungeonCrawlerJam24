@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cer5gg64xc14x"]
+[gd_scene load_steps=14 format=3 uid="uid://cer5gg64xc14x"]
 
 [ext_resource type="ArrayMesh" uid="uid://71j0nn1no6j7" path="res://Assets/Art/Meshes/Props/mesh_locked_door.obj" id="1_s5cke"]
 [ext_resource type="ArrayMesh" uid="uid://bwvma2q380s8u" path="res://Assets/Art/Meshes/Props/mesh_prop_security_cctv.obj" id="2_g8i3c"]
@@ -7,26 +7,63 @@
 [ext_resource type="ArrayMesh" uid="uid://lh171fgio1xd" path="res://Assets/Art/Meshes/Props/mesh_prop_bedroom_bed.obj" id="5_q0bbq"]
 [ext_resource type="ArrayMesh" uid="uid://ccbuayn16xe1m" path="res://Assets/Art/Meshes/Props/mesh_prop_bedroom_desk.obj" id="6_bba1h"]
 [ext_resource type="ArrayMesh" uid="uid://do7chm7nrppl5" path="res://Assets/Art/Meshes/Props/mesh_prop_canteen_table.obj" id="7_r6uef"]
+[ext_resource type="ArrayMesh" uid="uid://dqsla7pc251di" path="res://Assets/Art/Meshes/Stairs/mesh_stairway_1.obj" id="8_v5k0w"]
+[ext_resource type="ArrayMesh" uid="uid://dmu4pjl58oegf" path="res://Assets/Art/Meshes/Stairs/mesh_stairway_2.obj" id="9_4i7d6"]
+[ext_resource type="ArrayMesh" uid="uid://ck4md4wekubc3" path="res://Assets/Art/Meshes/Stairs/mesh_stairway_3.obj" id="10_j0fuv"]
+[ext_resource type="ArrayMesh" uid="uid://b2tu1dhpyrqgr" path="res://Assets/Art/Meshes/Stairs/mesh_stairway_4.obj" id="11_40xo4"]
+[ext_resource type="ArrayMesh" uid="uid://xhhne1vi41s3" path="res://Assets/Art/Meshes/Stairs/mesh_stairway_5.obj" id="12_tii6a"]
+[ext_resource type="Shape3D" uid="uid://wdwd0u58bbvn" path="res://Resources/CollisionShapes/Floor.tres" id="13_07g24"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshLockedDoor" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("1_s5cke")
 
 [node name="MeshPropSecurityCctv" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("2_g8i3c")
 
 [node name="MeshPropLockerLocked" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("3_p8aas")
 
 [node name="MeshHangerFloorFull" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("4_bx2w6")
 
 [node name="MeshPropBedroomBed" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("5_q0bbq")
 
 [node name="MeshPropBedroomDesk" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("6_bba1h")
 
 [node name="MeshPropCanteenTable" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("7_r6uef")
+
+[node name="MeshStairway1" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("8_v5k0w")
+
+[node name="MeshStairway2" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("9_4i7d6")
+
+[node name="MeshStairway3" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("10_j0fuv")
+
+[node name="MeshStairway4" type="MeshInstance3D" parent="."]
+mesh = ExtResource("11_40xo4")
+
+[node name="MeshStairway5" type="MeshInstance3D" parent="."]
+mesh = ExtResource("12_tii6a")
+
+[node name="Collision" type="StaticBody3D" parent="MeshStairway5"]
+
+[node name="Floor" type="CollisionShape3D" parent="MeshStairway5/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = ExtResource("13_07g24")
