@@ -24,6 +24,7 @@ var flBatteryLevel: float
 var flBatteryMax: float = 60
 
 var playerRef: Player
+var gameOver: bool = false
 
 func _ready():
 	flBatteryLevel = flBatteryMax
@@ -56,6 +57,9 @@ func ChangeHealth(value):
 	health = clamp(health, 0, healthMax)
 	invRef.UpdateHealth(health/ healthMax)
 	fightRef.hudRef.UpdateHealth(health/healthMax)
+	if health == 0:
+		fightRef.GameOver()
+		gameOver = true
 
 func ChangeSanity(value):
 	sanity += value
@@ -124,6 +128,8 @@ func TogglePause():
 		remove_child(pauseRef)
 
 func _process(_delta):
+	if gameOver:
+		return
 	if Input.is_action_just_pressed("DebugSpawnEnemy"):
 		Level.instance.SpawnNewEnemy()
 	if Input.is_action_just_pressed("Reload"):

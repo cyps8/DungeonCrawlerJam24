@@ -13,12 +13,13 @@ func _ready():
 	caneraRef = Fight.instance.get_node("%FightCam")
 
 func _physics_process(_delta):
-	var input_dir = Input.get_vector("Left", "Right", "Forward", "Back")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	# Adjust direction based on rotation of camera
-	direction = direction.rotated(Vector3.UP, caneraRef.rotation.y)
-	if direction:
-		velocity += direction * moveSpeed
+	if !GameManager.instance.fightRef.ended:
+		var input_dir = Input.get_vector("Left", "Right", "Forward", "Back")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		# Adjust direction based on rotation of camera
+		direction = direction.rotated(Vector3.UP, caneraRef.rotation.y)
+		if direction:
+			velocity += direction * moveSpeed
 	
 	# Friction
 	velocity = lerp(velocity, Vector3.ZERO, 0.07)

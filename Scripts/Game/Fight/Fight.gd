@@ -18,13 +18,22 @@ var hudRef: FightHUD
 
 var gameOverRef: CanvasLayer
 
+var endTween: Tween
+
 func _init():
 	instance = self
 
 func _ready():
 	gameOverRef = $GameOver
+	gameOverRef.visible = true
 	remove_child(gameOverRef)
 	hudRef = $FightHUD
+
+func GameOver():
+	ended = true
+	if endTween != null:
+		endTween.kill()
+	add_child(gameOverRef)
 
 func _process(_delta):
 	if ended:
@@ -36,7 +45,7 @@ func _process(_delta):
 			attackQueue.pop_front()
 	elif activeAttacks.size() == 0:
 		ended = true
-		var endTween: Tween = create_tween()
+		endTween = create_tween()
 		endTween.tween_interval(1)
 		endTween.tween_callback(GameManager.instance.SwitchToLevel)
 
