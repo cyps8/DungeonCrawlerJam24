@@ -1,5 +1,7 @@
 extends Node3D
 
+class_name Player
+
 var forward: Vector3 = Vector3.FORWARD
 
 var turnSpeed: float = 5
@@ -10,26 +12,20 @@ var moving: bool = false
 
 var flOn: bool = false
 
-var flBatteryLevel: float
-var flBatteryMax: float = 60
-
-var batteryBar: TextureProgressBar
-
-var batteries: int = 3
-
 var canMove: bool = false
 
 var currentTile: MapTile
 var currentDirection: Level.Side
 
+var camRef: Camera3D
+var flashlightRef: SpotLight3D
+
 func _ready():
 	Level.instance.MapGenerated.connect(JoinMap)
 
-	batteryBar = get_tree().get_first_node_in_group("Battery")
-
-	flBatteryLevel = flBatteryMax
-	$Cam/Flashlight.visible = false
-	flOn = $Cam/Flashlight.visible
+	camRef = $Cam
+	flashlightRef = $Cam/Flashlight
+	camRef.remove_child(flashlightRef)
 
 	forward = forward.rotated(Vector3.UP, rotation.y)
 	if rotation_degrees.y == 0:
@@ -61,28 +57,22 @@ func _process(_delta):
 		TryMove(GetSideTurned(currentDirection, 1))
 	if Input.is_action_just_pressed("Interact"):
 		Interact()
+	TryInteract()
 
-	if Input.is_action_just_pressed("Reload"):
-		ReloadBattery()
-
-	if Input.is_action_just_pressed("ToggleFlashlight") && flBatteryLevel > 0:
-		$Cam/Flashlight.visible = !$Cam/Flashlight.visible
-		flOn = $Cam/Flashlight.visible
+	if Input.is_action_just_pressed("ToggleFlashlight") && GameManager.instance.flBatteryLevel > 0:
+		flOn = !flOn
+		if flOn:
+			camRef.add_child(flashlightRef)
+		else:
+			camRef.remove_child(flashlightRef)
 
 	if flOn:
-		flBatteryLevel -= _delta
-		if batteryBar != null:
-			batteryBar.value = flBatteryLevel / flBatteryMax
-		if flBatteryLevel <= 0:
-			flBatteryLevel = 0
-			$Cam/Flashlight.visible = false
+		GameManager.instance.flBatteryLevel -= _delta
+		GameManager.instance.hudRef.UpdateBatteryCharge(GameManager.instance.flBatteryLevel / GameManager.instance.flBatteryMax)
+		if GameManager.instance.flBatteryLevel <= 0:
+			GameManager.instance.flBatteryLevel = 0
+			camRef.emove_child(flashlightRef)
 			flOn = false
-
-func ReloadBattery():
-	if batteries > 0:
-		batteries -= 1
-		flBatteryLevel = flBatteryMax
-		batteryBar.value = flBatteryLevel / flBatteryMax
 
 func TryMove(direction: Level.Side):
 	if moving || !canMove:
@@ -136,9 +126,23 @@ func GetSideTurned(current: int, amount: int) -> Level.Side:
 func Interact():
 	var space_state = get_world_3d().direct_space_state
 	var origin = position
-	var end = position + forward
+	var end = position + (forward * 2)
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 	var result = space_state.intersect_ray(query)
 	if result:
 		if result["collider"].is_in_group("Interactable"):
-			result["collider"].queue_free()
+			result["collider"].Interact(currentTile)
+
+func TryInteract():
+	var space_state = get_world_3d().direct_space_state
+	var origin = position
+	var end = position + (forward * 2)
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	var result = space_state.intersect_ray(query)
+	if result:
+		if result["collider"].is_in_group("Interactable"):
+			GameManager.instance.hudRef.UpdateControls("PRESS 'SPACE' TO INTERACT")
+		else:
+			GameManager.instance.hudRef.UpdateControls("")
+	else:
+		GameManager.instance.hudRef.UpdateControls("")

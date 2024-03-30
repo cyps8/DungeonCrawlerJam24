@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://c4y5c0lsc3cku"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Item.gd" id="1_e2w3u"]
+
+[resource]
+script = ExtResource("1_e2w3u")
+name = "Bandages"
+description = "Use this to heal wounds."
+consumable = true
+type = 0
+function = 0
+value = 30

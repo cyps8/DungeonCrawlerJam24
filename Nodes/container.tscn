@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://djnh5p5j0kw7f"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Container.gd" id="1_w0rxb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ijmaa"]
+size = Vector3(0.3, 1.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vedvw"]
+size = Vector3(0.3, 1.5, 1)
+
+[node name="Container" type="StaticBody3D" groups=["Interactable"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.06629, 1, 13.451)
+script = ExtResource("1_w0rxb")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ijmaa")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vedvw")

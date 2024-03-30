@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cu5bvgnqmicrq"]
+
+[node name="Objective" type="Label"]
+custom_minimum_size = Vector2(420, 0)
+theme_override_font_sizes/font_size = 20
+text = "• Find the source of the SIREN."
+autowrap_mode = 2

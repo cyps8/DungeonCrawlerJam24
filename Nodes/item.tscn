@@ -3,8 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://cdnhuv3mcjbs6" path="res://Assets/Art/Sprites/Other/icon.svg" id="1_5m16v"]
 [ext_resource type="Script" path="res://Scripts/Game/InventoryItem.gd" id="1_iq7rq"]
 
-[node name="Item" type="Panel"]
+[node name="Item" type="MenuButton"]
 custom_minimum_size = Vector2(180, 180)
+disabled = true
+item_count = 1
+popup/item_0/text = "USE"
+popup/item_0/id = 0
 script = ExtResource("1_iq7rq")
 
 [node name="Img" type="TextureRect" parent="."]
@@ -18,8 +22,9 @@ texture = ExtResource("1_5m16v")
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 13.0
-offset_top = 145.0
+offset_top = 148.0
 offset_right = 167.0
-offset_bottom = 168.0
+offset_bottom = 171.0
+theme_override_font_sizes/font_size = 18
 text = "ITEM NAME"
 horizontal_alignment = 1

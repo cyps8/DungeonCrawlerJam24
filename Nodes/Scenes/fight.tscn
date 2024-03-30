@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cchtk7sr6uooo"]
+[gd_scene load_steps=23 format=3 uid="uid://cchtk7sr6uooo"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Fight/Fight.gd" id="1_cintp"]
 [ext_resource type="PackedScene" uid="uid://17pdg2ie4dcl" path="res://Nodes/FightAttacks/fight_attack.tscn" id="2_d1b4e"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://Scripts/Game/Fight/FightHeart.gd" id="4_hi5wl"]
 [ext_resource type="Texture2D" uid="uid://dw88lnbsuo8rj" path="res://Assets/Art/Sprites/UI/knife.png" id="4_yc4mu"]
 [ext_resource type="PackedScene" uid="uid://b75tleqgb7y25" path="res://Nodes/Particles/heart_burst.tscn" id="5_2boef"]
+[ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="9_mbes3"]
+[ext_resource type="Script" path="res://Scripts/Game/FightHUD.gd" id="9_t0wtu"]
+[ext_resource type="Script" path="res://Scripts/Game/GameOver.gd" id="11_oearr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xsiy"]
 transparency = 1
@@ -40,6 +43,20 @@ orientation = 1
 [sub_resource type="Curve" id="Curve_3l6l4"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0xmp"]
+bg_color = Color(0.92549, 0.415686, 0.431373, 1)
+border_width_right = 6
+border_width_bottom = 10
+border_color = Color(0.92549, 0.415686, 0.431373, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57obp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_073to"]
+bg_color = Color(1, 1, 1, 1)
+border_width_right = 6
+border_width_bottom = 10
+border_color = Color(0.92549, 0.415686, 0.431373, 1)
 
 [node name="Fight" type="Node3D"]
 script = ExtResource("1_cintp")
@@ -128,4 +145,104 @@ linear_accel_min = -3.0
 linear_accel_max = -3.0
 scale_amount_curve = SubResource("Curve_3l6l4")
 
+[node name="FightHUD" type="CanvasLayer" parent="."]
+script = ExtResource("9_t0wtu")
+
+[node name="Bars" type="Control" parent="FightHUD"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -460.0
+offset_top = 45.0
+offset_right = 460.0
+offset_bottom = 145.0
+grow_horizontal = 2
+pivot_offset = Vector2(460, 50)
+
+[node name="HealthBarBack" type="ProgressBar" parent="FightHUD/Bars"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -399.0
+offset_top = 19.0
+offset_right = 400.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme = ExtResource("9_mbes3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h0xmp")
+max_value = 1.0
+value = 0.75
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="FightHUD/Bars"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -399.0
+offset_top = 19.0
+offset_right = 400.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme = ExtResource("9_mbes3")
+theme_override_styles/background = SubResource("StyleBoxEmpty_57obp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_073to")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("11_oearr")
+
+[node name="c" type="Control" parent="GameOver"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_mbes3")
+
+[node name="Died" type="Label" parent="GameOver/c"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -592.0
+offset_top = 83.0
+offset_right = 592.0
+offset_bottom = 360.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.92549, 0.415686, 0.431373, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 40
+theme_override_font_sizes/font_size = 100
+text = "YOU DIED..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="GameOver/c"]
+layout_mode = 0
+offset_left = 633.0
+offset_top = 690.0
+offset_right = 921.0
+offset_bottom = 830.0
+text = "RETRY"
+
+[node name="MenuButton" type="Button" parent="GameOver/c"]
+layout_mode = 0
+offset_left = 975.0
+offset_top = 692.0
+offset_right = 1263.0
+offset_bottom = 832.0
+text = "MAIN MENU"
+
 [connection signal="body_entered" from="Heart" to="Heart" method="KnifeHurt"]
+[connection signal="pressed" from="GameOver/c/RetryButton" to="GameOver" method="RetryButton"]
+[connection signal="pressed" from="GameOver/c/MenuButton" to="GameOver" method="MainMenuButton"]

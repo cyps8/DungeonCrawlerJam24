@@ -47,6 +47,13 @@ func GenerateMap(startPos: Vector3):
 	print ("Map generated with " + str(Map.size()) + " tiles")
 	emit_signal("MapGenerated")
 
+func ExpandMap(startTile: MapTile):
+	TilesToCheck.append(startTile)
+
+	while TilesToCheck.size() > 0:
+		CheckTiles()
+	print ("Map expanded to " + str(Map.size()) + " tiles")
+
 func CheckTiles():
 	var tile = TilesToCheck[0]
 	tile.sides[Side.North] = TestDirection(tile.position, Vector3.FORWARD)
@@ -128,11 +135,55 @@ func RayDirectionCheckFloor(pos: Vector3, direction: Vector3) -> float:
 	else:
 		return false
 
-func SelectRandomTile() -> MapTile:
-	return Map[randi() % Map.size()]
+func SelectRandomTile(awayFrom: MapTile = null, distance: float = 0) -> MapTile:
+	if awayFrom == null:
+		return Map[randi() % Map.size()]
+	else:
+		var tile = Map[randi() % Map.size()]
+		while tile.position.distance_to(awayFrom.position) < distance && floor(tile.position.y) == floor(awayFrom.position.y):
+			print("random invalid")
+			tile = Map[randi() % Map.size()]
+		return tile
 
 func SpawnNewEnemy():
 	var newEnemy: Enemy = enemyList[randi() % enemyList.size()].instantiate()
 	add_child(newEnemy)
-	newEnemy.currentTile = SelectRandomTile()
+	newEnemy.currentTile = SelectRandomTile(GameManager.instance.playerRef.currentTile, 5)
 	newEnemy.position = newEnemy.currentTile.position
+
+func PathFindTo(from: MapTile, to: MapTile) -> MapTile:
+	if from == to:
+		return from
+
+	from.path = 0
+	var pathToCheck: Array[MapTile] = []
+	pathToCheck.append(from)
+
+	var checkedTiles: Array[MapTile] = []
+
+	while pathToCheck.size() > 0:
+		var currentTile = pathToCheck[0]
+		checkedTiles.append(currentTile)
+		pathToCheck.remove_at(0)
+		for side in currentTile.sides:
+			if side != null && !checkedTiles.has(side) && !pathToCheck.has(side):
+				side.path = currentTile.path + 1
+				if side == to:
+					return PathFirst(to, checkedTiles)
+				pathToCheck.append(side)
+	return from
+
+func PathFirst(currentTile: MapTile, checkedTiles: Array[MapTile]) -> MapTile:
+	var breakCounter = 0
+	while currentTile.path > 1:
+		for side in currentTile.sides:
+			if side != null:
+				if checkedTiles.has(side):
+					if currentTile.path > side.path:
+						currentTile = side
+						if currentTile.path == 1:
+							return currentTile
+		breakCounter += 1
+		if breakCounter > 100:
+			return currentTile
+	return currentTile

@@ -5,4 +5,8 @@
 [resource]
 script = ExtResource("1_3hrug")
 name = "Battery"
-description = ""
+description = "AAA, used to recharge flashlight."
+consumable = true
+type = 2
+function = 2
+value = 100
