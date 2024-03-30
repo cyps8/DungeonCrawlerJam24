@@ -18,7 +18,7 @@ var blockSize: float = 2
 
 signal MapGenerated
 
-@export var startPoint: Vector3 = Vector3(-1, 1, 1)
+@export var startPoint: Vector3 = Vector3(23, 1, 19)
 
 @export var enemyList: Array[PackedScene]
 

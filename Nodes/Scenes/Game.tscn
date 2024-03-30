@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Game/Inventory.gd" id="4_sa2lr"]
 [ext_resource type="Script" path="res://Scripts/Game/HUD.gd" id="5_7rrtf"]
 [ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="5_xyck4"]
-[ext_resource type="PackedScene" path="res://Nodes/item.tscn" id="7_du2p1"]
+[ext_resource type="PackedScene" uid="uid://dubsc3gnfj7jn" path="res://Nodes/item.tscn" id="7_du2p1"]
 [ext_resource type="Texture2D" uid="uid://dd1vtsmtv8vym" path="res://Assets/Art/Sprites/UI/TempPlayerIcon.png" id="7_rcucf"]
 [ext_resource type="PackedScene" uid="uid://dpw03hj8x5r2k" path="res://Nodes/action.tscn" id="7_tpntn"]
 [ext_resource type="Texture2D" uid="uid://bl56v0yt0v8mr" path="res://Assets/Art/Sprites/UI/brain.png" id="8_80ggo"]
