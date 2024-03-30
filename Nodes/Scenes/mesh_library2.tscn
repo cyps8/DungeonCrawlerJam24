@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cer5gg64xc14x"]
+[gd_scene load_steps=18 format=3 uid="uid://cer5gg64xc14x"]
 
 [ext_resource type="ArrayMesh" uid="uid://71j0nn1no6j7" path="res://Assets/Art/Meshes/Props/mesh_locked_door.obj" id="1_s5cke"]
 [ext_resource type="ArrayMesh" uid="uid://bwvma2q380s8u" path="res://Assets/Art/Meshes/Props/mesh_prop_security_cctv.obj" id="2_g8i3c"]
@@ -13,13 +13,21 @@
 [ext_resource type="ArrayMesh" uid="uid://b2tu1dhpyrqgr" path="res://Assets/Art/Meshes/Stairs/mesh_stairway_4.obj" id="11_40xo4"]
 [ext_resource type="ArrayMesh" uid="uid://xhhne1vi41s3" path="res://Assets/Art/Meshes/Stairs/mesh_stairway_5.obj" id="12_tii6a"]
 [ext_resource type="Shape3D" uid="uid://wdwd0u58bbvn" path="res://Resources/CollisionShapes/Floor.tres" id="13_07g24"]
+[ext_resource type="ArrayMesh" uid="uid://cge31g1yhvgr5" path="res://Assets/Art/Meshes/Props/mesh_prop_office_desk.obj" id="14_d3pku"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_igf78"]
 size = Vector3(0.01, 4, 4)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0afcw"]
+size = Vector3(0.0498047, 3.98688, 4.29199)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bp6k"]
+size = Vector3(0.0498047, 3.98688, 3.86719)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshLockedDoor" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("1_s5cke")
 
 [node name="Collision" type="StaticBody3D" parent="MeshLockedDoor"]
@@ -29,36 +37,47 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.1409
 shape = SubResource("BoxShape3D_igf78")
 
 [node name="MeshPropSecurityCctv" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("2_g8i3c")
 
 [node name="MeshPropLockerLocked" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("3_p8aas")
 
 [node name="MeshHangerFloorFull" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("4_bx2w6")
 
 [node name="MeshPropBedroomBed" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("5_q0bbq")
 
 [node name="MeshPropBedroomDesk" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("6_bba1h")
 
 [node name="MeshPropCanteenTable" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("7_r6uef")
 
 [node name="MeshStairway1" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("8_v5k0w")
 
 [node name="MeshStairway2" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("9_4i7d6")
 
 [node name="MeshStairway3" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("10_j0fuv")
 
 [node name="MeshStairway4" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("11_40xo4")
 
 [node name="MeshStairway5" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("12_tii6a")
 
 [node name="Collision" type="StaticBody3D" parent="MeshStairway5"]
@@ -66,3 +85,24 @@ mesh = ExtResource("12_tii6a")
 [node name="Floor" type="CollisionShape3D" parent="MeshStairway5/Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = ExtResource("13_07g24")
+
+[node name="Wall" type="CollisionShape3D" parent="MeshStairway5/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.02483, 0.193527, -0.0659024)
+shape = SubResource("BoxShape3D_0afcw")
+
+[node name="Wall2" type="CollisionShape3D" parent="MeshStairway5/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16204, 0.193527, -0.0659024)
+shape = SubResource("BoxShape3D_0afcw")
+
+[node name="MeshPropOfficeDesk" type="MeshInstance3D" parent="."]
+mesh = ExtResource("14_d3pku")
+
+[node name="Collision" type="StaticBody3D" parent="MeshPropOfficeDesk"]
+
+[node name="Wall" type="CollisionShape3D" parent="MeshPropOfficeDesk/Collision"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0274479, 0.193527, -1.97686)
+shape = SubResource("BoxShape3D_6bp6k")
+
+[node name="Wall2" type="CollisionShape3D" parent="MeshPropOfficeDesk/Collision"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.93465, 0.193527, 0.177737)
+shape = SubResource("BoxShape3D_6bp6k")
