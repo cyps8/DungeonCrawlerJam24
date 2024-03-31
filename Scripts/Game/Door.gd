@@ -8,7 +8,13 @@ var gotObjective = false
 
 signal objectiveComplete
 
+@export var locked: bool = false
+
 func Interact(_tile: MapTile):
+	if locked:
+		GameManager.instance.hudRef.ShowHint("Door is locked")
+		return
+
 	if opened:
 		return
 
