@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cp3nksgi1dshl"
+path="res://.godot/imported/mesh_prop_triple_locker-0.obj-738737f14b4d2eae86800489bff2ff5d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_prop_triple_locker-0.obj-738737f14b4d2eae86800489bff2ff5d.mesh"]
+
+source_file="res://Assets/Art/Meshes/Props/mesh_prop_triple_locker-0.obj"
+dest_files=["res://.godot/imported/mesh_prop_triple_locker-0.obj-738737f14b4d2eae86800489bff2ff5d.mesh", "res://.godot/imported/mesh_prop_triple_locker-0.obj-738737f14b4d2eae86800489bff2ff5d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
