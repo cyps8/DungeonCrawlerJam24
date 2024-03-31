@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://clcb74svnwenw"]
+[gd_scene load_steps=21 format=3 uid="uid://clcb74svnwenw"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Level.gd" id="1_4qaat"]
 [ext_resource type="PackedScene" uid="uid://beytbbuavadt5" path="res://Nodes/player.tscn" id="1_uwx3m"]
@@ -25,6 +25,9 @@ size = Vector3(9.54889, 4, 4.70483)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pugsn"]
 size = Vector3(4, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u5l1v"]
+size = Vector3(8, 1, 4)
 
 [node name="Level" type="Node3D"]
 process_mode = 1
@@ -189,8 +192,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1347, 2.33966, 18.5804)
 light_color = Color(0.823529, 0.937255, 1, 1)
 light_specular = 0.0
 shadow_enabled = true
-omni_range = 32.863
-omni_attenuation = 1.18921
+omni_range = 13.37
+omni_attenuation = 1.41422
+
+[node name="OmniLight3D34" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6095, 2.33966, 18.5804)
+light_color = Color(0.823529, 0.937255, 1, 1)
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 13.37
+omni_attenuation = 1.41422
+
+[node name="OmniLight3D35" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4086, 2.33966, 18.5804)
+light_color = Color(0.823529, 0.937255, 1, 1)
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 13.37
+omni_attenuation = 1.41422
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -360,3 +379,11 @@ items = Array[Resource("res://Scripts/Game/Item.gd")]([ExtResource("14_uf4wy")])
 [node name="MeshSecurityPowerPanel" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.455, 0, 0, 0, 0.455, 0, 0, 0, 0.455, 52.9622, 0.986812, 14.9669)
 mesh = ExtResource("16_2p742")
+
+[node name="LightZone" type="Area3D" parent="." groups=["Light"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, 20)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape3D" parent="LightZone"]
+shape = SubResource("BoxShape3D_u5l1v")
