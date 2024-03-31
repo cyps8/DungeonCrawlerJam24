@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3q24wyamn8qx"]
+[gd_scene load_steps=18 format=3 uid="uid://b3q24wyamn8qx"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_x3mch"]
 [ext_resource type="PackedScene" uid="uid://kqpqdl61bvfo" path="res://Nodes/Scenes/Game.tscn" id="2_e3bq7"]
@@ -11,6 +11,12 @@
 [ext_resource type="AudioStream" uid="uid://bva5qw71wrqhg" path="res://Assets/Audio/Music/song_1.0.1.ogg" id="7_gobew"]
 [ext_resource type="AudioStream" uid="uid://bncdnbowht5fu" path="res://Assets/Audio/Sounds/main menu.ogg" id="9_g5pff"]
 [ext_resource type="AudioStream" uid="uid://0ktpe11g6mg5" path="res://Assets/Audio/Sounds/main menu v2.ogg" id="10_tbuvi"]
+[ext_resource type="AudioStream" uid="uid://oorb8xc81ypi" path="res://Assets/Audio/Sounds/locker.ogg" id="11_bep0q"]
+[ext_resource type="AudioStream" uid="uid://dfycevnp7gu6u" path="res://Assets/Audio/Sounds/door.ogg" id="12_wsprx"]
+[ext_resource type="AudioStream" uid="uid://bm251fwhvfu56" path="res://Assets/Audio/Sounds/failed door.ogg" id="13_s2al8"]
+[ext_resource type="AudioStream" uid="uid://cgaln1n3iv2nw" path="res://Assets/Audio/Sounds/sfx_1.ogg" id="14_ol2ew"]
+[ext_resource type="AudioStream" uid="uid://cublhdno8ytr8" path="res://Assets/Audio/Sounds/stab_v1.ogg" id="15_daqsr"]
+[ext_resource type="AudioStream" uid="uid://dp3i75x5tnbwg" path="res://Assets/Audio/Sounds/creepy.ogg" id="16_gs64h"]
 
 [node name="Root" type="Node"]
 process_mode = 3
@@ -151,7 +157,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="AudioPlayer" type="Node" parent="."]
 script = ExtResource("6_ctsc0")
-sounds = Array[AudioStream]([ExtResource("9_g5pff"), ExtResource("10_tbuvi")])
+sounds = Array[AudioStream]([ExtResource("9_g5pff"), ExtResource("10_tbuvi"), ExtResource("11_bep0q"), ExtResource("12_wsprx"), ExtResource("13_s2al8"), ExtResource("14_ol2ew"), ExtResource("15_daqsr"), ExtResource("16_gs64h")])
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_gobew")
