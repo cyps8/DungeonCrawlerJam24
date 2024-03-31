@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://0qvdhwaqqh4q"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://0qvdhwaqqh4q"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Item.gd" id="1_3hrug"]
+[ext_resource type="Texture2D" uid="uid://hnvhhpvgkkin" path="res://Assets/Art/Icons/Battery-0.png" id="1_ysgy3"]
 
 [resource]
 script = ExtResource("1_3hrug")
 name = "Battery"
+icon = ExtResource("1_ysgy3")
 description = "AAA, used to recharge flashlight."
 consumable = true
 type = 2
