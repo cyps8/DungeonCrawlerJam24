@@ -165,7 +165,7 @@ func _process(_delta):
 		return
 	ManageEnemies()
 	if Input.is_action_just_pressed("DebugSpawnEnemy"):
-		Level.instance.SpawnNewEnemy()
+		SwitchToFight()
 	if Input.is_action_just_pressed("Reload"):
 		ReloadBattery()
 	if Input.is_action_just_pressed("Inventory") && !paused:

@@ -33,6 +33,8 @@ func HurtAnim(dir: Vector3):
 	dir.y = 0
 	dir = dir.normalized()
 
+	AudioPlayer.instance.PlaySound(6, AudioPlayer.SoundType.SFX)
+
 	var newParticles: GPUParticles3D = heartBurst.instantiate()
 	newParticles.position = dir * 0.2
 	newParticles.process_material.direction = Vector3(dir.x, 1, dir.z)

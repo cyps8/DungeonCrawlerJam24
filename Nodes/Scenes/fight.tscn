@@ -83,6 +83,7 @@ spring_length = 4.0
 
 [node name="FightCam" type="Camera3D" parent="Arm"]
 unique_name_in_owner = true
+current = true
 script = ExtResource("2_s7c6h")
 
 [node name="Heart" type="Area3D" parent="." groups=["Heart"]]
