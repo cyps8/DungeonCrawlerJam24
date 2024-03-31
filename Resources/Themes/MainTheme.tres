@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://u8pdlm3dg4w"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://u8pdlm3dg4w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvmuk"]
 bg_color = Color(0.054902, 0.101961, 0.156863, 1)
@@ -44,6 +44,51 @@ border_width_bottom = 5
 border_color = Color(0.827451, 0.556863, 0.654902, 1)
 border_blend = true
 
+[sub_resource type="Gradient" id="Gradient_6ouar"]
+offsets = PackedFloat32Array(0.205714, 0.4, 0.565714, 0.691429, 0.748571)
+colors = PackedColorArray(0.439216, 0.745098, 0.862745, 1, 0.439216, 0.745098, 0.862745, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lowic"]
+gradient = SubResource("Gradient_6ouar")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_ebkyo"]
+offsets = PackedFloat32Array(0.40107, 0.565714, 0.691429, 0.748571)
+colors = PackedColorArray(0.8, 0.8, 0.2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_euv12"]
+gradient = SubResource("Gradient_ebkyo")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ja8g3"]
+bg_color = Color(0.439216, 0.745098, 0.862745, 1)
+corner_radius_top_left = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8oaud"]
+bg_color = Color(0.8, 0.8, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r268e"]
+bg_color = Color(0.121569, 0.254902, 0.305882, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_an3dg"]
 bg_color = Color(0.0392157, 0.0784314, 0.12549, 1)
 border_width_left = 8
@@ -66,6 +111,11 @@ Button/styles/focus = SubResource("StyleBoxFlat_lm7mq")
 Button/styles/hover = SubResource("StyleBoxFlat_a2ipd")
 Button/styles/normal = SubResource("StyleBoxFlat_giilg")
 Button/styles/pressed = SubResource("StyleBoxFlat_nsnvn")
+HSlider/icons/grabber = SubResource("GradientTexture2D_lowic")
+HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_euv12")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ja8g3")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_8oaud")
+HSlider/styles/slider = SubResource("StyleBoxFlat_r268e")
 Panel/styles/panel = SubResource("StyleBoxFlat_an3dg")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_jl3hh")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_6kmwv")

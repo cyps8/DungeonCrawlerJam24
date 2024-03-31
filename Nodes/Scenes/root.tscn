@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3q24wyamn8qx"]
+[gd_scene load_steps=9 format=3 uid="uid://b3q24wyamn8qx"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_x3mch"]
 [ext_resource type="PackedScene" uid="uid://kqpqdl61bvfo" path="res://Nodes/Scenes/Game.tscn" id="2_e3bq7"]
 [ext_resource type="Script" path="res://Scripts/OptionsMenu.gd" id="2_ixl7y"]
 [ext_resource type="PackedScene" uid="uid://bl0knf0jejc5n" path="res://Nodes/Scenes/main_menu.tscn" id="3_8heap"]
 [ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="5_4bkwt"]
+[ext_resource type="Script" path="res://Scripts/VolumeSlider.gd" id="6_5up6o"]
 [ext_resource type="Script" path="res://Scripts/AudioPlayer.gd" id="6_ctsc0"]
+[ext_resource type="AudioStream" uid="uid://bva5qw71wrqhg" path="res://Assets/Audio/Music/song_1.0.1.ogg" id="7_gobew"]
 
 [node name="Root" type="Node"]
 process_mode = 3
@@ -33,18 +35,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -236.0
+offset_left = -312.0
 offset_top = -245.5
-offset_right = 236.0
+offset_right = 312.0
 offset_bottom = 245.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="OptionsMenu/c/Panel"]
 layout_mode = 0
-offset_left = 176.0
+offset_left = 249.0
 offset_top = 25.5
-offset_right = 309.0
+offset_right = 382.0
 offset_bottom = 67.5
 theme_override_font_sizes/font_size = 30
 text = "OPTIONS
@@ -52,11 +54,74 @@ text = "OPTIONS
 
 [node name="Back" type="Button" parent="OptionsMenu/c/Panel"]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 414.5
-offset_right = 296.0
-offset_bottom = 469.5
+offset_left = 268.0
+offset_top = 408.5
+offset_right = 364.0
+offset_bottom = 463.5
 text = "BACK"
+
+[node name="MasterSlider" type="HSlider" parent="OptionsMenu/c/Panel"]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 145.5
+offset_right = 460.0
+offset_bottom = 168.5
+max_value = 1.0
+step = 0.1
+value = 0.5
+script = ExtResource("6_5up6o")
+
+[node name="Label" type="Label" parent="OptionsMenu/c/Panel/MasterSlider"]
+layout_mode = 0
+offset_left = -134.0
+offset_top = 1.0
+offset_right = -31.0
+offset_bottom = 24.0
+text = "MASTER"
+horizontal_alignment = 2
+
+[node name="MusicSlider" type="HSlider" parent="OptionsMenu/c/Panel"]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 208.5
+offset_right = 459.0
+offset_bottom = 231.5
+max_value = 1.0
+step = 0.1
+value = 0.5
+script = ExtResource("6_5up6o")
+busName = "Music"
+
+[node name="Label" type="Label" parent="OptionsMenu/c/Panel/MusicSlider"]
+layout_mode = 0
+offset_left = -134.0
+offset_top = 1.0
+offset_right = -31.0
+offset_bottom = 24.0
+text = "MUSIC"
+horizontal_alignment = 2
+
+[node name="SFXSlider" type="HSlider" parent="OptionsMenu/c/Panel"]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 273.5
+offset_right = 460.0
+offset_bottom = 296.5
+max_value = 1.0
+step = 0.1
+value = 0.5
+script = ExtResource("6_5up6o")
+busName = "SFX"
+
+[node name="Label" type="Label" parent="OptionsMenu/c/Panel/SFXSlider"]
+layout_mode = 0
+offset_left = -134.0
+offset_top = 1.0
+offset_right = -31.0
+offset_bottom = 24.0
+text = "SFX
+"
+horizontal_alignment = 2
 
 [node name="LoadingScreen" type="CanvasLayer" parent="."]
 layer = 20
@@ -82,5 +147,10 @@ color = Color(0, 0, 0, 1)
 
 [node name="AudioPlayer" type="Node" parent="."]
 script = ExtResource("6_ctsc0")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_gobew")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="OptionsMenu/c/Panel/Back" to="OptionsMenu" method="BackButton"]
