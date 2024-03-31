@@ -14,15 +14,34 @@ var actionsList: VBoxContainer
 
 @export var actionIns: PackedScene
 
+var flashlightOn: TextureRect
+var flashlightOff: TextureRect
+
 func _ready():
     batteryCharge = $Border/BatteryCharge
     hintLabel = $Border/Hint
     controlsLabel = $Border/Controls
     actionsList = $Border/ActionList
+    flashlightOn = $Border/FlashlightOn
+    flashlightOff = $Border/FlashlightOff
     hintLabel.modulate.a = 0
+
+    flashlightOn.visible = false
+    flashlightOff.visible = true
+
+    UpdateBatteryCharge(1)
 
 func UpdateBatteryCharge(value):
     batteryCharge.value = value
+    batteryCharge.modulate = lerp(Color(1, 0, 0, 1), Color(0, 1, 0, 1), value)
+
+func UpdateFlashlightState(on: bool):
+    if on:
+        flashlightOn.visible = true
+        flashlightOff.visible = false
+    else:
+        flashlightOn.visible = false
+        flashlightOff.visible = true
 
 func ShowHint(hint: String):
     hintLabel.text = hint

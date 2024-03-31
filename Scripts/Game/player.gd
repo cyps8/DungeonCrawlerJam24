@@ -78,6 +78,8 @@ func _process(_delta):
 			camRef.remove_child(flashlightRef)
 			flOn = false
 
+	GameManager.instance.hudRef.UpdateFlashlightState(flOn)
+
 func TryMove(direction: Level.Side):
 	if moving || !canMove:
 		return
