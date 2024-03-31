@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bc5g1juxuaaja"
+path="res://.godot/imported/mesh_security_power_panel.obj-9750dc5946a985f62c2f7144abea51e9.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_security_power_panel.obj-9750dc5946a985f62c2f7144abea51e9.mesh"]
+
+source_file="res://Assets/Art/Meshes/Props/mesh_security_power_panel.obj"
+dest_files=["res://.godot/imported/mesh_security_power_panel.obj-9750dc5946a985f62c2f7144abea51e9.mesh", "res://.godot/imported/mesh_security_power_panel.obj-9750dc5946a985f62c2f7144abea51e9.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
