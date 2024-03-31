@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3q24wyamn8qx"]
+[gd_scene load_steps=12 format=3 uid="uid://b3q24wyamn8qx"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_x3mch"]
 [ext_resource type="PackedScene" uid="uid://kqpqdl61bvfo" path="res://Nodes/Scenes/Game.tscn" id="2_e3bq7"]
@@ -7,7 +7,10 @@
 [ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="5_4bkwt"]
 [ext_resource type="Script" path="res://Scripts/VolumeSlider.gd" id="6_5up6o"]
 [ext_resource type="Script" path="res://Scripts/AudioPlayer.gd" id="6_ctsc0"]
+[ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="6_rjoqa"]
 [ext_resource type="AudioStream" uid="uid://bva5qw71wrqhg" path="res://Assets/Audio/Music/song_1.0.1.ogg" id="7_gobew"]
+[ext_resource type="AudioStream" uid="uid://bncdnbowht5fu" path="res://Assets/Audio/Sounds/main menu.ogg" id="9_g5pff"]
+[ext_resource type="AudioStream" uid="uid://0ktpe11g6mg5" path="res://Assets/Audio/Sounds/main menu v2.ogg" id="10_tbuvi"]
 
 [node name="Root" type="Node"]
 process_mode = 3
@@ -59,6 +62,7 @@ offset_top = 408.5
 offset_right = 364.0
 offset_bottom = 463.5
 text = "BACK"
+script = ExtResource("6_rjoqa")
 
 [node name="MasterSlider" type="HSlider" parent="OptionsMenu/c/Panel"]
 layout_mode = 0
@@ -147,6 +151,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="AudioPlayer" type="Node" parent="."]
 script = ExtResource("6_ctsc0")
+sounds = Array[AudioStream]([ExtResource("9_g5pff"), ExtResource("10_tbuvi")])
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_gobew")

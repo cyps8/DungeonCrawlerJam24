@@ -12,7 +12,7 @@ var moveTween: Tween
 func PlayerCollision(_area):
 	if _area.get_parent().is_in_group("Player"):
 		GameManager.instance.SwitchToFight.call_deferred()
-		queue_free()
+		Kill()
 		pass
 
 func _process(_delta):
@@ -45,3 +45,7 @@ func ActualTeleportAway():
 	currentTile = Level.instance.SelectRandomTile(GameManager.instance.playerRef.currentTile, 10)
 	position = currentTile.position
 	moveTimer = 5
+
+func Kill():
+	GameManager.instance.activeEnemies.erase(self)
+	queue_free()

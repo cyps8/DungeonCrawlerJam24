@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://kqpqdl61bvfo"]
+[gd_scene load_steps=26 format=3 uid="uid://kqpqdl61bvfo"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_4p14j"]
 [ext_resource type="PackedScene" uid="uid://clcb74svnwenw" path="res://Nodes/Scenes/map_abandoned_station.tscn" id="2_3vhis"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Game/Inventory.gd" id="4_sa2lr"]
 [ext_resource type="Script" path="res://Scripts/Game/HUD.gd" id="5_7rrtf"]
 [ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="5_xyck4"]
+[ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="6_yxr2r"]
 [ext_resource type="PackedScene" uid="uid://dubsc3gnfj7jn" path="res://Nodes/item.tscn" id="7_du2p1"]
 [ext_resource type="Texture2D" uid="uid://dd1vtsmtv8vym" path="res://Assets/Art/Sprites/UI/TempPlayerIcon.png" id="7_rcucf"]
 [ext_resource type="PackedScene" uid="uid://dpw03hj8x5r2k" path="res://Nodes/action.tscn" id="7_tpntn"]
@@ -121,6 +122,7 @@ offset_top = 18.0
 offset_right = 280.0
 offset_bottom = 113.0
 text = "RESUME"
+script = ExtResource("6_yxr2r")
 
 [node name="Options" type="Button" parent="Pause/c/Panel"]
 layout_mode = 0
@@ -129,6 +131,7 @@ offset_top = 154.0
 offset_right = 277.0
 offset_bottom = 249.0
 text = "OPTIONS"
+script = ExtResource("6_yxr2r")
 
 [node name="MainMenu" type="Button" parent="Pause/c/Panel"]
 layout_mode = 0
@@ -137,6 +140,7 @@ offset_top = 288.0
 offset_right = 277.0
 offset_bottom = 383.0
 text = "MAIN MENU"
+script = ExtResource("6_yxr2r")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 5
