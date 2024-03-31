@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bm251fwhvfu56"
+path="res://.godot/imported/failed door.ogg-3aff743c90247ddf7379ec31d8d38a4e.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Sounds/failed door.ogg"
+dest_files=["res://.godot/imported/failed door.ogg-3aff743c90247ddf7379ec31d8d38a4e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
