@@ -32,6 +32,16 @@ func TeleportAway(_area):
 	if _area.is_in_group("Flash"):
 		if moveTween != null:
 			moveTween.kill()
-		currentTile = Level.instance.SelectRandomTile(GameManager.instance.playerRef.currentTile, 10)
-		position = currentTile.position
 		moveTimer = 5
+		var tpEffectTween: Tween = create_tween()
+		tpEffectTween.tween_method(TeleportEffect, 0.0, 0.3, 1)
+		tpEffectTween.tween_callback(ActualTeleportAway)
+
+func TeleportEffect(strength: float):
+	$Sprite.position = Vector3(randf() * strength, randf() * strength, randf() * strength)
+
+func ActualTeleportAway():
+	$Sprite.position = Vector3.ZERO
+	currentTile = Level.instance.SelectRandomTile(GameManager.instance.playerRef.currentTile, 10)
+	position = currentTile.position
+	moveTimer = 5

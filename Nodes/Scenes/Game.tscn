@@ -75,6 +75,7 @@ environment = SubResource("Environment_q8xbe")
 [node name="Level" parent="." instance=ExtResource("2_3vhis")]
 
 [node name="Fight" parent="." instance=ExtResource("3_lnxph")]
+process_mode = 1
 
 [node name="Pause" type="CanvasLayer" parent="."]
 layer = 10
