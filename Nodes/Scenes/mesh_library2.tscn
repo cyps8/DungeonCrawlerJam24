@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cer5gg64xc14x"]
+[gd_scene load_steps=22 format=3 uid="uid://cer5gg64xc14x"]
 
 [ext_resource type="ArrayMesh" uid="uid://71j0nn1no6j7" path="res://Assets/Art/Meshes/Props/mesh_locked_door.obj" id="1_s5cke"]
 [ext_resource type="ArrayMesh" uid="uid://bwvma2q380s8u" path="res://Assets/Art/Meshes/Props/mesh_prop_security_cctv.obj" id="2_g8i3c"]
@@ -14,6 +14,7 @@
 [ext_resource type="ArrayMesh" uid="uid://xhhne1vi41s3" path="res://Assets/Art/Meshes/Stairs/mesh_stairway_5.obj" id="12_tii6a"]
 [ext_resource type="Shape3D" uid="uid://wdwd0u58bbvn" path="res://Resources/CollisionShapes/Floor.tres" id="13_07g24"]
 [ext_resource type="ArrayMesh" uid="uid://cge31g1yhvgr5" path="res://Assets/Art/Meshes/Props/mesh_prop_office_desk.obj" id="14_d3pku"]
+[ext_resource type="ArrayMesh" uid="uid://borg8nbtxlagx" path="res://Assets/Art/Meshes/Props/mesh_door_frame-0.obj" id="15_sl8yk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_igf78"]
 size = Vector3(0.01, 4, 4)
@@ -137,3 +138,6 @@ shape = SubResource("BoxShape3D_6bp6k")
 [node name="Wall2" type="CollisionShape3D" parent="MeshPropOfficeDesk/Collision"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.93465, 0.193527, 0.177737)
 shape = SubResource("BoxShape3D_6bp6k")
+
+[node name="MeshDoorFrame-0" type="MeshInstance3D" parent="."]
+mesh = ExtResource("15_sl8yk")

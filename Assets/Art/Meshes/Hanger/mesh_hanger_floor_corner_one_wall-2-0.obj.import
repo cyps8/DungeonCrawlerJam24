@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bi63or4k0xcxb"
+path="res://.godot/imported/mesh_hanger_floor_corner_one_wall-2-0.obj-ce9b7aa3e29496d1dde2700d5b79e422.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesh_hanger_floor_corner_one_wall-2-0.obj-ce9b7aa3e29496d1dde2700d5b79e422.mesh"]
+
+source_file="res://Assets/Art/Meshes/Hanger/mesh_hanger_floor_corner_one_wall-2-0.obj"
+dest_files=["res://.godot/imported/mesh_hanger_floor_corner_one_wall-2-0.obj-ce9b7aa3e29496d1dde2700d5b79e422.mesh", "res://.godot/imported/mesh_hanger_floor_corner_one_wall-2-0.obj-ce9b7aa3e29496d1dde2700d5b79e422.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
