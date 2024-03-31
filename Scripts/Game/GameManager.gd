@@ -28,6 +28,9 @@ var gameOver: bool = false
 
 var activeEnemies: Array[Enemy] = []
 
+var hasFuel = false
+var powerFixed = false
+
 func _ready():
 	flBatteryLevel = flBatteryMax
 
@@ -50,9 +53,16 @@ func _ready():
 	instance = self
 
 	playerRef = get_tree().get_first_node_in_group("Player")
+	endInteractable = get_tree().get_first_node_in_group("End")
 
 	Level.instance.MapGenerated.connect(OnMapGenerated)
 	fightRef.hudRef.UpdateHealth(health/healthMax)
+
+	AudioPlayer.instance.PlaySound(8, AudioPlayer.SoundType.SFX)
+
+var endInteractable: StaticBody3D
+	
+var endObj = false
 
 func ManageEnemies():
 	if playerRef.inLight:
@@ -163,6 +173,10 @@ func TogglePause():
 func _process(_delta):
 	if gameOver:
 		return
+	if hasFuel && powerFixed && !endObj:
+		endInteractable.AddObj()
+		endObj = true
+
 	ManageEnemies()
 	if Input.is_action_just_pressed("DebugSpawnEnemy"):
 		SwitchToFight()

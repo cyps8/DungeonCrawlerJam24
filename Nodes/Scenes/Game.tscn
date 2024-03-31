@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://kqpqdl61bvfo"]
+[gd_scene load_steps=27 format=3 uid="uid://kqpqdl61bvfo"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_4p14j"]
 [ext_resource type="PackedScene" uid="uid://clcb74svnwenw" path="res://Nodes/Scenes/map_abandoned_station.tscn" id="2_3vhis"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b7odef5c7rnsn" path="res://Assets/Art/Sprites/UI/heart.png" id="8_ghx62"]
 [ext_resource type="Resource" uid="uid://0qvdhwaqqh4q" path="res://Resources/Items/Battery.tres" id="8_t45w4"]
 [ext_resource type="Resource" uid="uid://nxxaoufe5qhp" path="res://Resources/Items/Pills.tres" id="9_q530a"]
+[ext_resource type="Resource" uid="uid://c1f4hwadro8dl" path="res://Resources/Items/ship_fuel.tres" id="14_x807m"]
 [ext_resource type="PackedScene" uid="uid://cu5bvgnqmicrq" path="res://Nodes/objective.tscn" id="15_ff411"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2kcoe"]
@@ -222,7 +223,8 @@ layer = 7
 script = ExtResource("4_sa2lr")
 itemIns = ExtResource("7_du2p1")
 objectiveIns = ExtResource("15_ff411")
-defaultInv = Array[Resource("res://Scripts/Game/Item.gd")]([ExtResource("8_t45w4"), ExtResource("8_t45w4"), ExtResource("8_t45w4"), ExtResource("9_q530a")])
+defaultInv = Array[Resource("res://Scripts/Game/Item.gd")]([ExtResource("8_t45w4"), ExtResource("8_t45w4"), ExtResource("9_q530a")])
+fuelRef = ExtResource("14_x807m")
 
 [node name="c" type="Control" parent="Inventory"]
 layout_mode = 3
