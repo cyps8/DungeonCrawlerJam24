@@ -215,7 +215,6 @@ grow_vertical = 2
 
 [node name="Inventory" type="CanvasLayer" parent="."]
 layer = 7
-visible = false
 script = ExtResource("4_sa2lr")
 itemIns = ExtResource("7_du2p1")
 objectiveIns = ExtResource("15_ff411")
@@ -312,6 +311,7 @@ offset_right = 443.0
 offset_bottom = 77.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_8o5v7")
 max_value = 1.0
+step = 0.001
 value = 1.0
 show_percentage = false
 

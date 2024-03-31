@@ -66,9 +66,13 @@ func _process(_delta):
 		else:
 			camRef.remove_child(flashlightRef)
 
+	if inLight:
+		GameManager.instance.ChangeSanity(+_delta * 5)
+	else:
+		GameManager.instance.ChangeSanity(-_delta / 1.5)
+
 	if flOn:
-		GameManager.instance.flBatteryLevel -= _delta
-		GameManager.instance.hudRef.UpdateBatteryCharge(GameManager.instance.flBatteryLevel / GameManager.instance.flBatteryMax)
+		GameManager.instance.ChangeBattery(-_delta)
 		if GameManager.instance.flBatteryLevel <= 0:
 			GameManager.instance.flBatteryLevel = 0
 			camRef.remove_child(flashlightRef)
@@ -146,3 +150,25 @@ func TryInteract():
 			GameManager.instance.hudRef.UpdateControls("")
 	else:
 		GameManager.instance.hudRef.UpdateControls("")
+
+var inLights = 0
+
+var inLight: bool = false
+
+func AreaExit(area: Area3D):
+	if area.is_in_group("Light"):
+		inLights -= 1
+		if inLights == 0:
+			InDarkness()
+
+func AreaEnter(area:Area3D):
+	if area.is_in_group("Light"):
+		inLights += 1
+		if inLights > 0:
+			InLight()
+
+func InLight():
+	inLight = true
+
+func InDarkness():
+	inLight = false
