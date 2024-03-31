@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://c1f4hwadro8dl"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c1f4hwadro8dl"]
 
+[ext_resource type="Texture2D" uid="uid://bpn141flduuak" path="res://Assets/Art/Icons/gas-0.png" id="1_4yhq4"]
 [ext_resource type="Script" path="res://Scripts/Game/Item.gd" id="1_t7v2k"]
 
 [resource]
 script = ExtResource("1_t7v2k")
 name = "Ship Fuel"
+icon = ExtResource("1_4yhq4")
 description = "Fuel for your ship!"
 consumable = false
 type = 0
