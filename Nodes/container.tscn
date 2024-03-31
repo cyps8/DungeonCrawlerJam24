@@ -1,19 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://djnh5p5j0kw7f"]
+[gd_scene load_steps=5 format=3 uid="uid://djnh5p5j0kw7f"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Container.gd" id="1_w0rxb"]
+[ext_resource type="ArrayMesh" uid="uid://cp3nksgi1dshl" path="res://Assets/Art/Meshes/Props/mesh_prop_triple_locker-0.obj" id="2_vf4sy"]
+[ext_resource type="ArrayMesh" uid="uid://p3b4lcobcscq" path="res://Assets/Art/Meshes/Props/mesh_prop_locker_door.obj" id="3_h7qei"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ijmaa"]
-size = Vector3(0.3, 1.5, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_vedvw"]
-size = Vector3(0.3, 1.5, 1)
+size = Vector3(0.3, 1.32507, 1)
 
 [node name="Container" type="StaticBody3D" groups=["Interactable"]]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.06629, 1, 13.451)
 script = ExtResource("1_w0rxb")
 
 [node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.695772, -0.249975, 0)
 shape = SubResource("BoxShape3D_ijmaa")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_vedvw")
+transform = Transform3D(-1.98887e-08, 0, 0.455, 0, 0.455, 0, -0.455, 0, -1.98887e-08, 0, 0, 0)
+mesh = ExtResource("2_vf4sy")
+
+[node name="Hinge" type="Node3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.529763, -0.659926, -1.21661)
+
+[node name="Door" type="MeshInstance3D" parent="Mesh/Hinge"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0.529763, 0.121892, -0.0534693)
+mesh = ExtResource("3_h7qei")
+skeleton = NodePath("../..")
