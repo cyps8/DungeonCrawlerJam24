@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://clcb74svnwenw"]
+[gd_scene load_steps=14 format=3 uid="uid://clcb74svnwenw"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Level.gd" id="1_4qaat"]
 [ext_resource type="PackedScene" uid="uid://beytbbuavadt5" path="res://Nodes/player.tscn" id="1_uwx3m"]
@@ -9,6 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://c3hoxo3gy5ekw" path="res://Assets/Art/Meshes/Props/mesh_prop_crate.obj" id="8_t111p"]
 [ext_resource type="PackedScene" uid="uid://b0x221kq5gyhl" path="res://Nodes/door.tscn" id="9_vogfd"]
 [ext_resource type="ArrayMesh" uid="uid://cgdvw58fdpkrp" path="res://Assets/Art/Meshes/Props/mesh_prop_locker_locked.obj" id="9_yd8gg"]
+[ext_resource type="Resource" uid="uid://cd8figylv2kko" path="res://Resources/Items/SecurityKeycard.tres" id="10_bk57m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nwm2h"]
 size = Vector3(9.54889, 5.78662, 5.95932)
@@ -100,7 +101,7 @@ mesh = ExtResource("8_t111p")
 transform = Transform3D(1.91831, 0, 0.565756, 0, 2, 0, -0.565756, 0, 1.91831, 56.1838, -1.62409, 78.7083)
 
 [node name="MeshPropCrate" type="MeshInstance3D" parent="Props/StaticBody3D2"]
-transform = Transform3D(0.370836, 0, -0.335382, 0, 0.5, 0, 0.335382, 0, 0.370836, -0.59891, 1.1843, 7.43052)
+transform = Transform3D(0.370836, 0, -0.335382, 0, 0.5, 0, 0.335382, 0, 0.370836, -0.598911, 1.1843, 7.43047)
 mesh = ExtResource("8_t111p")
 skeleton = NodePath("../../..")
 
@@ -171,13 +172,14 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 56.034
 locked = true
 
 [node name="Door22" parent="Doors" instance=ExtResource("9_vogfd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9957, 1.03774, 71.9785)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 1.038, 71.9622)
 
 [node name="Door3" parent="Doors" instance=ExtResource("9_vogfd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.0127, 1.03983, 25.9576)
 
 [node name="Door8" parent="Doors" instance=ExtResource("9_vogfd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.0127, 1.03983, 18.0112)
+itemRequired = ExtResource("10_bk57m")
 
 [node name="Door9" parent="Doors" instance=ExtResource("9_vogfd")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.0335, 1.03983, 19.0026)
