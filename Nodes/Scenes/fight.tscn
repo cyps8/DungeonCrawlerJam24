@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cchtk7sr6uooo"]
+[gd_scene load_steps=24 format=3 uid="uid://cchtk7sr6uooo"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Fight/Fight.gd" id="1_cintp"]
 [ext_resource type="PackedScene" uid="uid://17pdg2ie4dcl" path="res://Nodes/FightAttacks/fight_attack.tscn" id="2_d1b4e"]
@@ -11,6 +11,7 @@
 [ext_resource type="Theme" uid="uid://u8pdlm3dg4w" path="res://Resources/Themes/MainTheme.tres" id="9_mbes3"]
 [ext_resource type="Script" path="res://Scripts/Game/FightHUD.gd" id="9_t0wtu"]
 [ext_resource type="Script" path="res://Scripts/Game/GameOver.gd" id="11_oearr"]
+[ext_resource type="Script" path="res://Scripts/MenuButton.gd" id="12_ebqvd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xsiy"]
 transparency = 1
@@ -234,6 +235,7 @@ offset_top = 690.0
 offset_right = 921.0
 offset_bottom = 830.0
 text = "RETRY"
+script = ExtResource("12_ebqvd")
 
 [node name="MenuButton" type="Button" parent="GameOver/c"]
 layout_mode = 0
@@ -242,6 +244,7 @@ offset_top = 692.0
 offset_right = 1263.0
 offset_bottom = 832.0
 text = "MAIN MENU"
+script = ExtResource("12_ebqvd")
 
 [connection signal="body_entered" from="Heart" to="Heart" method="KnifeHurt"]
 [connection signal="pressed" from="GameOver/c/RetryButton" to="GameOver" method="RetryButton"]
