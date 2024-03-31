@@ -314,15 +314,18 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.967
 
 [node name="Container4" parent="Lockers" instance=ExtResource("11_3tgmv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.967, 0, 5.84519)
+items = Array[Resource("res://Scripts/Game/Item.gd")]([ExtResource("12_i4wb1")])
 
 [node name="Container7" parent="Lockers" instance=ExtResource("11_3tgmv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.967, 0, 3.85811)
 
 [node name="Container8" parent="Lockers" instance=ExtResource("11_3tgmv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.9672, 0, 3.8581)
+items = Array[Resource("res://Scripts/Game/Item.gd")]([ExtResource("14_uf4wy")])
 
 [node name="Container5" parent="Lockers" instance=ExtResource("11_3tgmv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.9672, 0, 1.87206)
+items = Array[Resource("res://Scripts/Game/Item.gd")]([ExtResource("15_6bdi0")])
 
 [node name="Container6" parent="Lockers" instance=ExtResource("11_3tgmv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.96699, 0, 1.87207)
