@@ -145,11 +145,12 @@ func SelectRandomTile(awayFrom: MapTile = null, distance: float = 0) -> MapTile:
 			tile = Map[randi() % Map.size()]
 		return tile
 
-func SpawnNewEnemy():
+func SpawnNewEnemy() -> Enemy:
 	var newEnemy: Enemy = enemyList[randi() % enemyList.size()].instantiate()
 	add_child(newEnemy)
 	newEnemy.currentTile = SelectRandomTile(GameManager.instance.playerRef.currentTile, 5)
 	newEnemy.position = newEnemy.currentTile.position
+	return newEnemy
 
 func PathFindTo(from: MapTile, to: MapTile) -> MapTile:
 	if from == to:

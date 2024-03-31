@@ -56,7 +56,10 @@ omni_attenuation = 1.07177
 
 [node name="Area" type="Area3D" parent="."]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 2
 
 [node name="Shape" type="CollisionShape3D" parent="Area"]
 shape = SubResource("BoxShape3D_vnxda")
+
+[connection signal="area_entered" from="Area" to="." method="AreaEnter"]
+[connection signal="area_exited" from="Area" to="." method="AreaExit"]

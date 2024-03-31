@@ -26,6 +26,8 @@ var flBatteryMax: float = 60
 var playerRef: Player
 var gameOver: bool = false
 
+var activeEnemies: Array[Enemy] = []
+
 func _ready():
 	flBatteryLevel = flBatteryMax
 
@@ -52,6 +54,28 @@ func _ready():
 	Level.instance.MapGenerated.connect(OnMapGenerated)
 	fightRef.hudRef.UpdateHealth(health/healthMax)
 
+func ManageEnemies():
+	if playerRef.inLight:
+		for enemy in activeEnemies:
+			enemy.queue_free()
+		activeEnemies.clear()
+	else:
+		if activeEnemies.size() < 1 && sanity < 75:
+			activeEnemies.append(Level.instance.SpawnNewEnemy())
+		elif activeEnemies.size() < 2 && sanity < 50:
+			activeEnemies.append(Level.instance.SpawnNewEnemy())
+		elif activeEnemies.size() < 3 && sanity < 25:
+			activeEnemies.append(Level.instance.SpawnNewEnemy())
+		if activeEnemies.size() > 2 && sanity > 25:
+			activeEnemies[0].queue_free()
+			activeEnemies.remove_at(0)
+		elif activeEnemies.size() > 1 && sanity > 50:
+			activeEnemies[0].queue_free()
+			activeEnemies.remove_at(0)
+		elif activeEnemies.size() > 0 && sanity > 75:
+			activeEnemies[0].queue_free()
+			activeEnemies.remove_at(0)
+
 func ChangeHealth(value):
 	health += value
 	health = clamp(health, 0, healthMax)
@@ -69,30 +93,39 @@ func ChangeSanity(value):
 func ChangeBattery(value):
 	flBatteryLevel += value
 	flBatteryLevel = clamp(flBatteryLevel, 0, flBatteryMax)
+	hudRef.UpdateBatteryCharge(flBatteryLevel / flBatteryMax)
 
 func ChangeBatteryMax(value):
 	flBatteryLevel = (flBatteryLevel / flBatteryMax) * (flBatteryMax + value)
 	flBatteryMax += value
+	hudRef.UpdateBatteryCharge(flBatteryLevel / flBatteryMax)
 
 func ChangeHealthMax(value):
 	healthMax = (healthMax / healthMax) * (healthMax + value)
 	healthMax += value
+	invRef.UpdateHealth(health/ healthMax)
+	fightRef.hudRef.UpdateHealth(health/healthMax)
 
 func ChangeSanityMax(value):
 	sanityMax = (sanityMax / sanityMax) * (sanityMax + value)
 	sanityMax += value
+	invRef.UpdateSanity(sanity/ sanityMax)
 
 func SetHealth(value):
 	health = value
 	health = clamp(health, 0, healthMax)
+	invRef.UpdateHealth(health/ healthMax)
+	fightRef.hudRef.UpdateHealth(health/healthMax)
 
 func SetSanity(value):
 	sanity = value
 	sanity = clamp(sanity, 0, sanityMax)
+	invRef.UpdateSanity(sanity/ sanityMax)
 
 func SetBattery(value):
 	flBatteryLevel = value
 	flBatteryLevel = clamp(flBatteryLevel, 0, flBatteryMax)
+	hudRef.UpdateBatteryCharge(flBatteryLevel / flBatteryMax)
 
 func SwitchToLevel():
 	remove_child(fightRef)
@@ -130,6 +163,7 @@ func TogglePause():
 func _process(_delta):
 	if gameOver:
 		return
+	ManageEnemies()
 	if Input.is_action_just_pressed("DebugSpawnEnemy"):
 		Level.instance.SpawnNewEnemy()
 	if Input.is_action_just_pressed("Reload"):
