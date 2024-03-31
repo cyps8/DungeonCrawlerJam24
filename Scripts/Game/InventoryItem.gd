@@ -15,6 +15,9 @@ func changeCount(deltaCount: int):
 	else:
 		$Label.text = item.name
 
+func SetIcon(texture: Texture2D):
+	$Img.texture = texture
+
 func Used(_id: int = 0):
 	GameManager.instance.ChangeStat(item.type, item.value, item.function)
 	GameManager.instance.invRef.RemoveItem(item)

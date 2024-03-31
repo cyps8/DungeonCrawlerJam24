@@ -44,6 +44,8 @@ func AddItem(addItem: Item) -> void:
 	newItem.tooltip_text = addItem.description
 	if addItem.consumable:
 		newItem.disabled = false
+	if addItem.icon != null:
+		newItem.SetIcon(addItem.icon)
 	items.append(newItem)
 	itemsRef.add_child(newItem)
 	newItem.changeCount(1)
