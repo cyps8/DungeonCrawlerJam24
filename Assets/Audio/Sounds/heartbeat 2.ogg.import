@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://uakr1yek4gyk"
+path="res://.godot/imported/heartbeat 2.ogg-554bdba1cc72e7c2ebe7ff8df1b042d9.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Sounds/heartbeat 2.ogg"
+dest_files=["res://.godot/imported/heartbeat 2.ogg-554bdba1cc72e7c2ebe7ff8df1b042d9.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
