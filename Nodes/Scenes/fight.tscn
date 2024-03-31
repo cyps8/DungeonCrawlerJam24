@@ -197,6 +197,7 @@ show_percentage = false
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 layer = 10
+visible = false
 script = ExtResource("11_oearr")
 
 [node name="c" type="Control" parent="GameOver"]

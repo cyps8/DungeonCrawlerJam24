@@ -31,12 +31,18 @@ var activeEnemies: Array[Enemy] = []
 var hasFuel = false
 var powerFixed = false
 
+var winRef: CanvasLayer
+
 func _ready():
 	flBatteryLevel = flBatteryMax
 
 	pauseRef = $Pause
 	pauseRef.visible = true
 	remove_child(pauseRef)
+
+	winRef = $WinScreen
+	winRef.visible = true
+	remove_child(winRef)
 
 	hudRef = $HUD
 	hudRef.visible = true
@@ -63,6 +69,14 @@ func _ready():
 var endInteractable: StaticBody3D
 	
 var endObj = false
+
+var escaped = false
+
+func Escaped():
+	if escaped: 
+		return
+	add_child(winRef)
+	escaped = true
 
 func ManageEnemies():
 	if playerRef.inLight:
@@ -137,10 +151,14 @@ func SetBattery(value):
 	flBatteryLevel = clamp(flBatteryLevel, 0, flBatteryMax)
 	hudRef.UpdateBatteryCharge(flBatteryLevel / flBatteryMax)
 
+var songpos: float = 0
+
 func SwitchToLevel():
 	remove_child(fightRef)
 	add_child(levelRef)
 	add_child(hudRef)
+	get_tree().get_first_node_in_group("Music").play(songpos)
+	get_tree().get_first_node_in_group("Beat1").stop()
 
 func SwitchToFight():
 	remove_child(levelRef)
@@ -150,6 +168,9 @@ func SwitchToFight():
 		remove_child(invRef)
 	add_child(fightRef)
 	fightRef.StartFight()
+	songpos = get_tree().get_first_node_in_group("Music").get_playback_position()
+	get_tree().get_first_node_in_group("Music").stop()
+	get_tree().get_first_node_in_group("Beat1").play()
 
 func OnMapGenerated():
 	pass

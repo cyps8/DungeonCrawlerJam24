@@ -20,3 +20,4 @@ func Interact(_tile: MapTile):
 	interacted = true
 	emit_signal("objectiveComplete")
 	GameManager.instance.hudRef.ShowHint("ESCAPED")
+	GameManager.instance.Escaped()

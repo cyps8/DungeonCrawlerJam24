@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://kqpqdl61bvfo"]
+[gd_scene load_steps=29 format=3 uid="uid://kqpqdl61bvfo"]
 
 [ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="1_4p14j"]
 [ext_resource type="PackedScene" uid="uid://clcb74svnwenw" path="res://Nodes/Scenes/map_abandoned_station.tscn" id="2_3vhis"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://blk4jtvkyieu2" path="res://Assets/Art/Icons/flashlight_off-0-0.png" id="11_3dmmn"]
 [ext_resource type="Resource" uid="uid://c1f4hwadro8dl" path="res://Resources/Items/ship_fuel.tres" id="14_x807m"]
 [ext_resource type="PackedScene" uid="uid://cu5bvgnqmicrq" path="res://Nodes/objective.tscn" id="15_ff411"]
+[ext_resource type="Script" path="res://Scripts/Game/GameOver.gd" id="21_tk1js"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2kcoe"]
 sky_top_color = Color(0.188235, 0.360784, 0.203922, 1)
@@ -420,6 +421,50 @@ layout_mode = 2
 [node name="Objective" parent="Inventory/c/Panel/Objectives/Scroll/Objectives" instance=ExtResource("15_ff411")]
 layout_mode = 2
 
+[node name="WinScreen" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("21_tk1js")
+
+[node name="c" type="Control" parent="WinScreen"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_xyck4")
+
+[node name="Excape" type="Label" parent="WinScreen/c"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -592.0
+offset_top = 83.0
+offset_right = 592.0
+offset_bottom = 360.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.827451, 0.615686, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 40
+theme_override_font_sizes/font_size = 100
+text = "YOU ESCAPED..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="WinScreen/c"]
+layout_mode = 0
+offset_left = 817.0
+offset_top = 694.0
+offset_right = 1105.0
+offset_bottom = 834.0
+text = "MAIN MENU"
+script = ExtResource("6_yxr2r")
+
 [connection signal="pressed" from="Pause/c/Panel/Resume" to="Pause" method="ResumeButton"]
 [connection signal="pressed" from="Pause/c/Panel/Options" to="Pause" method="OptionsButton"]
 [connection signal="pressed" from="Pause/c/Panel/MainMenu" to="Pause" method="MainMenuButton"]
+[connection signal="pressed" from="WinScreen/c/MenuButton" to="WinScreen" method="MainMenuButton"]

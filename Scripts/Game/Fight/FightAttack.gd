@@ -33,6 +33,7 @@ func _physics_process(_delta):
 func Defeated(_body):
 	if defeated:
 		return
+	AudioPlayer.instance.PlaySound(11, AudioPlayer.SoundType.SFX)
 	recoilTime = 0
 	_body.Burst()
 	_body.PlayerReact()

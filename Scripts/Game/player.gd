@@ -43,6 +43,8 @@ func JoinMap():
 	position = currentTile.position + Vector3(0, Level.instance.blockSize / 2, 0)
 
 func _process(_delta):
+	if GameManager.instance.escaped:
+		return
 	if Input.is_action_just_pressed("TurnL"):
 		TryRotate(1)
 	if Input.is_action_just_pressed("TurnR"):
@@ -61,6 +63,7 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("ToggleFlashlight") && GameManager.instance.flBatteryLevel > 0:
 		flOn = !flOn
+		AudioPlayer.instance.PlaySound(10, AudioPlayer.SoundType.SFX)
 		if flOn:
 			camRef.add_child(flashlightRef)
 		else:
@@ -77,6 +80,7 @@ func _process(_delta):
 			GameManager.instance.flBatteryLevel = 0
 			camRef.remove_child(flashlightRef)
 			flOn = false
+			AudioPlayer.instance.PlaySound(10, AudioPlayer.SoundType.SFX)
 
 	GameManager.instance.hudRef.UpdateFlashlightState(flOn)
 
