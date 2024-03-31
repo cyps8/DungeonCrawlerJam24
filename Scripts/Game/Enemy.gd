@@ -30,6 +30,7 @@ func MoveToPlayer():
 
 func TeleportAway(_area):
 	if _area.is_in_group("Flash"):
+		AudioPlayer.instance.PlaySound(7, AudioPlayer.SoundType.SFX)
 		if moveTween != null:
 			moveTween.kill()
 		moveTimer = 5
