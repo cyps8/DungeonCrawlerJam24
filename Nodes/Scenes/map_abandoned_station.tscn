@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://clcb74svnwenw"]
+[gd_scene load_steps=23 format=3 uid="uid://clcb74svnwenw"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Level.gd" id="1_4qaat"]
 [ext_resource type="PackedScene" uid="uid://beytbbuavadt5" path="res://Nodes/player.tscn" id="1_uwx3m"]
@@ -16,6 +16,8 @@
 [ext_resource type="Resource" uid="uid://nxxaoufe5qhp" path="res://Resources/Items/Pills.tres" id="14_uf4wy"]
 [ext_resource type="Resource" uid="uid://c4y5c0lsc3cku" path="res://Resources/Items/Bandages.tres" id="15_6bdi0"]
 [ext_resource type="ArrayMesh" uid="uid://bc5g1juxuaaja" path="res://Assets/Art/Meshes/Props/mesh_security_power_panel.obj" id="16_2p742"]
+[ext_resource type="PackedScene" uid="uid://bxh5ea7rgp7l2" path="res://Nodes/interactable.tscn" id="17_l2ycw"]
+[ext_resource type="PackedScene" uid="uid://bmiwdymkhyms0" path="res://Nodes/EndInteractable.tscn" id="18_0pi5e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nwm2h"]
 size = Vector3(9.54889, 5.78662, 5.95932)
@@ -387,3 +389,9 @@ collision_mask = 2
 
 [node name="Shape" type="CollisionShape3D" parent="LightZone"]
 shape = SubResource("BoxShape3D_u5l1v")
+
+[node name="Interactable" parent="." instance=ExtResource("17_l2ycw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.9702, 0.864385, 14.0786)
+
+[node name="EndInteractable" parent="." instance=ExtResource("18_0pi5e")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0.895, 18.154)

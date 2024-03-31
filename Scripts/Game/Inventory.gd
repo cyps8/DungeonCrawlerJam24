@@ -16,9 +16,15 @@ var items: Array[InventoryItem] = []
 @onready var sanityBarRef = %SanityBar
 @onready var objectiveListRef = %Objectives
 
+@export var fuelRef: Item
+
 func _ready():
 	for item in defaultInv:
 		AddItem(item)
+
+	AddObjective("Find fuel in the storage area", GotFuel)
+
+signal GotFuel
 
 func UpdateHealth(value: float):
 	healthBarRef.value = value
@@ -32,8 +38,11 @@ func AddObjective(msg: String, completeSignal: Signal):
 	completeSignal.connect(newObjective.queue_free)
 	objectiveListRef.add_child(newObjective)
 
-
 func AddItem(addItem: Item) -> void:
+	if addItem == fuelRef:
+		GotFuel.emit()
+		GameManager.instance.hasFuel = true
+
 	for item in items:
 		if item.item == addItem:
 			item.changeCount(1)

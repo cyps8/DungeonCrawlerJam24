@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3q24wyamn8qx"]
+[gd_scene load_steps=20 format=3 uid="uid://b3q24wyamn8qx"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_x3mch"]
 [ext_resource type="PackedScene" uid="uid://kqpqdl61bvfo" path="res://Nodes/Scenes/Game.tscn" id="2_e3bq7"]
@@ -17,6 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://cgaln1n3iv2nw" path="res://Assets/Audio/Sounds/sfx_1.ogg" id="14_ol2ew"]
 [ext_resource type="AudioStream" uid="uid://cublhdno8ytr8" path="res://Assets/Audio/Sounds/stab_v1.ogg" id="15_daqsr"]
 [ext_resource type="AudioStream" uid="uid://dp3i75x5tnbwg" path="res://Assets/Audio/Sounds/creepy.ogg" id="16_gs64h"]
+[ext_resource type="AudioStream" uid="uid://bw0rpdj7g400v" path="res://Assets/Audio/Sounds/power off.ogg" id="17_81qqu"]
+[ext_resource type="AudioStream" uid="uid://eys2bhgtyfbg" path="res://Assets/Audio/Sounds/alarm.ogg" id="18_egu4r"]
 
 [node name="Root" type="Node"]
 process_mode = 3
@@ -157,7 +159,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="AudioPlayer" type="Node" parent="."]
 script = ExtResource("6_ctsc0")
-sounds = Array[AudioStream]([ExtResource("9_g5pff"), ExtResource("10_tbuvi"), ExtResource("11_bep0q"), ExtResource("12_wsprx"), ExtResource("13_s2al8"), ExtResource("14_ol2ew"), ExtResource("15_daqsr"), ExtResource("16_gs64h")])
+sounds = Array[AudioStream]([ExtResource("9_g5pff"), ExtResource("10_tbuvi"), ExtResource("11_bep0q"), ExtResource("12_wsprx"), ExtResource("13_s2al8"), ExtResource("14_ol2ew"), ExtResource("15_daqsr"), ExtResource("16_gs64h"), ExtResource("17_81qqu"), ExtResource("18_egu4r")])
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_gobew")
